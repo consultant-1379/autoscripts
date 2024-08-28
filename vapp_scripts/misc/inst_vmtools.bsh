@@ -1,0 +1,96 @@
+#!/bin/bash
+
+ROOT_DIR=`dirname $0`
+ROOT_DIR=`cd ${ROOT_DIR} ; cd .. ; pwd`
+
+if [ ! -z "$1" ] ; then
+    if [ ! -r /share/vmware-solaris-tools.tar.gz ] ; then
+	cp ${ROOT_DIR}/misc/motd /share/motd
+	
+	cp ${ROOT_DIR}/vmware_tools/vmware-solaris-tools.tar.gz /share
+	cp ${ROOT_DIR}/vmware_tools/VMwareTools-8.3.7-341836.tar.gz /share
+    fi
+
+    SERVER=$1
+    SCRIPT=$0
+    SHORT_NAME=`basename ${SCRIPT}`
+    /usr/bin/expect <<EOF
+spawn scp -o UserKnownHostsFile=/dev/null -o CheckHostIP=no -o StrictHostKeyChecking=no /share/motd root@$SERVER:/tmp
+expect "assword:"
+send "shroot\r"
+expect eof
+
+spawn ssh -o UserKnownHostsFile=/dev/null -o CheckHostIP=no -o StrictHostKeyChecking=no root@$SERVER /tmp/motd install
+expect "assword:"
+send "shroot\r"
+expect eof
+
+spawn scp -o UserKnownHostsFile=/dev/null -o CheckHostIP=no -o StrictHostKeyChecking=no $SCRIPT root@${SERVER}:/var/tmp
+expect "Password:" 
+send "shroot\r"
+expect eof
+
+spawn ssh -o UserKnownHostsFile=/dev/null -o CheckHostIP=no -o StrictHostKeyChecking=no root@${SERVER}
+expect "Password:" 
+send "shroot\r"
+expect "#"
+send "at -f /var/tmp/${SHORT_NAME} now\r"
+expect "#"
+send "exit\r"
+expect eof
+EOF
+else
+    mkdir /tmp/share
+    mount -o vers=3 192.168.0.1:/share /tmp/share
+    mkdir /var/tmp/vmware_tools
+    cd /var/tmp/vmware_tools
+
+    UNAME=`uname`
+    if [ "${UNAME}" = "SunOS" ] ; then
+	TOOLS_FILE=/tmp/share/vmware-solaris-tools.tar.gz
+    else
+	TOOLS_FILE=/tmp/share/VMwareTools-8.3.7-341836.tar.gz
+    fi
+    gzip -dc ${TOOLS_FILE} | tar xf -
+
+    # /usr/sbin/svcadm milestone svc:/milestone/single-user
+    # READY=0
+    # while [ ${READY} -eq 0 ] ; do
+    # 	svcs svc:/milestone/multi-user:default | grep disabled
+    # 	if [ $? -eq 0 ] ; then
+    # 	    READY=1
+    # 	else
+    # 	    sleep 10
+    # 	fi
+    # done
+
+    unset REMOTEHOST
+    unset SSH_CONNECTION
+    unset DISPLAY
+    /var/tmp/vmware_tools/vmware-tools-distrib/vmware-install.pl --default > /var/tmp/vmware-install.log 2>&1
+    rm -rf /var/tmp/vmware_tools
+
+    if [ "${UNAME}" = "SunOS" ] ; then
+	# cd /etc
+	# for HOSTNAME_FILE in `ls hostname.e1000g*` ; do
+	#     INSTANCE=`echo ${HOSTNAME_FILE} | sed 's/hostname.e1000g//'`
+	#     mv ${HOSTNAME_FILE} hostname.vmxnet3s${INSTANCE}
+	# done       
+
+	if [ ! -r /kernel/drv/md.conf.sav ] ; then
+	    cp /kernel/drv/md.conf /kernel/drv/md.conf.sav
+	fi
+	echo "md_devid_destroy=1;" > /kernel/drv/md.conf
+	cat /kernel/drv/md.conf.sav >> /kernel/drv/md.conf
+
+	# Send console output back to the "screen"
+	eeprom console=text
+
+	init 6
+    else
+	sleep 10
+	init 6
+    fi
+fi
+
+

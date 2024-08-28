@@ -1,0 +1,20 @@
+#!/bin/bash
+
+ROOT_DIR=`dirname $0`
+ROOT_DIR=`cd ${ROOT_DIR} ; pwd`
+
+${ROOT_DIR}/sshkeygen.bsh rsa
+
+svcadm enable svc:/ericsson/smrs/smrs_nfs:default
+
+egrep '^server.*prefer' /etc/inet/ntp.conf > /dev/null
+if [ $? -ne 0 ] ; then
+    cp /etc/inet/ntp.conf /etc/inet/ntp.conf.sav_smrs
+    cat /etc/inet/ntp.conf.sav_smrs | sed 's/^server.*/server 192.168.0.1 prefer/' > /etc/inet/ntp.conf
+    svcadm restart svc:/network/ntp:default
+fi
+
+su - nmsadm -c "${ROOT_DIR}/sshkeygen.bsh rsa"
+
+/opt/ericsson/nms_cif_sm/bin/smtool online ARNEServer
+/opt/ericsson/nms_cif_sm/bin/smtool progress

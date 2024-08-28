@@ -1,0 +1,124 @@
+#!/bin/bash
+
+ROOT_DIR=`dirname $0`
+ROOT_DIR=`cd ${ROOT_DIR} ; cd ../.. ; pwd`
+
+while getopts  "a:b:v:c:h:n:s:d:p:t:f:i:" flag
+do
+    case "$flag" in
+	i) IMPORT_DATASTORE="${OPTARG}";;
+	a) SRC_VAPP="${OPTARG}";;
+	b) DATACENTER="${OPTARG}";;
+        v) DEST_VAPP="${OPTARG}";;
+	c) CLUSTER="${OPTARG}";;
+	h) HOST="${OPTARG}";;
+	n) PRIV_NET="${OPTARG}";;
+	p) PUB_NET="${OPTARG}";;
+	d) DATASTORE="${OPTARG}";;
+        f) FOLDER="${OPTARG}";;
+        *) 
+           echo "ERROR: Unknown option $flag"
+	   exit 1
+	   ;;
+
+    esac
+done
+
+for VAR_NAME in SRC_VAPP DEST_VAPP CLUSTER HOST PRIV_NET PUB_NET DATASTORE DATACENTER IMPORT_DATASTORE ; do
+    VAR_VALUE=`eval echo \\$${VAR_NAME}`
+    if [ -z "${VAR_VALUE}" ] ; then
+	echo "ERROR: Missing value for ${VAR_NAME}"
+	cat <<EOF 
+Usage: $0 -v <destVappName> -a <srcVAppName> 
+          -c <ClusterName> -h <HostInCluster> 
+          -n <vAppNetwork> -p <PublicNetwork> 
+          -b <Datacenter> -d <DataStore> 
+          -i <Import_Datastore>
+          [-f folder]
+EOF
+	exit 1
+    fi
+done
+
+FOLDER_OPT=""
+if [ "${FOLDER}" ] ; then
+    FOLDER_OPT="--folder ${FOLDER}"
+fi
+
+NFS_STORE="POC_NFS_Store"
+
+${ROOT_DIR}/vm/vApp.pl --vapp ${DEST_VAPP} --op create --cluster "${CLUSTER}" ${FOLDER_OPT}
+if [ $? -ne 0 ] ; then
+    echo "ERROR: Failed to create ${DEST_VAPP}"
+    exit 1
+fi
+
+for VM_PARAM in gateway:1:120:2 netsim:2:120:1 omsas:2:300:1 omsrvm:2:300:1 ossmaster:3:900:1 uas1:4:300:1 ; do
+    SHORT_NAME=`echo "${VM_PARAM}" | awk -F: '{print $1}'`
+    START_ORDER=`echo "${VM_PARAM}" | awk -F: '{print $2}'`
+    STOP_DELAY=`echo "${VM_PARAM}" | awk -F: '{print $3}'`
+    PRIV_NIC=`echo "${VM_PARAM}" | awk -F: '{print $4}'`
+
+    echo "${SHORT_NAME}"
+
+    SRC_VM="${SRC_VAPP}_${SHORT_NAME}"
+    IMPORTED_VM="import_${SRC_VM}"
+
+    VMX_FILE="[${IMPORT_DATASTORE}] /${SRC_VM}/${SRC_VM}.vmx"
+    echo " Register ${IMPORTED_VM}"    
+    /usr/lib/vmware-vcli/apps/vm/vmregister.pl --operation register \
+    --hostname ${HOST} --datacenter "${DATACENTER}" --cluster "${CLUSTER}" \
+    --vmname ${IMPORTED_VM} --vmxpath "${VMX_FILE}" --pool Resources > /dev/null
+    if [ $? -ne 0 ] ; then
+	echo "ERROR: Failed to register ${VM}"
+	exit 1
+    fi
+
+    VM="${DEST_VAPP}_${SHORT_NAME}"
+    echo " Cloning ${IMPORTED_VM} to ${VM}"
+    /usr/share/doc/vmware-vcli/samples/vm/vmprovision.pl --operation clone --vmhost ${HOST} --vmhost_destination ${HOST} --vmname ${IMPORTED_VM} --vmname_destination ${VM} --datastore "${DATASTORE}"
+    if [ $? -ne 0 ] ; then
+	echo "ERROR: Failed to clone ${IMPORTED_VM}"
+	exit 1
+    fi
+
+    echo " Un-register ${IMPORTED_VM}"    
+    /usr/lib/vmware-vcli/apps/vm/vmregister.pl --operation unregister \
+    --vmname ${IMPORTED_VM} > /dev/null
+    if [ $? -ne 0 ] ; then
+	echo "ERROR: Failed to unregister ${VM}"
+	exit 1
+    fi
+
+    #
+    # Add to vApp and set start order
+    #
+    echo " Add to ${DEST_VAPP}"
+    ${ROOT_DIR}/vm/vApp.pl --vapp ${DEST_VAPP} --op addvm --vm ${VM}
+    echo " Set start order in ${DEST_VAPP}"
+    ${ROOT_DIR}/vm/vApp.pl --vapp ${DEST_VAPP} --op order --vm ${VM} --startorder ${START_ORDER} --stopdelay ${STOP_DELAY}
+
+    echo " Connect NIC ${PRIV_NIC} to ${PRIV_NET}"
+    ${ROOT_DIR}/vm/connectNIC.pl --vmname ${VM} --pg ${PRIV_NET} --vnic ${PRIV_NIC}
+    if [ $? -ne 0 ] ; then
+        echo "ERROR: connectNIC.pl failed"
+        exit 1
+    fi
+done
+
+
+echo "Connect public interface in gateway to ${PUB_NET}"
+${ROOT_DIR}/vm/connectNIC.pl --vmname ${DEST_VAPP}_gateway --pg ${PUB_NET} --vnic 1
+
+echo "Co-locate rule"
+${ROOT_DIR}/vm/vApp.pl --vapp ${DEST_VAPP} --op coloc
+if [ $? -ne 0 ] ; then
+    exit 1
+fi
+echo "Set guest variables"
+${ROOT_DIR}/vm/vApp.pl --vapp ${DEST_VAPP} --op setnamevar
+if [ $? -ne 0 ] ; then
+    exit 1
+fi
+
+

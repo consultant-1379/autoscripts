@@ -1,0 +1,41 @@
+#!/bin/bash
+
+ORDER=$1
+if [ -z "${ORDER}" ] ; then
+   echo "Usage: $0 order"
+   exit 1
+fi
+
+HASTATUS=""
+while [ "${HASTATUS}" != "ONLINE" ] ; do
+    HASTATUS=`/opt/VRTS/bin/hastatus -sum | egrep 'Oss ' | awk '{print $6}'`
+    if [ "${HASTATUS}" != "ONLINE" ] ; then
+	echo " Waiting for Oss to come on ONLINE"
+	sleep 60
+    fi
+done
+
+SMTOOL=/opt/ericsson/nms_cif_sm/bin/smtool
+
+LIST_WORKING=0
+while [ ${LIST_WORKING} -ne 1 ] ; do
+    ${SMTOOL} list | grep ActivityManager > /dev/null 2>&1
+    if [ $? -eq 0 ] ; then
+	LIST_WORKING=1
+    else
+	echo " Waiting for SM to start"
+	sleep 60
+    fi
+done
+
+# Wait for any ongoing activity to finish
+${SMTOOL} progress
+
+LIST=`${SMTOOL} config start | egrep -v '\.' | awk '{ if ( $2 > 5 ) printf "%s ", $1}'`
+echo "Offlining ${LIST}"
+
+${SMTOOL} offline ${LIST} -reason=other -reasontext=other
+${SMTOOL} progress
+# To be sure, to be sure
+${SMTOOL} offline ${LIST} -reason=other -reasontext=other
+${SMTOOL} progress

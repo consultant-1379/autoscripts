@@ -1,0 +1,20 @@
+#!/bin/bash
+
+ROOT_DIR=`dirname $0`
+ROOT_DIR=`cd ${ROOT_DIR} ; pwd`
+
+TYPE=`egrep '^config=' /eniq/installation/config/bootargs | awk -F= '{print $2}'`
+if [ "${TYPE}" = "events" ] ; then
+    /usr/sfw/bin/wget -O /var/tmp/license ftp://ossread:ossread@159.107.220.96/ENIQ/ENIQ_Events_12.1_License
+else
+   cp /net/159.107.177.74/eniq/eniq_build/license/ENIQ_FULL_License /var/tmp/license
+fi
+
+if [ ! -r /eniq/installation/core_install/bin/set_core_memcache.bsh.sav ] ; then
+    cp /eniq/installation/core_install/bin/set_core_memcache.bsh /eniq/installation/core_install/bin/set_core_memcache.bsh.sav
+fi
+cat /eniq/installation/core_install/bin/set_core_memcache.bsh.sav |\
+ sed -e 's/OS_MIN_VALUE=.*/OS_MIN_VALUE=2048/'\
+  -e 's/MIN_OS_MEM=.*/MIN_OS_MEM=2048/'\
+  -e 's/FT_CO_APP_BUFF=.*/FT_CO_APP_BUFF=2048/'\
+  -e 's/MED_CO_APP_BUFF=.*/MED_CO_APP_BUFF=2048/' > /eniq/installation/core_install/bin/set_core_memcache.bsh

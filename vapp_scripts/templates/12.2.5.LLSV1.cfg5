@@ -1,0 +1,7 @@
+#VM Name:VM Template:Add Serial:Set MAC Address:Modify VM
+gateway:gateway:no:no:no
+netsim:netsim_R24G:no:no:no
+omsas:12.2.3_omsas:no:no:no
+omsrvm:12.2.3_omsrvm:no:no:no
+ossmaster:rc12.2.5_1_ossmaster:no:no:no
+uas1:solaris_R2G_D72GT:yes:yes:no

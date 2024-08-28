@@ -1,0 +1,146 @@
+#!/bin/bash
+
+usage_msg()
+{
+        echo "Usage: $0 -m MOUNTPOINT -o <yes/no> (to set motd) -d <yes/no> to update the md.conf file and reboot"
+        exit 1
+}
+check_args()
+{
+        if [[ -z "$MOUNTPOINT" ]]
+        then
+                echo "ERROR: You must say where the mountpoint is"
+                exit 1
+        fi
+}
+
+while getopts "m:o:d:" arg
+do
+    case $arg in
+        m) MOUNTPOINT="$OPTARG"
+        ;;
+	o) MOTD="$OPTARG"
+	;;
+	d) UPDATE_MD_CONF="$OPTARG"
+	;;
+        \?) usage_msg
+            exit 1
+            ;;
+    esac
+done
+
+check_args
+#. $MOUNTPOINT/expect/expect_functions
+
+    mkdir /var/tmp/vmware_tools > /dev/null 2>&1
+    cd /var/tmp/vmware_tools
+    if [[ "$ESXI_VERSION" == "" ]]
+	then
+		ESXI_VERSION="5"
+	fi
+    UNAME=`uname`
+    if [ "${UNAME}" = "SunOS" ] ; then
+	TOOLS_FILE=$MOUNTPOINT/files/vmware_tools/$ESXI_VERSION/vmware-solaris-tools*.tar.gz
+    else
+	#TOOLS_FILE=$MOUNTPOINT/files/vmware_tools/VMwareTools-8.6.0-515842.tar.gz
+	TOOLS_FILE=$MOUNTPOINT/files/vmware_tools/$ESXI_VERSION/VMwareTools*.tar.gz
+    fi
+	TOOLS_FILE_EXPANDED=`ls $TOOLS_FILE`
+	NEEDS_UPDATING="no"
+	if [[ -f /usr/sbin/vmtoolsd ]]
+	then
+		INSTALLED_BUILD=`/usr/sbin/vmtoolsd -v | awk '{print $6}' | sed 's/(build-//g' | sed 's/)//g'`
+		if [[ "$INSTALLED_BUILD" != "" ]]
+		then
+			echo "VMWare Tools Build $INSTALLED_BUILD installed"
+			if [[ `echo "$TOOLS_FILE_EXPANDED" | grep "$INSTALLED_BUILD"` ]]
+			then
+				echo "This is already the latest version"
+			else
+				echo "This isn't the latest version."
+				NEEDS_UPDATING="yes"
+			fi
+		else
+			echo "Unknown VMWare Tools build installed"
+			NEEDS_UPDATING="yes"
+		fi
+	else
+		echo "VMWare Tools not installed"
+		NEEDS_UPDATING="yes"
+	fi
+
+	if [[ "$NEEDS_UPDATING" == "no" ]]
+	then
+		echo -n ""
+	else
+    echo "INFO: Installing vmware tools on `hostname`, this may take a few minutes.."
+    echo "INFO: Using vmware file $TOOLS_FILE_EXPANDED"
+    gzip -dc ${TOOLS_FILE_EXPANDED} | tar xf -
+
+    # /usr/sbin/svcadm milestone svc:/milestone/single-user
+    # READY=0
+    # while [ ${READY} -eq 0 ] ; do
+    # 	svcs svc:/milestone/multi-user:default | grep disabled
+    # 	if [ $? -eq 0 ] ; then
+    # 	    READY=1
+    # 	else
+    # 	    sleep 10
+    # 	fi
+    # done
+
+	unset REMOTEHOST
+	unset SSH_CONNECTION
+	unset DISPLAY
+	# Workaround for issue installing on linux sometimes. Documented below.
+	# http://www.backtrack-linux.org/wiki/index.php/VMware_Tools
+	if [[ "${UNAME}" != "SunOS" ]]
+	then
+		mkdir -p /etc/cups/ppd > /dev/null 2>&1
+	fi
+	/var/tmp/vmware_tools/vmware-tools-distrib/vmware-install.pl --default > /var/tmp/vmware-install.log 2>&1
+	cd /
+	rm -rf /var/tmp/vmware_tools
+	echo "INFO: Completed vmware tools install"
+fi
+	# Set the motd
+        #if [[ "$MOTD" != "no" ]]
+        #then
+        #        $MOUNTPOINT/files/vmware_tools/motd start
+        #fi
+
+	if [[ "$UPDATE_MD_CONF" != "no" ]]
+	then
+    if [ "${UNAME}" = "SunOS" ] ; then
+	# cd /etc
+	# for HOSTNAME_FILE in `ls hostname.e1000g*` ; do
+	#     INSTANCE=`echo ${HOSTNAME_FILE} | sed 's/hostname.e1000g//'`
+	#     mv ${HOSTNAME_FILE} hostname.vmxnet3s${INSTANCE}
+	# done       
+
+	if [ ! -r /kernel/drv/md.conf.sav ] ; then
+	    cp /kernel/drv/md.conf /kernel/drv/md.conf.sav
+	fi
+	echo "md_devid_destroy=1;" > /kernel/drv/md.conf
+	cat /kernel/drv/md.conf.sav >> /kernel/drv/md.conf
+	if [[ `grep system /ericsson/config/ericsson_use_config` ]]
+	then
+		echo "INFO: Doing init 6"
+		init 6
+	else
+		echo "INFO: Doing a reboot"
+		reboot
+	fi
+    else
+	sleep 10
+	if [[ -f /ericsson/config/inst_type ]] && [[ `grep ossrc /ericsson/config/inst_type` ]]
+        then
+		echo "INFO: Doing init 6"
+                init 6
+        else
+		echo "INFO: Doing a reboot"
+                reboot
+        fi
+    fi
+
+	#echo "INFO: Waiting for reboot after updating md.conf file"
+fi

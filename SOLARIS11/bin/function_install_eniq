@@ -1,0 +1,770 @@
+	local PREFIX=$1
+	local SMALL_PREFIX=`echo "$1" | tr '[:upper:]' '[:lower:]'`
+	local X_SERVER_TYPE=`eval echo \\$${PREFIX}_SERVER_TYPE`
+	local X_ILO_USER=`eval echo \\$${PREFIX}_ILO_USER`
+	local X_ILO_ADDRESS=`eval echo \\$${PREFIX}_ILO_ADDRESS`
+	local X_ILO_PASS=`eval echo \\$${PREFIX}_ILO_PASS`
+	local X_HOSTNAME=`eval echo \\$${PREFIX}_HOSTNAME`
+	local X_VSP_SERVER=`eval echo \\$${PREFIX}_VSP_SERVER`
+	local X_VM_NAME=`eval echo \\$${PREFIX}_VM_NAME`
+
+	local X_INSTALL_SERVER_TYPE=`eval echo \\$${PREFIX}_INSTALL_SERVER_TYPE`
+	local X_STORAGE_OPTION=`eval echo \\$${PREFIX}_STORAGE_OPTION`
+	local X_SAN_STORAGE_DEVICE=`eval echo \\$${PREFIX}_SAN_STORAGE_DEVICE`
+	local X_STOR_BASE_NIC=`eval echo \\$${PREFIX}_STOR_BASE_NIC`
+	local X_STOR_BASE_VIP=`eval echo \\$${PREFIX}_STOR_BASE_VIP`
+	local X_LICENSE_LOC=`eval echo \\$${PREFIX}_LICENSE_LOC`
+	local X_PROBE_BASED_IPMP=`eval echo \\$${PREFIX}_PROBE_BASED_IPMP`
+	local X_OSS_SERV_INT=`eval echo \\$${PREFIX}_OSS_SERV_INT`
+	local X_IP_ADDR=`eval echo \\$${PREFIX}_IP_ADDR`
+	local X_CLIENT_IP_ADDR_V6=`eval echo \\$${PREFIX}_CLIENT_IP_ADDR_V6`
+	local X_IPV6_ADDR=`echo "$X_CLIENT_IP_ADDR_V6" | awk -F/ '{print $1}'`
+	local X_NETMASK=`eval echo \\$${PREFIX}_NETMASK`
+	local X_ID=`eval echo \\$${PREFIX}_ID`
+	local X_SUBS=`eval echo \\$${PREFIX}_SUBS`
+	local X_USERS=`eval echo \\$${PREFIX}_USERS`
+	local X_FEATURE_END_RANGE=`eval echo \\$${PREFIX}_FEATURE_END_RANGE`
+	local X_GLASS_MAX_HEAP=`eval echo \\$${PREFIX}_GLASS_MAX_HEAP`
+	local X_GLASS_LARGE_PAGE=`eval echo \\$${PREFIX}_GLASS_LARGE_PAGE`
+	local X_GLASS_SURVIVOR_RATIO=`eval echo \\$${PREFIX}_GLASS_SURVIVOR_RATIO`
+	local X_GLASS_NEW_RATIO=`eval echo \\$${PREFIX}_GLASS_NEW_RATIO`
+	local X_ETLC_ENGINE_MAX_HEAP=`eval echo \\$${PREFIX}_ETLC_ENGINE_MAX_HEAP`
+	local X_SCHEDULER_MAX_HEAP=`eval echo \\$${PREFIX}_SCHEDULER_MAX_HEAP`
+	local X_IQ_PAGE_SIZE=`eval echo \\$${PREFIX}_IQ_PAGE_SIZE`
+	local X_IQ_CACHE_MIN=`eval echo \\$${PREFIX}_IQ_CACHE_MIN`
+	local X_IQ_CACHE_MAX=`eval echo \\$${PREFIX}_IQ_CACHE_MAX`
+	local X_IQ_CACHE_INITIAL=`eval echo \\$${PREFIX}_IQ_CACHE_INITIAL`
+	local X_OS_MIN_DISK=`eval echo \\$${PREFIX}_OS_MIN_DISK`
+	local X_OS_MIN_MEM=`eval echo \\$${PREFIX}_OS_MIN_MEM`
+	if [[ "$CEP_HOSTNAME" != "" ]]
+	then
+		X_CEP_MED_SERVERS='1'
+	else
+		X_CEP_MED_SERVERS='0'
+	fi
+	local X_READER_NO=`eval echo \\$${PREFIX}_READER_NO`
+	local X_NETWORK_TYPES=`eval echo \\$${PREFIX}_NETWORK_TYPES`
+	local X_CORE_MAINDB=`eval echo \\$${PREFIX}_CORE_MAINDB`
+	local X_GRAN_MAINDB=`eval echo \\$${PREFIX}_GRAN_MAINDB`
+	local X_WRAN_MAINDB=`eval echo \\$${PREFIX}_WRAN_MAINDB`
+	local X_CORE_TEMPDB=`eval echo \\$${PREFIX}_CORE_TEMPDB`
+	local X_GRAN_TEMPDB=`eval echo \\$${PREFIX}_GRAN_TEMPDB`
+	local X_WRAN_TEMPDB=`eval echo \\$${PREFIX}_WRAN_TEMPDB`
+	local X_CORE_COUNT=`eval echo \\$${PREFIX}_CORE_COUNT`
+	local X_GRAN_COUNT=`eval echo \\$${PREFIX}_GRAN_COUNT`
+	local X_WRAN_COUNT=`eval echo \\$${PREFIX}_WRAN_COUNT`
+	local X_NETWORK_TYPES=`eval echo \\$${PREFIX}_NETWORK_TYPES`
+
+	# Set some defaults regarding network types / counts if not set in variables file
+	if [[ "$X_NETWORK_TYPES" == "" ]]
+	then
+		X_NETWORK_TYPES="3"
+	fi
+	if [[ "$X_CORE_MAINDB" == "" ]]
+	then
+		X_CORE_MAINDB="1000"
+	fi
+	if [[ "$X_GRAN_MAINDB" == "" ]]
+        then
+                X_GRAN_MAINDB="1000"
+        fi
+	if [[ "$X_WRAN_MAINDB" == "" ]]
+        then
+                X_WRAN_MAINDB="1000"
+        fi
+	if [[ "$X_CORE_TEMPDB" == "" ]]
+        then
+                X_CORE_TEMPDB="500"
+        fi
+        if [[ "$X_GRAN_TEMPDB" == "" ]]
+        then
+                X_GRAN_TEMPDB="500"
+        fi
+        if [[ "$X_WRAN_TEMPDB" == "" ]]
+        then
+                X_WRAN_TEMPDB="500"
+        fi
+	if [[ "$X_CORE_COUNT" == "" ]]
+        then
+                X_CORE_COUNT="200"
+        fi
+        if [[ "$X_GRAN_COUNT" == "" ]]
+        then
+                X_GRAN_COUNT="200"
+        fi
+        if [[ "$X_WRAN_COUNT" == "" ]]
+        then
+                X_WRAN_COUNT="200"
+        fi
+	
+	# Disk tag variables
+	local X_ENIQ_SP_1_TAG=`eval echo \\$${PREFIX}_ENIQ_SP_1_TAG`
+	local X_IQ_SYS_MAIN_TAG=`eval echo \\$${PREFIX}_IQ_SYS_MAIN_TAG`
+	local X_MAINDB_TAG=`eval echo \\$${PREFIX}_MAINDB_TAG`
+	local X_MAINDB_TAG2=`eval echo \\$${PREFIX}_MAINDB_TAG2`
+	local X_MAINDB_TAG3=`eval echo \\$${PREFIX}_MAINDB_TAG3`
+	local X_TEMPDB_TAG=`eval echo \\$${PREFIX}_TEMPDB_TAG`
+	local X_TEMPDB_TAG2=`eval echo \\$${PREFIX}_TEMPDB_TAG2`
+	local X_ENIQ_POOL_TAG=`eval echo \\$${PREFIX}_ENIQ_POOL_TAG`
+	local X_ENIQ_EVENTS_POOL_TAG=`eval echo \\$${PREFIX}_ENIQ_EVENTS_POOL_TAG`
+	if [[ "$X_ENIQ_EVENTS_POOL_TAG" != "" ]]
+	then
+        	X_ENIQ_POOL_TAG=$X_ENIQ_EVENTS_POOL_TAG
+	fi
+	## set them to none if not set
+	if [[ "$X_MAINDB_TAG2" == "" ]]
+        then
+                X_MAINDB_TAG2="none"
+        fi
+	if [[ "$X_MAINDB_TAG3" == "" ]]
+        then
+                X_MAINDB_TAG3="none"
+        fi
+	if [[ "$X_TEMPDB_TAG2" == "" ]]
+	then
+		X_TEMPDB_TAG2="none"
+	fi
+	if [[ "$ADM1_IP_ADDR" == "" ]]
+	then
+		ADM1_IP_ADDR="1.1.1.1"
+	fi
+	local X_PARTITION_PLAN=`eval echo \\$${PREFIX}_PARTITION_PLAN`
+	#######
+
+        ### Build up serial connection string
+        local SERIAL_CONNECTION_STRING=""
+        if [[ "$X_SERVER_TYPE" == "blade" ]]
+        then
+                SERIAL_CONNECTION_STRING=`create_blade_connection_string $PREFIX`
+        else
+                SERIAL_CONNECTION_STRING=`create_vsp_connection_string $PREFIX nongraceful`
+                if [[ $? -ne 0 ]]
+                then
+                        message "$SERIAL_CONNECTION_STRING" ERROR
+                        exit 1
+                fi
+        fi
+
+	# loop through the boot sequence to check for certain error if found try the jump again
+        jumpstart_loop "$SERIAL_CONNECTION_STRING" $PREFIX
+        local EXIT_CODE=$?
+
+
+if [[ "$ON_THE_GATEWAY" == "yes" ]]
+then
+        clear_lock /tmp/${PREFIX}.lock remote $ACTUAL_DHCP_SERVER_IP
+fi
+
+if [[ $EXIT_CODE -ne 0 ]]
+then
+	message "ERROR: Installation did not complete successfully\n" ERROR
+        exit 1
+fi
+
+boot_from_disk_${SMALL_PREFIX}
+
+	$EXPECT - <<EOF
+set force_conservative 1
+set prompt ".*(%|#|\\$|>):? $"
+set timeout 43200
+$SERIAL_CONNECTION_STRING
+while {"1" == "1"} {
+	        expect {
+			"Red Hat Enterprise Linux Server" {
+				expect {
+					" login:" {
+						send "root\r"
+						expect "assword:" {
+							send "shroot\r"
+							expect "#" {
+								sleep 1
+								send "cd /eniq/installation/core_install/bin/;/bin/bash ./cep_core_install.bsh\r"
+							}
+						}
+					}
+				}
+			}
+			"The highlighted entry will be booted automatically"
+			{
+				send "\r"
+			}
+			"Custom JumpStart"
+			{
+		                send_user "\nDetected jumpstart starting\n"
+			}
+			"Preparing system for Solaris install"
+			{
+		                send_user "\nDetected solaris software installation\n"
+			}
+			"What type of terminal are you using" {
+		                send_user "\nDetected interactive solaris install, this shouldn't appear, exiting\n"
+		                exit 1
+			}
+			"Select a Language" {
+		                send_user "\nDetected interactive solaris install, this shouldn't appear, exiting\n"
+				exit 1
+			}
+			"Script aborted.."
+			{
+				send_user "\nERROR: Detected the installation aborting, exiting automated installation\n"
+				exit 1
+			}
+			"Select the server type you wish to install"
+			{
+				send "$X_INSTALL_SERVER_TYPE\r"
+			}
+			"Available storage options"
+			{
+				send "$X_STORAGE_OPTION\r"
+			}
+			"Enter type of SAN storage device connected to this ENIQ deployment"
+			{
+				send "$X_SAN_STORAGE_DEVICE\r"
+			}
+			"Enter the location of the licence file"
+			{
+				send "$X_LICENSE_LOC\r"
+			}
+			"Enter the server network-number:netmask details"
+			{
+				send "\r"
+			}
+			"Finish script eric_finish execution completed"
+			{
+				send_user "INFO: ENIQ performing 1st reboot\n"
+			}
+			"Do you want to enable Probe Based IPMP"
+			{
+				send "$X_PROBE_BASED_IPMP\r"
+			}
+			"Available interfaces for the PM Services Group"
+			{
+				send "$X_OSS_SERV_INT\r"
+			}
+			"Available interfaces for the OSS Services Group"
+			{
+				send "$X_OSS_SERV_INT\r"
+			}
+			"Available interfaces for the Storage Group"
+                        {
+                                send "$X_OSS_SERV_INT\r"
+                        }
+			"Enter the IP address of the PM Services Group"
+			{
+				send "$X_IP_ADDR\r"
+			}
+			"Enter the OSS Services group IP address of CEP Mediation server"
+			{
+				send "$CEP_IP_ADDR\r"
+			}
+			"Enter the OSS Storage group IP address of CEP Mediation server number"
+			{
+				send "$CEP_STOR_BASE_VIP\r"
+			}
+			"Enter the IP address of the Storage Group"
+                        {
+                                send "$X_IP_ADDR\r"
+                        }
+			"Enter the IP address of the OSS Services Group"
+                        {
+                                send "$X_IP_ADDR\r"
+                        }
+			"Enter the IPv6  netmask address for the PM Services Group for IPv6"
+			{
+				send "64\r"
+			}
+			"Enter the IP address of the OSS Services Group for IPv6"
+			{
+				send "$X_IPV6_ADDR\r"
+			}
+			"Enter the IPv6  netmask address for the OSS Services Group for IPv6"
+			{
+				send "64\r"
+			}
+			"Enter the netmask address for the PM Services Group"
+                        {
+                                send "$X_NETMASK\r"
+                        }
+			"Enter the netmask address for the OSS Services Group"
+			{
+				send "$X_NETMASK\r"
+			}
+			"Enter the netmask address for the Storage Group"
+			{
+                                send "$X_NETMASK\r"
+                        }
+			"Enter the Storage VLAN network-number:netmask details"
+			{
+				send "\r"
+			}
+			"Is the information above correct"
+			{
+				send "Yes\r"
+			}
+			"Select the IP Address you wish the Storage Agent"
+                        {
+                                send "1\r"
+                        }
+			"Enter the interface to use for storage vlan"
+			{
+				send "$X_STOR_BASE_NIC\r"
+			}
+			"Enter the storage vlan IP address"
+			{
+				send "$X_STOR_BASE_VIP\r"
+			}
+			"Enter the storage vlan netmask"
+			{
+				send "$STOR_NETMASK\r"
+			}
+			"Enter the storage vlan default gateway"
+			{
+				send "$STOR_GATEWAY\r"
+			}
+			"Enter the console IP address of the NAS"
+			{
+				send "$NASC\r"
+			}
+			"Enter the virtual IP address for nas1"
+			{
+				send "$NAS1\r"
+			}
+			"Enter the virtual IP address for nas2"
+			{
+				send "$NAS2\r"
+			}
+			"Enter the virtual IP address for nas3"
+			{
+				send "$NAS3\r"
+			}
+			"Enter the virtual IP address for nas4"
+			{
+				send "$NAS4\r"
+			}
+			"Enter the virtual IP address for nas5"
+			{
+				send "$NAS5\r"
+			}
+			"Enter the virtual IP address for nas6"
+			{
+				send "$NAS6\r"
+			}
+			"Enter the virtual IP address for nas7"
+			{
+				send "$NAS7\r"
+			}
+			"Enter the virtual IP address for nas8"
+			{
+				send "$NAS8\r"
+			}
+			"Enter the name of the primary NAS storage pool"
+			{
+				send "$X_ID\r"
+			}
+			"Enter the name of the NAS storage pool"
+			{
+				send "$ENIQE_ID\r"
+			}
+			"Enter the IP address of the server that repdb & dwhdb are installed on"
+			{
+				send "$ENIQE_IP_ADDR\r"
+			}
+			"Enter the IP address of the server that the license server is installed on"
+			{
+				send "$ENIQE_IP_ADDR\r"
+			}
+			"Successfully completed core install stage - cleanup"
+			{
+				sleep 1
+				exit 0
+			}
+			"Enter the password for user \'master\' in the NAS system"
+			{
+				send "$NASMASPWW\r"
+			}
+			"Enter the password for user \'support\' in the NAS system"
+			{
+				send "$NASSUPPWW\r"
+			}
+			"Enter the alias for this IQ instance"
+			{
+				sleep 1
+				send "dwh_reader_${X_READER_NO}\r"
+			}
+			-re {\[([0-9]+)\](?:(?!\]).)*$X_ENIQ_SP_1_TAG.*Select Range of disks you want to allocate to the eniq_sp_1 ZFS Storage Pool} {
+				send "\$expect_out(1,string)\r"
+			}
+			-re {\[([0-9]+)\](?:(?!\]).)*$X_ENIQ_POOL_TAG.*Select Range of disks you want to allocate to the stats_coordinator_pool ZFS Storage Pool} {
+                                send "\$expect_out(1,string)\r"
+                        }
+			-re {\[([0-9]+)\](?:(?!\]).)*$X_ENIQ_POOL_TAG.*Select Range of disks you want to allocate to the eniq_events_pool ZFS Storage Pool} {
+				send "\$expect_out(1,string)\r"
+			}
+			-re {\[([0-9]+)\](?:(?!\]).)*$X_ENIQ_POOL_TAG.*Select Range of disks you want to allocate to the eniq_stats_pool ZFS Storage Pool} {
+				send "\$expect_out(1,string)\r"
+                        }
+			-re {\[([0-9]+)\](?:(?!\]).)*$X_ENIQ_POOL_TAG.*Select Range of disks you want to allocate to the son_coordinator_pool ZFS Storage Pool} {
+                                send "\$expect_out(1,string)\r"
+                        }
+			-re {\[([0-9]+)\](?:(?!\]).)*$X_ENIQ_POOL_TAG.*Select Range of disks you want to allocate to the stats_engine_pool ZFS Storage Pool} {
+                                send "\$expect_out(1,string)\r"
+                        }
+			-re {\[([0-9]+)\](?:(?!\]).)*$X_ENIQ_POOL_TAG.*Select Range of disks you want to allocate to the stats_iqr_pool ZFS Storage Pool} {
+                                send "\$expect_out(1,string)\r"
+                        }
+			-re {\[([0-9]+)\](?:(?!\]).)*$X_IQ_SYS_MAIN_TAG.*Select the disk you want to allocate for IQ SYS MAIN database usage} {
+				send "\$expect_out(1,string)\r"
+			}
+
+
+			 -re {(\[([0-9]+)\](?:(?!\]).)*($X_MAINDB_TAG|$X_MAINDB_TAG2|$X_MAINDB_TAG3)).*?(\[([0-9]+)\](?:(?!\]).)*($X_MAINDB_TAG|$X_MAINDB_TAG2|$X_MAINDB_TAG3)).*?(\[([0-9]+)\](?:(?!\]).)*($X_MAINDB_TAG|$X_MAINDB_TAG2|$X_MAINDB_TAG3)).*?Select Range of disks you want to allocate for MainDB database usage} {
+                                send "\$expect_out(2,string)"
+                                send ","
+                                send "\$expect_out(5,string)"
+                                send ","
+                                send "\$expect_out(8,string)"
+                                send "\r"
+                        }
+                        -re {(\[([0-9]+)\](?:(?!\]).)*($X_MAINDB_TAG|$X_MAINDB_TAG2|$X_MAINDB_TAG3)).*?(\[([0-9]+)\](?:(?!\]).)*($X_MAINDB_TAG|$X_MAINDB_TAG2|$X_MAINDB_TAG3)).*?Select Range of disks you want to allocate for MainDB database usage} {
+                                send "\$expect_out(2,string)"
+                                send ","
+                                send "\$expect_out(5,string)"
+                                send "\r"
+                        }
+                        -re {(\[([0-9]+)\](?:(?!\]).)*($X_MAINDB_TAG|$X_MAINDB_TAG2|$X_MAINDB_TAG3)).*?Select Range of disks you want to allocate for MainDB database usage} {
+                                send "\$expect_out(2,string)"
+                                send "\r"
+                        }
+
+
+			-re {(\[([0-9]+)\](?:(?!\]).)*($X_TEMPDB_TAG|$X_TEMPDB_TAG2)).*?(\[([0-9]+)\](?:(?!\]).)*($X_TEMPDB_TAG|$X_TEMPDB_TAG2)).*?Select Range of disks you want to allocate for TempDB database usage} {
+                                send "\$expect_out(2,string)"
+                                send ","
+                                send "\$expect_out(5,string)"
+                                send "\r"
+                        }
+                        -re {(\[([0-9]+)\](?:(?!\]).)*($X_TEMPDB_TAG|$X_TEMPDB_TAG2)).*?Select Range of disks you want to allocate for TempDB database usage} {
+                                send "\$expect_out(2,string)"
+                                send "\r"
+                        }
+
+
+
+			"Are the disk allocations above correct"
+			{
+				sleep 1
+				send "y\r"
+			}
+			"Please enter the network types you are"
+			{
+				sleep 1
+				send "$X_NETWORK_TYPES\r"
+			}
+
+			"Please enter the amount of MAIN DBSPACE space to create"
+			{
+				expect {
+					"for each CORE node you are going to manage"
+					{
+						sleep 1
+						send "$X_CORE_MAINDB\r"
+					}
+					"for each GRAN cell you are going to manage"
+					{
+						sleep 1
+						send "$X_GRAN_MAINDB\r"
+					}
+					"for each WRAN cell you are going to manage"
+					{
+						sleep 1
+						send "$X_WRAN_MAINDB\r"
+					}
+				}
+			}
+			"Please enter the amount of TEMP DBSPACE space to create"
+			{
+				expect {
+					"for each CORE node you are going to manage"
+					{
+						sleep 1
+						send "$X_CORE_TEMPDB\r"
+					}
+					"for each GRAN cell you are going to manage"
+					{
+						sleep 1
+						send "$X_GRAN_TEMPDB\r"
+					}
+					"for each WRAN cell you are going to manage"
+					{
+						sleep 1
+						send "$X_WRAN_TEMPDB\r"
+					}
+				}
+			}
+	
+			"Please enter the number of CORE nodes you are going to manage"
+			{
+				sleep 1
+				send "$X_CORE_COUNT\r"
+			}
+			"Please enter the number of GRAN cells you are going to manage"
+			{
+				sleep 1
+				send "$X_GRAN_COUNT\r"
+			}
+			"Please enter the number of WRAN cells you are going to manage"
+			{
+				sleep 1
+				send "$X_WRAN_COUNT\r"
+			}
+			"Please enter the IP address of the OSS Server"
+			{
+				sleep 1
+				send "$ADM1_IP_ADDR\r"
+			}
+			"Enter IQ Cache initial size in bytes"
+			{
+				sleep 1
+				send "$X_IQ_CACHE_INITIAL\r"
+			}
+			"Enter IP address of Defaultroute"
+			{
+				sleep 1
+				send "\r"
+			}
+			"Enter IP address of DNS SERVER"
+			{
+				sleep 1
+				send "$NAMESERVERS\r"
+			}
+			"Enter DNS domain name"
+			{
+				sleep 1
+				send "$DNSDOMAIN\r"
+			}
+			"Enter TIMEZONE"
+			{
+				sleep 1
+				send "$TIMEZONE\r"
+			}
+			"Enter Amount of Shared Memory to Allocate to IQ in Mbytes"
+			{
+				sleep 1
+				send "\r"
+			}
+			"How many CEP Mediation servers will be installed"
+			{
+				sleep 1
+				send "$X_CEP_MED_SERVERS\r"
+			}
+			"Enter the hostname of the CEP Mediation server"
+			{
+				sleep 1
+				send "$CEP_HOSTNAME\r"
+			}
+			"Enter the number of subscribers on the network"
+			{
+				sleep 1
+				send "$X_SUBS\r"
+			}
+			"Enter the number of end-users that will use the system"
+			{
+				sleep 1
+				send "$X_USERS\r"
+			}
+			"Select the partition plan you wish to install"
+			{
+				sleep 1
+				send "$X_PARTITION_PLAN\r"
+			}
+			-re {\[([0-9]+)\](?:(?!\]).)*Select Range of ENIQ Features to be installed} {
+				sleep 1
+				send "1-\$expect_out(1,string)\r"
+			}
+			"Enter Glassfish Max Heap"
+			{
+				sleep 1
+				send "1024m\r"
+			}
+			"Enter Glassfish Min Heap"
+			{
+				sleep 1
+				send "512m\r"
+			}
+			"Enter Glassfish MaxPermSize"
+			{
+				sleep 1
+				send "$X_GLASS_MAX_HEAP\r"
+			}
+			"Enter Glassfish LargePageSizeInBytes"
+			{
+				sleep 1
+				send "$X_GLASS_LARGE_PAGE\r"
+			}
+			"Enter Glassfish SurvivorRatio"
+			{
+				sleep 1
+				send "$X_GLASS_SURVIVOR_RATIO\r"
+			}
+			"Enter Glassfish NewRatio"
+			{
+				sleep 1
+				send "$X_GLASS_NEW_RATIO\r"
+			}
+			"Enter ETLC Engine Max Heap"
+			{
+				sleep 1
+				send "$X_ETLC_ENGINE_MAX_HEAP\r"
+			}
+			"Enter Scheduler Max Heap"
+			{
+				sleep 1
+				send "$X_SCHEDULER_MAX_HEAP\r"
+			}
+			"Enter IQ Page Size"
+			{
+				sleep 1
+				send "$X_IQ_PAGE_SIZE\r"
+			}
+			"Enter IQ Cache minimum size in bytes"
+			{
+				sleep 1
+				send  "$X_IQ_CACHE_MIN\r"
+			}
+			"Enter IQ Cache maximum size in bytes"
+			{
+				sleep 1
+				send "$X_IQ_CACHE_MAX\r"
+			}
+			"Enter OS Min Disk Value"
+			{
+				sleep 1
+				send "$X_OS_MIN_DISK\r"
+			}
+			"Enter OS MIN Memory Value"
+			{
+				sleep 1
+				send "$X_OS_MIN_MEM\r"
+			}
+			"Enter FT APP Buffer"
+			{
+				sleep 1
+				send "\r"
+			}
+			"Enter MAIN Cache memory value"
+			{
+				sleep 1
+				send "\r"
+			}
+			"Enter Temp Cache memory value"
+			{
+				sleep 1
+				send "\r"
+			}
+			"Enter Large Cache memory value"
+			{
+				sleep 1
+				send "\r"
+			}
+			"Enter Catalog Cache memory value"
+			{
+				sleep 1
+				send "\r"
+			}
+			"Are the values above correct"
+			{
+				sleep 1
+				send "Yes\r"
+			}
+			"SUN_INST_PATCH"
+			{
+				exit 0
+			}
+			"bash: no job control in this shell"
+                        {
+                                send_user "\nDetected failed installation\n"
+                                exit 1
+                        }
+			eof {
+		                send_user "ERROR (Auto Installer): Unexpectedly exited from console connection\n"
+		                exit 1
+                        }
+		}
+	}
+EOF
+
+EXIT_CODE=$?
+
+if [[ $EXIT_CODE -ne 0 ]]
+then
+        message "ERROR: Installation did not complete successfully\n" ERROR
+        exit 1
+fi
+
+if [[ "$PREFIX" == "CEP" ]]
+then
+	message "INFO: Installation completed successfully\n" INFO
+	exit 0
+fi
+
+if [[ "$ON_THE_GATEWAY" == "yes" ]]
+then
+        update_md_conf $X_HOSTNAME
+fi
+
+sm_bios_workaround $X_HOSTNAME
+
+        $EXPECT - <<EOF
+set force_conservative 1
+set prompt ".*(%|#|\\$|>):? $"
+set timeout 43200
+$SERIAL_CONNECTION_STRING
+while {"1" == "1"} {
+                expect {
+			"ENIQ SW successfully installed"
+			{
+				set timeout 3600
+		                expect "console login" {
+		                        send_user "\nDetected first machine console login prompt, waiting for a while to see if second login prompt appears\n"
+		                                set timeout 300
+		                                expect {
+		                                        "The system is coming down" {
+		                                                send_user "\nDetected machine rebooting again, waiting for next boot.\n"
+		                                                set timeout -1
+		                                                expect "console login:" {
+		                                                        send_user "Automation: Completed\n"
+		                                                        exit 0
+		                                                }
+		                                        }
+		                                        timeout {
+		                                                send_user "\nDidn't detect extra reboot\n"
+		                                                exit 0
+		                                        }
+		                        }
+		                }
+			}
+			"bash: no job control in this shell"
+                        {
+                                send_user "\nDetected failed installation\n"
+                                exit 1
+                        }
+			"Script aborted.."
+			{
+				send_user "\nERROR: Detected the installation aborting, exiting automated installation\n"
+				exit 1
+			}
+			eof {
+		                send_user "ERROR (Auto Installer): Unexpectedly exited from console connection\n"
+               			exit 1
+			}
+        	}
+	}
+EOF
+
+	if [[ $? -eq 0 ]]
+	then
+		message "INFO: Installation completed successfully\n" INFO
+	else
+		message "ERROR: Installation did not complete successfully\n" ERROR
+	        exit 1
+	fi

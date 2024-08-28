@@ -1,0 +1,11 @@
+ifInOctets
+ifInUcastPkts
+ifInNUcastPkts
+ifInDiscards
+ifInErrors
+ifInUnknownProtos
+ifOutOctets
+ifOutUcastPkts
+ifOutNUcastPkt
+ifOutDiscards
+ifOutErrors

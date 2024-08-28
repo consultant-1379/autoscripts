@@ -1,0 +1,15 @@
+#!/bin/bash
+
+l_cmd=`svcs -a | grep ntp`
+echo $l_cmd
+if [ "$1" = "start" ] ; then
+	if [[ ! `svcs /network/ntp | egrep "disabled|offline" ` ]]; then
+		NTP_SERVICE="/network/ntp"
+		NTP_UPDATE="ntpdate"
+	fi
+	svcadm disable -s $NTP_SERVICE > /dev/null 2>&1
+	$NTP_UPDATE 192.168.0.1 > /dev/null 2>&1
+	svcadm enable -s $NTP_SERVICE > /dev/null 2>&1
+fi
+l_cmd=`svcs -a | grep ntp`
+echo $l_cmd

@@ -1,0 +1,25 @@
+#!/bin/bash
+
+
+
+cat /tmp/eth1.info | grep -v "not found"| while read line
+do
+host=`echo $line | awk -F\; '{print $1}'`
+hba_a=`echo $line | awk -F\; '{print $3}' | awk '{print $3}'`
+echo "alicreate \"${host}_1\",\"$hba_a\""
+echo "zonecreate \"Z_${host}_1_to_atcx457_SPA3\",\"${host}_1;atcx457_SPA3\""
+echo "cfgadd \"ZC_Fabric_A\",\"Z_${host}_1_to_atcx457_SPA3\""
+echo -e "\n######Next Zone######\n\n"
+done
+
+cat /tmp/eth1.info | grep -v "not found"| while read line
+do
+host=`echo $line | awk -F\; '{print $1}'`
+hba_b=`echo $line | awk -F\; '{print $4}' | awk '{print $3}'`
+
+echo "alicreate \"${host}_2\",\"$hba_b\""
+echo "zonecreate \"Z_${host}_2_to_atcx457_SPB3\",\"${host}_2;atcx457_SPB3\""
+echo "cfgadd \"ZC_Fabric_B\",\"Z_${host}_2_to_atcx457_SPB3\""
+echo -e "\n######Next Zone######\n\n"
+done
+

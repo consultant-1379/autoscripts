@@ -1,0 +1,20 @@
+#!/bin/bash
+
+TYPE=$1
+if [ -z "${TYPE}" ] ; then
+    echo "Usage: $0 <rsa/dsa>"
+fi
+
+if [ ! -r ${HOME}/.ssh/id_${TYPE} ] ; then
+    /usr/local/bin/expect <<EOF
+set timeout -1
+spawn /bin/ssh-keygen -t $TYPE
+expect "$TYPE):"
+send "\r"
+expect "passphrase):"
+send "\r"
+expect "again:"
+send "\r"
+expect eof
+EOF
+fi

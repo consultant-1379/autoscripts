@@ -1,0 +1,256 @@
+
+69
+atesx1111;chassis69; Port 1: 50:01:43:80:05:69:b6:b8; Port 2: 50:01:43:80:05:69:b6:ba;
+atesx1688;chassis69; Port 1: 50:01:43:80:12:0c:f4:1c; Port 2: 50:01:43:80:12:0c:f4:1e;
+atesx1097;chassis69; Port 1: 50:01:43:80:05:69:b4:c0; Port 2: 50:01:43:80:05:69:b4:c2;
+atesx120;chassis69; Port 1: 50:01:43:80:05:6a:53:0c; Port 2: 50:01:43:80:05:6a:53:0e;
+atesx1504;chassis69; Port 1: 50:01:43:80:12:0c:5e:c0; Port 2: 50:01:43:80:12:0c:5e:c2;
+atesx1505;chassis69; Port 1: 50:01:43:80:12:0c:69:10; Port 2: 50:01:43:80:12:0c:69:12;
+atesx1639;chassis69; Port 1: 50:01:43:80:12:0b:5a:e4; Port 2: 50:01:43:80:12:0b:5a:e6;
+atesx1816;chassis69; Port 1: 50:01:43:80:12:0c:7b:90; Port 2: 50:01:43:80:12:0c:7b:92;
+atesx1690;chassis69; Port 1: 50:01:43:80:12:0c:f8:1c; Port 2: 50:01:43:80:12:0c:f8:1e;
+atesx1689;chassis69; Port 1: 50:01:43:80:12:0c:f6:a0; Port 2: 50:01:43:80:12:0c:f6:a2;
+atesx1686;chassis69; Port 1: 50:01:43:80:12:0c:f3:b0; Port 2: 50:01:43:80:12:0c:f3:b2;
+atesx1687;chassis69; Port 1: 50:01:43:80:12:0c:f5:28; Port 2: 50:01:43:80:12:0c:f5:2a;
+
+72
+atesx1676;chassis72; Port 1: 50:01:43:80:12:0c:f3:e4; Port 2: 50:01:43:80:12:0c:f3:e6;
+atesx1677;chassis72; Port 1: 50:01:43:80:12:0c:f4:d8; Port 2: 50:01:43:80:12:0c:f4:da;
+atesx1678;chassis72; Port 1: 50:01:43:80:12:0c:f4:14; Port 2: 50:01:43:80:12:0c:f4:16;
+atesx1679;chassis72; Port 1: 50:01:43:80:12:0c:f7:48; Port 2: 50:01:43:80:12:0c:f7:4a;
+atesx1680;chassis72; Port 1: 50:01:43:80:12:0c:f4:0c; Port 2: 50:01:43:80:12:0c:f4:0e;
+atesx1681;chassis72; Port 1: 50:01:43:80:12:0c:f4:34; Port 2: 50:01:43:80:12:0c:f4:36;
+atesx1815;chassis72; Port 1: 50:01:43:80:12:0c:78:bc; Port 2: 50:01:43:80:12:0c:78:be;
+atesx1237;chassis72; Port 1: 50:01:43:80:07:29:b8:78; Port 2: 50:01:43:80:07:29:b8:7a;
+
+12
+{***Server not found ***}
+atesx1628;chassis12{***HBA not found ***}
+atesx1712;chassis12{***HBA not found ***}
+atesx1713;chassis12{***HBA not found ***}
+atesx1667;chassis12{***HBA not found ***}
+atesx1823;chassis12; Port 1: 50:01:43:80:14:0c:ea:d0; Port 2: 50:01:43:80:14:0c:ea:d2;
+atesx1395;chassis12; Port 1: 50:01:43:80:12:0b:3c:70; Port 2: 50:01:43:80:12:0b:3c:72;
+atesx1640;chassis12; Port 1: 50:01:43:80:12:0b:14:ec; Port 2: 50:01:43:80:12:0b:14:ee;
+atesx2414;chassis12; Port 1: 50:01:43:80:16:7e:1c:60; Port 2: 50:01:43:80:16:7e:1c:62;
+atesx2415;chassis12; Port 1: 50:01:43:80:16:7e:1d:38; Port 2: 50:01:43:80:16:7e:1d:3a;
+atesx2428;chassis12; Port 1: 50:01:43:80:16:7e:1b:a4; Port 2: 50:01:43:80:16:7e:1b:a6;
+atesx2429;chassis12; Port 1: 50:01:43:80:16:7e:1c:0c; Port 2: 50:01:43:80:16:7e:1c:0e;
+atesx2430;chassis12; Port 1: 50:01:43:80:16:7e:1d:30; Port 2: 50:01:43:80:16:7e:1d:32;
+
+50
+atesx1654;chassis50; Port 1: 50:01:43:80:12:0c:ea:3c; Port 2: 50:01:43:80:12:0c:ea:3e;
+atesx1655;chassis50; Port 1: 50:01:43:80:12:0c:ea:78; Port 2: 50:01:43:80:12:0c:ea:7a;
+atesx1656;chassis50; Port 1: 50:01:43:80:12:0c:e7:5c; Port 2: 50:01:43:80:12:0c:e7:5e;
+atesx1657;chassis50; Port 1: 50:01:43:80:12:0c:eb:ec; Port 2: 50:01:43:80:12:0c:eb:ee;
+atesx1658;chassis50; Port 1: 50:01:43:80:12:0c:ea:64; Port 2: 50:01:43:80:12:0c:ea:66;
+atesx1659;chassis50; Port 1: 50:01:43:80:12:0c:f2:c0; Port 2: 50:01:43:80:12:0c:f2:c2;
+atesx1660;chassis50; Port 1: 50:01:43:80:12:0c:ea:74; Port 2: 50:01:43:80:12:0c:ea:76;
+atesx1661;chassis50; Port 1: 50:01:43:80:12:0c:a7:68; Port 2: 50:01:43:80:12:0c:a7:6a;
+atesx1752;chassis50; Port 1: 50:01:43:80:12:0c:f6:a4; Port 2: 50:01:43:80:12:0c:f6:a6;
+atesx1753;chassis50; Port 1: 50:01:43:80:12:0c:f7:34; Port 2: 50:01:43:80:12:0c:f7:36;
+atesx1769;chassis50; Port 1: 50:01:43:80:12:0b:5d:90; Port 2: 50:01:43:80:12:0b:5d:92;
+atesx1774;chassis50; Port 1: 50:01:43:80:12:0c:f5:20; Port 2: 50:01:43:80:12:0c:f5:22;
+atesx1275;chassis50; Port 1: 50:01:43:80:05:6a:70:f8; Port 2: 50:01:43:80:05:6a:70:fa;
+atesx1668;chassis50; Port 1: 50:01:43:80:12:0c:e7:d8; Port 2: 50:01:43:80:12:0c:e7:da;
+atesx1669;chassis50; Port 1: 50:01:43:80:12:0c:a7:dc;;
+
+52
+atesx1684;chassis52; Port 1: 50:01:43:80:12:0c:f6:18; Port 2: 50:01:43:80:12:0c:f6:1a;
+atesx1685;chassis52; Port 1: 50:01:43:80:12:0c:f6:c0; Port 2: 50:01:43:80:12:0c:f6:c2;
+atesx1091;chassis52; Port 1: 50:01:43:80:12:0b:c8:b0; Port 2: 50:01:43:80:12:0b:c8:b2;
+atesx1513;chassis52; Port 1: 50:01:43:80:12:0c:6b:e8; Port 2: 50:01:43:80:12:0c:6b:ea;
+atesx1374;chassis52; Port 1: 50:01:43:80:09:ab:7a:44; Port 2: 50:01:43:80:09:ab:7a:46;
+atesx1375;chassis52; Port 1: 50:01:43:80:12:0a:c6:24; Port 2: 50:01:43:80:12:0a:c6:26;
+atesx1568;chassis52; Port 1: 50:01:43:80:07:30:0f:14; Port 2: 50:01:43:80:07:30:0f:16;
+atesx1575;chassis52; Port 1: 50:01:43:80:07:30:0c:d8; Port 2: 50:01:43:80:07:30:0c:da;
+
+53
+atesx1904;chassis53; Port 1: 50:01:43:80:14:0d:68:9c; Port 2: 50:01:43:80:14:0d:68:9e;
+atesx1905;chassis53; Port 1: 50:01:43:80:14:0d:68:c8; Port 2: 50:01:43:80:14:0d:68:ca;
+atesx1906;chassis53; Port 1: 50:01:43:80:14:0d:68:00; Port 2: 50:01:43:80:14:0d:68:02;
+atesx1907;chassis53; Port 1: 50:01:43:80:14:0d:6a:10; Port 2: 50:01:43:80:14:0d:6a:12;
+atesx1908;chassis53; Port 1: 50:01:43:80:14:0d:68:48; Port 2: 50:01:43:80:14:0d:68:4a;
+atesx1909;chassis53; Port 1: 50:01:43:80:14:0d:68:6c; Port 2: 50:01:43:80:14:0d:68:6e;
+atesx1910;chassis53; Port 1: 50:01:43:80:14:0d:6c:5c; Port 2: 50:01:43:80:14:0d:6c:5e;
+atesx1911;chassis53; Port 1: 50:01:43:80:14:0d:6b:f8; Port 2: 50:01:43:80:14:0d:6b:fa;
+atesx1912;chassis53; Port 1: 50:01:43:80:14:0d:6c:fc; Port 2: 50:01:43:80:14:0d:6c:fe;
+atesx1913;chassis53; Port 1: 50:01:43:80:14:0d:6a:c4; Port 2: 50:01:43:80:14:0d:6a:c6;
+atesx1914;chassis53; Port 1: 50:01:43:80:14:0d:6a:fc; Port 2: 50:01:43:80:14:0d:6a:fe;
+atesx1915;chassis53; Port 1: 50:01:43:80:14:0d:6c:88; Port 2: 50:01:43:80:14:0d:6c:8a;
+atesx1916;chassis53; Port 1: 50:01:43:80:14:0d:60:d4; Port 2: 50:01:43:80:14:0d:60:d6;
+atesx1917;chassis53; Port 1: 50:01:43:80:14:0d:61:98; Port 2: 50:01:43:80:14:0d:61:9a;
+atesx1918;chassis53; Port 1: 50:01:43:80:14:0d:61:54; Port 2: 50:01:43:80:14:0d:61:56;
+atesx1919;chassis53; Port 1: 50:01:43:80:14:0d:63:94;;
+
+49
+atesx2501;chassis49; Port 1: 50:01:43:80:12:0a:ef:14; Port 2: 50:01:43:80:12:0a:ef:16;
+atesx1227;chassis49; Port 1: 50:01:43:80:09:ab:7e:f4; Port 2: 50:01:43:80:09:ab:7e:f6;
+atesx1228;chassis49; Port 1: 50:01:43:80:09:ab:7c:a4; Port 2: 50:01:43:80:09:ab:7c:a6;
+atesx2500;chassis49; Port 1: 50:01:43:80:12:0a:ed:a0; Port 2: 50:01:43:80:12:0a:ed:a2;
+atesx2351;chassis49; Port 1: 50:01:43:80:16:7d:ea:18; Port 2: 50:01:43:80:16:7d:ea:1a;
+atesx2502;chassis49; Port 1: 50:01:43:80:12:0c:f0:ac;;
+
+62
+{***Server not found ***}
+{***Server not found ***}
+{***Server not found ***}
+{***Server not found ***}
+{***Server not found ***}
+{***Server not found ***}
+{***Server not found ***}
+{***Server not found ***}
+{***Server not found ***}
+{***Server not found ***}
+
+14
+atesx123;chassis14; Port 1: 50:01:43:80:05:6a:4c:b4; Port 2: 50:01:43:80:05:6a:4c:b6;
+atesx1662;chassis14; Port 1: 50:01:43:80:12:0c:a7:78; Port 2: 50:01:43:80:12:0c:a7:7a;
+atesx116;chassis14; Port 1: 50:01:43:80:05:6a:4e:e0; Port 2: 50:01:43:80:05:6a:4e:e2;
+atesx1882;chassis14; Port 1: 50:01:43:80:14:0d:69:c8; Port 2: 50:01:43:80:14:0d:69:ca;
+atesx1485;chassis14; Port 1: 50:01:43:80:12:0b:ed:1c; Port 2: 50:01:43:80:12:0b:ed:1e;
+atesx119;chassis14; Port 1: 50:01:43:80:05:6a:58:00; Port 2: 50:01:43:80:05:6a:58:02;
+atesx1982;chassis14; Port 1: 50:01:43:80:16:79:f5:e0; Port 2: 50:01:43:80:16:79:f5:e2;
+atesx121;chassis14; Port 1: 50:01:43:80:05:6a:49:e4; Port 2: 50:01:43:80:05:6a:49:e6;
+atesx122;chassis14; Port 1: 50:01:43:80:05:6a:55:44; Port 2: 50:01:43:80:05:6a:55:46;
+atesx1804;chassis14; Port 1: 50:01:43:80:14:0e:8a:68; Port 2: 50:01:43:80:14:0e:8a:6a;
+atesx1986;chassis14; Port 1: 50:01:43:80:16:79:f4:d8; Port 2: 50:01:43:80:16:79:f4:da;
+atesx125;chassis14; Port 1: 50:01:43:80:05:6a:53:a4; Port 2: 50:01:43:80:05:6a:53:a6;
+atesx126;chassis14; Port 1: 50:01:43:80:05:6a:53:ac; Port 2: 50:01:43:80:05:6a:53:ae;
+atesx127;chassis14; Port 1: 50:01:43:80:05:6a:4a:cc; Port 2: 50:01:43:80:05:6a:4a:ce;
+atesx1984;chassis14; Port 1: 50:01:43:80:16:79:f5:e8; Port 2: 50:01:43:80:16:79:f5:ea;
+atesx129;chassis14; Port 1: 50:01:43:80:05:6a:54:c8;;
+
+63
+atesx2033;chassis63; Port 1: 50:01:43:80:16:7c:03:70; Port 2: 50:01:43:80:16:7c:03:72;
+atesx2034;chassis63; Port 1: 50:01:43:80:16:7b:ff:78; Port 2: 50:01:43:80:16:7b:ff:7a;
+atesx1517;chassis63; Port 1: 50:01:43:80:12:0b:42:7c; Port 2: 50:01:43:80:12:0b:42:7e;
+atesx2013;chassis63; Port 1: 50:01:43:80:12:0a:db:20; Port 2: 50:01:43:80:12:0a:db:22;
+atesx985;chassis63; Port 1: 50:01:43:80:04:c2:d7:18; Port 2: 50:01:43:80:04:c2:d7:1a;
+atesx1013;chassis63; Port 1: 50:01:43:80:12:0c:64:18; Port 2: 50:01:43:80:12:0c:64:1a;
+atesx1337;chassis63; Port 1: 50:01:43:80:07:2f:00:a0; Port 2: 50:01:43:80:07:2f:00:a2;
+atesx1338;chassis63; Port 1: 50:01:43:80:07:2f:00:8c; Port 2: 50:01:43:80:07:2f:00:8e;
+atesx2035;chassis63; Port 1: 50:01:43:80:16:7b:fc:48; Port 2: 50:01:43:80:16:7b:fc:4a;
+atesx2036;chassis63; Port 1: 50:01:43:80:16:7b:fc:54; Port 2: 50:01:43:80:16:7b:fc:56;
+atesx1340;chassis63; Port 1: 50:01:43:80:12:0c:f5:a8; Port 2: 50:01:43:80:12:0c:f5:aa;
+atesx1341;chassis63; Port 1: 50:01:43:80:07:2f:00:d4; Port 2: 50:01:43:80:07:2f:00:d6;
+atesx1514;chassis63; Port 1: 50:01:43:80:12:0c:69:b4; Port 2: 50:01:43:80:12:0c:69:b6;
+atesx2433;chassis63; Port 1: 50:01:43:80:16:7e:1b:bc;;
+
+39
+atesx1478;chassis39; Port 1: 50:01:43:80:12:0b:e4:88; Port 2: 50:01:43:80:12:0b:e4:8a;
+atesx1479;chassis39; Port 1: 50:01:43:80:12:0b:e5:2c; Port 2: 50:01:43:80:12:0b:e5:2e;
+atesx1708;chassis39; Port 1: 50:01:43:80:07:31:27:58; Port 2: 50:01:43:80:07:31:27:5a;
+atesx1701;chassis39; Port 1: 50:01:43:80:07:31:27:d0; Port 2: 50:01:43:80:07:31:27:d2;
+atesx2431;chassis39; Port 1: 50:01:43:80:16:7e:1d:34; Port 2: 50:01:43:80:16:7e:1d:36;
+atesx2432;chassis39; Port 1: 50:01:43:80:16:7e:1c:44; Port 2: 50:01:43:80:16:7e:1c:46;
+atesx1822;chassis39; Port 1: 50:01:43:80:14:0c:eb:78; Port 2: 50:01:43:80:14:0c:eb:7a;
+atesx2316;chassis39; Port 1: 50:01:43:80:18:73:e3:84; Port 2: 50:01:43:80:18:73:e3:86;
+atesx2317;chassis39; Port 1: 50:01:43:80:18:73:b1:38; Port 2: 50:01:43:80:18:73:b1:3a;
+atesx1486;chassis39; Port 1: 50:01:43:80:12:0b:e3:24; Port 2: 50:01:43:80:12:0b:e3:26;
+atesx2117;chassis39; Port 1: 50:01:43:80:18:70:99:24; Port 2: 50:01:43:80:18:70:99:26;
+atesx2118;chassis39; Port 1: 50:01:43:80:18:70:c7:c8; Port 2: 50:01:43:80:18:70:c7:ca;
+atesx2119;chassis39; Port 1: 50:01:43:80:18:70:c2:a0; Port 2: 50:01:43:80:18:70:c2:a2;
+atesx2487;chassis39; Port 1: 50:01:43:80:07:2f:d2:b4;;
+
+66
+atesx201;chassis66; Port 1: 50:01:43:80:12:0b:15:70; Port 2: 50:01:43:80:12:0b:15:72;
+atesx202;chassis66; Port 1: 50:01:43:80:12:0b:14:64; Port 2: 50:01:43:80:12:0b:14:66;
+atesx1451;chassis66; Port 1: 50:01:43:80:07:2f:df:34; Port 2: 50:01:43:80:07:2f:df:36;
+atesx1454;chassis66; Port 1: 50:01:43:80:07:2f:e3:00; Port 2: 50:01:43:80:07:2f:e3:02;
+atesx1184;chassis66; Port 1: 50:01:43:80:05:6a:7c:50; Port 2: 50:01:43:80:05:6a:7c:52;
+atesx1185;chassis66; Port 1: 50:01:43:80:05:6a:70:84; Port 2: 50:01:43:80:05:6a:70:86;
+atesx1186;chassis66; Port 1: 50:01:43:80:05:6a:6e:e0; Port 2: 50:01:43:80:05:6a:6e:e2;
+atesx1187;chassis66; Port 1: 50:01:43:80:05:6a:6f:1c; Port 2: 50:01:43:80:05:6a:6f:1e;
+atesx1188;chassis66; Port 1: 50:01:43:80:05:6a:6f:68; Port 2: 50:01:43:80:05:6a:6f:6a;
+atesx1183;chassis66; Port 1: 50:01:43:80:07:2f:50:ec; Port 2: 50:01:43:80:07:2f:50:ee;
+atesx2354;chassis66; Port 1: 50:01:43:80:16:7d:e7:40; Port 2: 50:01:43:80:16:7d:e7:42;
+atesx2355;chassis66; Port 1: 50:01:43:80:16:7d:e8:a8; Port 2: 50:01:43:80:16:7d:e8:aa;
+atesx2356;chassis66; Port 1: 50:01:43:80:16:7d:e8:84; Port 2: 50:01:43:80:16:7d:e8:86;
+atesx2357;chassis66; Port 1: 50:01:43:80:16:7d:e4:38; Port 2: 50:01:43:80:16:7d:e4:3a;
+atesx2358;chassis66; Port 1: 50:01:43:80:16:7d:e2:fc; Port 2: 50:01:43:80:16:7d:e2:fe;
+atesx2359;chassis66; Port 1: 50:01:43:80:16:7d:e8:44;;
+
+84
+atesx2201;chassis84; Port 1: 50:01:43:80:18:70:fb:3c; Port 2: 50:01:43:80:18:70:fb:3e;
+atesx2202;chassis84; Port 1: 50:01:43:80:18:70:f8:c4; Port 2: 50:01:43:80:18:70:f8:c6;
+atesx2203;chassis84; Port 1: 50:01:43:80:18:70:f8:d8; Port 2: 50:01:43:80:18:70:f8:da;
+atesx2204;chassis84; Port 1: 50:01:43:80:18:70:fb:50; Port 2: 50:01:43:80:18:70:fb:52;
+atesx2205;chassis84; Port 1: 50:01:43:80:18:70:f8:cc; Port 2: 50:01:43:80:18:70:f8:ce;
+atesx2206;chassis84; Port 1: 50:01:43:80:18:70:f8:78; Port 2: 50:01:43:80:18:70:f8:7a;
+atesx2207;chassis84; Port 1: 50:01:43:80:18:70:fc:54; Port 2: 50:01:43:80:18:70:fc:56;
+atesx2208;chassis84; Port 1: 50:01:43:80:18:70:fa:f0; Port 2: 50:01:43:80:18:70:fa:f2;
+atesx1109;chassis84; Port 1: 50:01:43:80:05:69:b7:10; Port 2: 50:01:43:80:05:69:b7:12;
+atesx1499;chassis84; Port 1: 50:01:43:80:18:70:b8:78; Port 2: 50:01:43:80:18:70:b8:7a;
+atesx1500;chassis84; Port 1: 50:01:43:80:12:0b:e4:5c; Port 2: 50:01:43:80:12:0b:e4:5e;
+atesx1644;chassis84; Port 1: 50:01:43:80:14:0d:38:10; Port 2: 50:01:43:80:14:0d:38:12;
+atesx2413;chassis84; Port 1: 50:01:43:80:16:7e:1e:b0; Port 2: 50:01:43:80:16:7e:1e:b2;
+atesx2312;chassis84; Port 1: 50:01:43:80:18:73:9e:b4; Port 2: 50:01:43:80:18:73:9e:b6;
+atesx2488;chassis84; Port 1: 50:01:43:80:12:0b:c0:b4; Port 2: 50:01:43:80:12:0b:c0:b6;
+atesx1682;chassis84; Port 1: 50:01:43:80:12:0c:f4:b8;;
+
+93
+atesx2353;chassis93; Port 1: 50:01:43:80:16:7d:e8:cc; Port 2: 50:01:43:80:16:7d:e8:ce;
+atesx2352;chassis93; Port 1: 50:01:43:80:16:7d:e9:00; Port 2: 50:01:43:80:16:7d:e9:02;
+atesx1791;chassis93; Port 1: 50:01:43:80:12:0c:fd:1c; Port 2: 50:01:43:80:12:0c:fd:1e;
+atesx1793;chassis93; Port 1: 50:01:43:80:12:0c:ff:44; Port 2: 50:01:43:80:12:0c:ff:46;
+atesx1794;chassis93; Port 1: 50:01:43:80:14:0c:ec:00; Port 2: 50:01:43:80:14:0c:ec:02;
+atesx1797;chassis93; Port 1: 50:01:43:80:12:0c:ff:b8; Port 2: 50:01:43:80:12:0c:ff:ba;
+atesx2346;chassis93; Port 1: 50:01:43:80:16:7d:e8:8c; Port 2: 50:01:43:80:16:7d:e8:8e;
+atesx1495;chassis93; Port 1: 50:01:43:80:05:6a:6c:64; Port 2: 50:01:43:80:05:6a:6c:66;
+atesx1498;chassis93; Port 1: 50:01:43:80:12:0c:62:94; Port 2: 50:01:43:80:12:0c:62:96;
+atesx1113;chassis93; Port 1: 50:01:43:80:05:69:b8:e8; Port 2: 50:01:43:80:05:69:b8:ea;
+atesx2032;chassis93; Port 1: 50:01:43:80:05:6a:70:c4;;
+
+92
+atesx2401;chassis92; Port 1: 50:01:43:80:16:7e:1b:3c; Port 2: 50:01:43:80:16:7e:1b:3e;
+atesx2402;chassis92; Port 1: 50:01:43:80:16:7e:1c:f8; Port 2: 50:01:43:80:16:7e:1c:fa;
+atesx2403;chassis92{***HBA not found ***}
+atesx2404;chassis92; Port 1: 50:01:43:80:16:7e:1d:58; Port 2: 50:01:43:80:16:7e:1d:5a;
+atesx2405;chassis92; Port 1: 50:01:43:80:16:7e:29:70; Port 2: 50:01:43:80:16:7e:29:72;
+atesx2406;chassis92; Port 1: 50:01:43:80:16:7e:1d:48; Port 2: 50:01:43:80:16:7e:1d:4a;
+atesx2407;chassis92{***HBA not found ***}
+atesx2408;chassis92{***HBA not found ***}
+atesx1929;chassis92; Port 1: 50:01:43:80:14:0e:6f:e0; Port 2: 50:01:43:80:14:0e:6f:e2;
+atesx2410;chassis92{***HBA not found ***}
+atesx2411;chassis92{***HBA not found ***}
+atesx2412;chassis92{***HBA not found ***}
+atesx1240;chassis92; Port 1: 50:01:43:80:05:6c:89:e8; Port 2: 50:01:43:80:05:6c:89:ea;
+atesx1273;chassis92; Port 1: 50:01:43:80:05:6a:6f:48; Port 2: 50:01:43:80:05:6a:6f:4a;
+atesx1126;chassis92; Port 1: 50:01:43:80:12:0b:84:dc; Port 2: 50:01:43:80:12:0b:84:de;
+
+95
+atesx2471;chassis95; Port 1: 50:01:43:80:16:7e:2d:c0; Port 2: 50:01:43:80:16:7e:2d:c2;
+atesx2472;chassis95; Port 1: 50:01:43:80:16:7e:2e:90; Port 2: 50:01:43:80:16:7e:2e:92;
+atesx2473;chassis95; Port 1: 50:01:43:80:16:7e:26:20; Port 2: 50:01:43:80:16:7e:26:22;
+atesx2474;chassis95; Port 1: 50:01:43:80:16:7e:25:b4; Port 2: 50:01:43:80:16:7e:25:b6;
+atesx2416;chassis95; Port 1: 50:01:43:80:16:7e:1b:50; Port 2: 50:01:43:80:16:7e:1b:52;
+atesx2417;chassis95; Port 1: 50:01:43:80:16:7e:1c:6c; Port 2: 50:01:43:80:16:7e:1c:6e;
+atesx2418;chassis95; Port 1: 50:01:43:80:16:7e:1c:04; Port 2: 50:01:43:80:16:7e:1c:06;
+atesx2419;chassis95; Port 1: 50:01:43:80:16:7e:1d:6c; Port 2: 50:01:43:80:16:7e:1d:6e;
+atesx2475;chassis95; Port 1: 50:01:43:80:16:7e:24:2c; Port 2: 50:01:43:80:16:7e:24:2e;
+atesx2476;chassis95; Port 1: 50:01:43:80:16:7e:25:d4; Port 2: 50:01:43:80:16:7e:25:d6;
+atesx1104;chassis95; Port 1: 50:01:43:80:05:69:b7:14; Port 2: 50:01:43:80:05:69:b7:16;
+atesx1105;chassis95; Port 1: 50:01:43:80:05:69:cd:dc; Port 2: 50:01:43:80:05:69:cd:de;
+atesx2420;chassis95; Port 1: 50:01:43:80:16:7e:1d:8c; Port 2: 50:01:43:80:16:7e:1d:8e;
+atesx2421;chassis95; Port 1: 50:01:43:80:16:7e:1c:08; Port 2: 50:01:43:80:16:7e:1c:0a;
+atesx2422;chassis95; Port 1: 50:01:43:80:16:7e:1c:2c; Port 2: 50:01:43:80:16:7e:1c:2e;
+atesx2423;chassis95; Port 1: 50:01:43:80:16:7e:1c:20;;
+
+44
+atesx2409;chassis44; Port 1: 50:01:43:80:16:7e:1b:c8; Port 2: 50:01:43:80:16:7e:1b:ca;
+atesx2121;chassis44; Port 1: 50:01:43:80:18:70:9e:7c; Port 2: 50:01:43:80:18:70:9e:7e;
+atesx2199;chassis44; Port 1: 50:01:43:80:18:70:c5:40; Port 2: 50:01:43:80:18:70:c5:42;
+atesx2200;chassis44{***HBA not found ***}
+atesx1440;chassis44; Port 1: 50:01:43:80:12:0c:61:8c; Port 2: 50:01:43:80:12:0c:61:8e;
+atesx1441;chassis44; Port 1: 50:01:43:80:12:0c:6e:88; Port 2: 50:01:43:80:12:0c:6e:8a;
+atesx1444;chassis44; Port 1: 50:01:43:80:18:70:96:18; Port 2: 50:01:43:80:18:70:96:1a;
+atesx1445;chassis44; Port 1: 50:01:43:80:18:70:b8:80; Port 2: 50:01:43:80:18:70:b8:82;
+atesx2129;chassis44; Port 1: 50:01:43:80:18:70:b3:34; Port 2: 50:01:43:80:18:70:b3:36;
+atesx2230;chassis44; Port 1: 50:01:43:80:12:0b:15:1c; Port 2: 50:01:43:80:12:0b:15:1e;
+atesx2231;chassis44; Port 1: 50:01:43:80:12:0c:f4:18; Port 2: 50:01:43:80:12:0c:f4:1a;
+atesx2236;chassis44; Port 1: 50:01:43:80:12:0c:f4:28; Port 2: 50:01:43:80:12:0c:f4:2a;
+atesx2234;chassis44; Port 1: 50:01:43:80:12:0c:f5:90; Port 2: 50:01:43:80:12:0c:f5:92;
+atesx2235;chassis44; Port 1: 50:01:43:80:12:0c:5f:90; Port 2: 50:01:43:80:12:0c:5f:92;
+atesx2232;chassis44; Port 1: 50:01:43:80:18:70:95:fc; Port 2: 50:01:43:80:18:70:95:fe;
+atesx2233;chassis44; Port 1: 50:01:43:80:12:0b:c1:7c;;

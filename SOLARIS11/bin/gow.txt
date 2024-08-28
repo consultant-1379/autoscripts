@@ -1,0 +1,1898 @@
+4c4,7
+SCRIPTHOSTS="10.45.202.11"                                      |  SCRIPTHOSTS="10.45.202.11
+                                                                >  10.42.35.253
+                                                                >  10.45.62.205
+                                                                >  10.150.254.6"
+16,21c19,21
+#ACTUAL_DHCP_SERVER='atdhcpx1'                                  |  ACTUAL_DHCP_SERVER='atdhcpx1'
+##ACTUAL_DHCP_SERVER_IP='159.107.173.209'                       |  ACTUAL_DHCP_SERVER_IP='159.107.173.209'
+#ACTUAL_DHCP_SERVER_ROOT_PASS='syr1an'                          |  ACTUAL_DHCP_SERVER_ROOT_PASS='syr1an'
+ACTUAL_DHCP_SERVER='ieatrcxb4939-1'                             <  
+ACTUAL_DHCP_SERVER_IP='10.45.224.201'                           <  
+ACTUAL_DHCP_SERVER_ROOT_PASS='shroot12'                         <  
+23,25d22
+JSDIR=/etc/dhcp_js                                              <  
+DHCP_AI="/etc/dhcp_ai/"                                         <  
+                                                                <  
+120d116
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+141d136
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+163,165c158
+function parallel_status()                                      |  function parallel_status() {
+{                                                               <  
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+248d240
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+294,296c286
+function parallel_wait()                                        |  function parallel_wait() {
+{                                                               <  
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+394d383
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+402d390
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+423d410
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+436d422
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+447d432
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+463a449,455
+                                                                >  
+                                                                >          simdep_call
+                                                                >          if [[ $? -ne 0 ]]
+                                                                >          then
+                                                                >              message "ERROR: Something went wrong during t
+                                                                >              exit 1
+                                                                >          fi
+467d458
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+472c463
+        simdep_call                                             |          copy_arne_and_applytls
+479a471,492
+                                                                >  function copy_arne_and_applytls
+                                                                >  {
+                                                                >          functionName="copy_arne_and_applytls"
+                                                                >          message "INFO:-$functionName starting... \n" INFO
+                                                                >          [[ -z $NETSIM_SERVERS ]] && { echo "NETSIM_SERVER
+                                                                >          echo "$NETSIM_SERVERS" | sed '/^$/d' | while read
+                                                                >          do
+                                                                >                  message "INFO:-$functionName: Mounting cl
+                                                                >                  mount_scripts_directory $netsim_server
+                                                                >                  message "INFO:-$functionName: start execu
+                                                                >                  $SSH -qTn $netsim_server "$MOUNTPOINT/bin
+                                                                >                  if [[ $? -ne 0 ]]
+                                                                >                  then
+                                                                >                          message "ERROR:-$functionName: So
+                                                                >                          exit 1
+                                                                >                  fi
+                                                                >                  message "INFO:-$functionName: end simdep_
+                                                                >          done
+                                                                >          message "INFO:-$functionName ended... \n" INFO
+                                                                >  }
+                                                                >  
+                                                                >  
+482d494
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+517d528
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+545d555
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+582d591
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+591c600
+                $SSH -qTn $netsim_server "$MOUNTPOINT/bin/sim   |                  $SSH -qTn $netsim_server "$MOUNTPOINT/bin
+609c618
+                $SSH -qTn $netsim_server "$MOUNTPOINT/bin/sim   |                  $SSH -qTn $netsim_server "$MOUNTPOINT/bin
+623d631
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+630d637
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+641d647
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+655d660
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+684d688
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+732d735
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+750d752
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+770d771
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+775d775
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+803d802
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+817d815
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+832d829
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+848d844
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+879d874
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+900d894
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+928d921
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+948d940
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+973d964
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+994d984
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1019d1008
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1057d1045
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1063d1050
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1069d1055
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1075d1060
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1087d1071
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1093d1076
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1099d1081
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1105d1086
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1117d1097
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1124d1103
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1131d1109
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1138d1115
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1145d1121
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1185d1160
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1194d1168
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1520d1493
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1545d1517
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1564d1535
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1574d1544
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1580d1549
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1586d1554
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1591d1558
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1596d1562
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1601d1566
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1606d1570
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1611d1574
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1616d1578
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1621d1582
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1626d1586
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1631d1590
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1636d1594
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1641d1598
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1646d1602
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1651d1606
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1656d1610
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1661d1614
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1673d1625
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1678d1629
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1683d1633
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1688d1637
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1693d1641
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1698d1645
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1703d1649
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1708d1653
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1715d1659
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1731d1674
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1738d1680
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1756d1697
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1765d1705
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1774d1713
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1779d1717
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1784d1721
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1810d1746
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1846d1781
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1884d1818
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1890d1823
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1896d1828
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1902d1833
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1907d1837
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1920d1849
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1925d1853
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1930d1857
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1935d1861
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1940d1865
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1953d1877
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1958d1881
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1963d1885
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+1968d1889
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2009d1929
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2014d1933
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2020d1938
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2027d1944
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2035d1951
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2040a1957,1961
+                                                                >  function cpu_usage_logging ()
+                                                                >  {
+                                                                >  	mount_scripts_directory $ADM1_HOSTNAME
+                                                                >  	$SSH -qt $ADM1_HOSTNAME "$MOUNTPOINT/bin/cpu_usage_lo
+                                                                >  }
+2043d1963
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2059d1978
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2072d1990
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2088d2005
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2113d2029
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2138d2053
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2150d2064
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2161d2074
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2167d2079
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2172d2083
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2179d2089
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2191d2100
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2197d2105
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2203d2110
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2209d2115
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2215d2120
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2222d2126
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2229d2132
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2236d2138
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2242d2143
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2248d2148
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2254d2153
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2260d2158
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2266d2163
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2272d2168
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2278d2173
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2284d2178
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2290d2183
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2296d2188
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2415d2306
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2436d2326
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2448d2337
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2453d2341
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2458d2345
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2463d2349
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2468d2353
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2476d2360
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2506d2389
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2529d2411
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2532c2414
+	$SSH -qt $ADM1_HOSTNAME "$MOUNTPOINT/bin/setup_adm1_l   |  	$SSH -qt $ADM1_HOSTNAME "$MOUNTPOINT/bin/setup_adm1_l
+2553d2434
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2560d2440
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2566d2445
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2574d2452
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2601d2478
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2619d2495
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2635d2510
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2653d2527
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2668d2541
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2707d2579
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2727d2598
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2765d2635
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2776d2645
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2788d2656
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2839d2706
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2920d2786
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2936d2801
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2946d2810
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2963d2826
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2990d2852
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+2995d2856
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3000d2860
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3005d2864
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3010d2868
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3015d2872
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3020d2876
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3025d2880
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3030d2884
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3035d2888
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3040d2892
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3045d2896
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3050d2900
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3055d2904
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3060d2908
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3065d2912
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3070d2916
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3075d2920
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3080d2924
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3107d2950
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3112d2954
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3117d2958
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3122d2962
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3127d2966
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3132d2970
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3137d2974
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3142d2978
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3147d2982
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3152d2986
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3157d2990
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3162d2994
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3167d2998
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3172d3002
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3177d3006
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3182d3010
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3187d3014
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3192d3018
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3197d3022
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3202d3026
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3207d3030
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3212d3034
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3229d3050
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3234d3054
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3239d3058
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3244d3062
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3249d3066
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3254d3070
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3259d3074
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3264d3078
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3269d3082
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3274d3086
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3279d3090
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3284d3094
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3289d3098
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3294d3102
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3299d3106
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3304d3110
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3309d3114
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3314d3118
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3319d3122
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3324d3126
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3329d3130
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3334d3134
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3378d3177
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3444c3243,3245
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   |   	$SSH -qt $OMSERVM_HOSTNAME "nohup pgrep ns-slapd > /d
+                                                                >          LDAP_STAT=$(echo $?)
+                                                                >  	if [[ $LDAP_STAT == 0 ]]; then
+3445a3247,3249
+                                                                >  	else
+                                                                >          	change_domain_setting password-history-count 
+                                                                >  	fi	
+3449c3253,3255
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   |  	$SSH -qt $OMSERVM_HOSTNAME "nohup pgrep ns-slapd > /d
+                                                                >  	LDAP_STAT=$(echo $?)
+                                                                >  	if [[ $LDAP_STAT == 0 ]]; then
+3451a3258,3260
+                                                                >  	else
+                                                                >          	change_domain_setting max-password-age 0s
+                                                                >  	fi
+3455c3264,3266
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   |  	$SSH -qt $OMSERVM_HOSTNAME "nohup pgrep ns-slapd > /d
+                                                                >          LDAP_STAT=$(echo $?)
+                                                                >  	if [[ $LDAP_STAT == 0 ]]; then
+3456a3268,3270
+                                                                >  	else
+                                                                >          	change_domain_setting lockout-duration 0s
+                                                                >  	fi
+3460c3274,3276
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   |          $SSH -qt $OMSERVM_HOSTNAME "nohup pgrep ns-slapd 
+                                                                >          LDAP_STAT=$(echo $?)
+                                                                >  	if [[ $LDAP_STAT == 0 ]]; then
+3461a3278,3281
+                                                                >  	else
+                                                                >          	change_domain_setting force-change-on-add FAL
+                                                                >  		change_domain_setting force-change-on-reset F
+                                                                >  	fi
+3465c3285,3287
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   |          $SSH -qt $OMSERVM_HOSTNAME "nohup pgrep ns-slapd 
+                                                                >          LDAP_STAT=$(echo $?)
+                                                                >  	if [[ $LDAP_STAT == 0 ]]; then 
+3466a3289,3291
+                                                                >  	else 
+                                                                >  		change_domain_setting ds-cfg-min-password-len
+                                                                >  	fi
+3470d3294
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3479d3302
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3485d3307
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3491d3312
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3497d3317
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3503d3322
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3509d3327
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3515d3332
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3521d3337
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3527d3342
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3533d3347
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3539d3352
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3545d3357
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3551d3362
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3557d3367
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3563d3372
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3569d3377
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3575d3382
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3581d3387
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3587d3392
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3593d3397
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3599d3402
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3605d3407
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3610d3411
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3615d3415
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3620d3419
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3635d3433
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3642d3439
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3649d3445
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3673d3468
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3683d3477
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3688d3481
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3693d3485
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3701d3492
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3706d3496
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3711d3500
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3716d3504
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3721d3508
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3726d3512
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3731d3516
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3736d3520
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3741d3524
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3765d3547
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3783d3564
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3807d3587
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3833d3612
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3857d3635
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3924d3701
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3945d3721
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3967d3742
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+3988d3762
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+4058d3831
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+4109d3881
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+4130d3901
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+4151d3921
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+4172d3941
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+4227d3995
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+4247d4014
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+4276d4042
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+4316d4081
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+4395d4159
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+4437d4200
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+4440d4202
+ message "INFO: SERIAL_CONNECTION is $SERIAL_CONNECTION_STRIN   <  
+4448c4210
+		"The highlighted entry will be executed autom   |  		"The highlighted entry will be booted automat
+4451c4213
+		"Oracle Solaris 11.2 X86 Automated Install" {   |  		"Custom JumpStart" {
+4458c4220
+		"Automated Installation started" {              |  		"Preparing system for Solaris install" {
+4506d4267
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+4521c4282
+				ERROR="Timeout issue, did not   |  				ERROR="Timeout issue, did not
+4551d4311
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+4578c4338
+        remove_dhcp_client_remote $ADM1_HOSTNAME                |          #remove_dhcp_client_remote $ADM1_HOSTNAME
+4762d4521
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+4795d4553
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+4800d4557
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+4805d4561
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+4810d4565
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+4815d4569
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+4820d4573
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+4825d4577
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+4830d4581
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+4835d4585
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+4840d4589
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+4845d4593
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+4850d4597
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+4855d4601
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+4860d4605
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+4865d4609
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+4870d4613
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+4875d4617
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+4880d4621
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+4885d4625
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+4902d4641
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+4920d4658
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+4938d4675
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+4956d4692
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+4974d4709
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+4992d4726
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+5009d4742
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+5026d4758
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+5043d4774
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+5060d4790
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+5078d4807
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+5100c4829
+        remove_dhcp_client_remote $OMSAS_HOSTNAME               |          #remove_dhcp_client_remote $OMSAS_HOSTNAME
+5155c4884
+        "Automated Installation started"                        |          "Preparing system for Solaris install"
+5167c4896
+        "/ericsson/ocs/bin/conf_cominf_serv.sh started"         |          "SUN_INST_PATCH.sh: Cleaning up and exiting"
+5274d5002
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+5354c5082
+        "Automated Installation started"                        |          "Preparing system for Solaris install"
+5358c5086
+"/ericsson/ocs/bin/conf_cominf_serv.sh started"                 |          "SUN_INST_PATCH.sh: Cleaning up and exiting"
+5486d5213
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+5507c5234
+        remove_dhcp_client_remote $OMSERVM_HOSTNAME             |          #remove_dhcp_client_remote $OMSERVM_HOSTNAME
+5565c5292
+        "Automated Installation started"                        |          "Preparing system for Solaris install"
+5569c5296
+        "/ericsson/ocs/bin/conf_cominf_serv.sh started"         |          "SUN_INST_PATCH.sh: Cleaning up and exiting"
+5698d5424
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+5719c5445
+        remove_dhcp_client_remote $UAS1_HOSTNAME                |          #remove_dhcp_client_remote $UAS1_HOSTNAME
+5777c5503
+        "Automated Installation started"                        |          "Preparing system for Solaris install"
+5810d5535
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+5831c5556
+        remove_dhcp_client_remote $PEER1_HOSTNAME               |          #remove_dhcp_client_remote $PEER1_HOSTNAME
+5888c5613
+        "Automated Installation started"                        |          "Preparing system for Solaris install"
+5922d5646
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+5944c5668
+        remove_dhcp_client_remote $EBAS_HOSTNAME                |          #remove_dhcp_client_remote $EBAS_HOSTNAME
+5959c5683
+set timeout 23400                                               |  set timeout 20000
+5963c5687
+        "Automated Installation finished successfully"          |  		"SUN_INST_PATCH"
+5965d5688
+        send_user "\nDetected Automated Installation finished   <  
+5967a5691,5693
+                                                                >  		eof {
+                                                                >                  	send_user "ERROR (Auto Installer): Un
+                                                                >                  	exit 1
+5968a5695
+                                                                >  	}
+5971d5697
+exit 0                                                          <  
+5999c5725
+        "Automated Installation started"                        |          "Preparing system for Solaris install"
+6003,6008c5729
+        "Automated Installation finished successfully"          |          "LDAP DS Server IP address" {
+        {                                                       <  
+                send_user "\nDetected Automated Installation    <  
+                exit 0                                          <  
+        }                                                       <  
+        "LDAP DS Server IP address,"{                           <  
+6037d5757
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+6059d5778
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+6156d5874
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+6161d5878
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+6166d5882
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+6171d5886
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+6176d5890
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+6181d5894
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+6186d5898
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+6191d5902
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+6197d5907
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+6203d5912
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+6230,6231c5939
+	#$SSH -qt $UAS1_HOSTNAME "$MOUNTPOINT/bin/copy_rootca   |  	$SSH -qt $UAS1_HOSTNAME "$MOUNTPOINT/bin/copy_rootca_
+	$SSH -qt $UAS1_HOSTNAME "$MOUNTPOINT/bin/copy_rootca_   <  
+6246c5954
+        "Automated Installation started"                        |          "Preparing system for Solaris install"
+6334d6041
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+6375c6082
+        "Automated Installation started"                        |          "Preparing system for Solaris install"
+6462d6168
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+6467d6172
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+6472d6176
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+6477d6180
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+6482d6184
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+6487d6188
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+6492d6192
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+6497d6196
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+6502d6200
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+6507d6204
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+6512d6208
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+6517d6212
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+6522d6216
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+6527d6220
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+6532d6224
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+6537d6228
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+6542d6232
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+6548d6237
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+6568d6256
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+6610c6298
+        "Automated Installation started"                        |          "Preparing system for Solaris install"
+6698d6385
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+6703d6389
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+6728c6414
+        remove_dhcp_client_remote $ADM2_HOSTNAME                |          #remove_dhcp_client_remote $ADM2_HOSTNAME
+6754c6440
+        "Automated Installation started"                        |          "Preparing system for Solaris install"
+6784d6469
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+6805c6490
+        remove_dhcp_client_remote $NEDSS_HOSTNAME               |          #remove_dhcp_client_remote $NEDSS_HOSTNAME
+6861c6546
+        "Automated Installation started"                        |          "Preparing system for Solaris install"
+6905d6589
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+6914d6597
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+6940d6622
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+6955d6636
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+6962c6643
+	ssh $DHCP_SERVER_IP "/ericsson/autoinstall/bin/manage   |  	ssh $DHCP_SERVER_IP "/ericsson/jumpstart/bin/manage_d
+6967d6647
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+7034c6714
+			MANAGE_DHCP_SCRIPT="/ericsson/autoins   |  			MANAGE_DHCP_SCRIPT="/ericsson/jumpsta
+7037d6716
+                                                                <  
+7082d6760
+                                                                <  
+7085d6762
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+7094,7128c6771,6775
+        DHCP_FILE="/etc/dhcp/dhcpd.conf"                        |  	JS_LOCK="/tmp/$PARENT_BASHPID/locks/js.lock"
+        AI_LOCK="/tmp/$PARENT_BASHPID/locks/ai.lock"            |  	get_lock $JS_LOCK local na 7200 yes
+        get_lock $AI_LOCK local na 7200 yes                     |  	message "INFO: Running /root/js.bsh to enable dhcp th
+                                                                |  	bash /root/js.bsh $INPUT_HOSTNAME $INPUT_IP $INPUT_MA
+        # Check DHCP on gateway and ensure it is enabled        |  	clear_lock $JS_LOCK local na
+        /sbin/service dhcpd status | grep running               <  
+        if [ `/bin/echo $?` -eq 0 ]                             <  
+        then                                                    <  
+            echo " DHCP running "                               <  
+        else                                                    <  
+            # Just make a backup of dhcpd.conf file if exists   <  
+            # Build our own dhcpd.conf file                     <  
+            # Enable the dhcpd service                          <  
+            # Start the dhcpd service                           <  
+            # If dhcp service still not up, bail out.           <  
+            echo "DHCP Not running "                            <  
+            if [ -f $DHCP_FILE ]                                <  
+            then                                                <  
+                cp $DHCP_FILE $DHCP_FILE`date '+-%H%M%S-%d%m%   <  
+            fi                                                  <  
+            DHCP_OUTPUT=`cat <<EOF                              <  
+allow booting;                                                  <  
+ignore unknown-clients;                                         <  
+default-lease-time 1600;                                        <  
+max-lease-time 7200;                                            <  
+use-host-decl-names on;                                         <  
+ddns-update-style none;                                         <  
+                                                                <  
+option grubmenu code 150 = text;                                <  
+                                                                <  
+subnet 192.168.0.0 netmask 255.255.0.0 {                        <  
+ option routers 192.168.0.1;                                    <  
+ option domain-name "vts.com";                                  <  
+ option domain-name-servers 192.168.0.1;                        <  
+ option time-servers 192.168.0.1;                               <  
+7130,7178d6776
+EOF                                                             <  
+`                                                               <  
+                echo "$DHCP_OUTPUT" > $DHCP_FILE                <  
+                chkconfig dhcpd on                              <  
+                service dhcpd restart                           <  
+                if [ `/bin/echo $?` -eq 0 ]                     <  
+                then                                            <  
+                    echo "DHCP enabled on gateway now"          <  
+                else                                            <  
+                    echo "Bail out and message goes here"       <  
+                fi                                              <  
+            fi                                                  <  
+                                                                <  
+        # ADD DHCP client on gateway                            <  
+                                                                <  
+                                                                <  
+        if [ ! -d $DHCP_AI ] ; then                             <  
+            mkdir $DHCP_AI                                      <  
+        fi                                                      <  
+                                                                <  
+        ####    Create the DHCP client file ex : /etc/dhcp_ai   <  
+        ####    Update the Gateway DHCP conf file : /etc/dhcp   <  
+                                                                <  
+        BOOTFILE=`echo $INPUT_MAC | /bin/sed 's/://g'`          <  
+        BOOTFILE="01${BOOTFILE}.bios"                           <  
+        CLIENT_OUTPUT=`cat <<EOF                                <  
+host ${INPUT_HOSTNAME} {                                        <  
+    hardware ethernet ${INPUT_MAC};                             <  
+    fixed-address ${INPUT_IP};                                  <  
+    next-server ${ACTUAL_DHCP_SERVER_IP};                       <  
+    filename "${BOOTFILE}";                                     <  
+}                                                               <  
+EOF                                                             <  
+`                                                               <  
+        echo "${CLIENT_OUTPUT}" > ${DHCP_AI}/${INPUT_HOSTNAME   <  
+                                                                <  
+        cp /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.last       <  
+        cat /etc/dhcp/dhcpd.conf.last | egrep -v '^include' >   <  
+        FILE_LIST=`find $DHCP_AI -name '*.conf'`                <  
+        for FILE in ${FILE_LIST} ; do                           <  
+                echo "include \"${FILE}\";" >> /etc/dhcp/dhcp   <  
+        done                                                    <  
+                                                                <  
+        #Restart dhcp                                           <  
+        service dhcpd restart                                   <  
+                                                                <  
+        clear_lock $AI_LOCK local na                            <  
+}                                                               <  
+                                                                <  
+7181d6778
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+7186d6782
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+7191d6786
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+7196d6790
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+7201d6794
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+7206d6798
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+7211d6802
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+7216d6806
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+7221d6810
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+7226d6814
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+7231d6818
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+7236d6822
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+7241d6826
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+7246d6830
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+7251d6834
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+7256d6838
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+7261d6842
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+7266d6846
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+7272d6851
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+7274d6852
+	requires_variable UAS1_AI_SERVICE                       <  
+7300,7301d6877
+CLIENT_JUMP_DESC@$UAS1_AI_SERVICE                               <  
+CLIENT_AI_SERVICE@$UAS1_AI_SERVICE                              <  
+7305c6881
+CLIENT_INSTALL_PARAMS@- install inst_type=oss_client config=a   |  CLIENT_INSTALL_PARAMS@- install inst_type=oss_client conf
+7315d6890
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+7317d6891
+	requires_variable PEER1_AI_SERVICE                      <  
+7328d6901
+                                                                <  
+7344,7345d6916
+CLIENT_JUMP_DESC@$PEER1_AI_SERVICE                              <  
+CLIENT_AI_SERVICE@$PEER1_AI_SERVICE                             <  
+7349c6920
+CLIENT_INSTALL_PARAMS@- install label_disks inst_type=oss_cli   |  CLIENT_INSTALL_PARAMS@- install label_disks inst_type=oss
+7360d6930
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+7362d6931
+	requires_variable EBAS_AI_SERVICE                       <  
+7387,7388d6955
+CLIENT_JUMP_DESC@$EBAS_AI_SERVICE                               <  
+CLIENT_AI_SERVICE@$EBAS_AI_SERVICE                              <  
+7391c6958
+CLIENT_INSTALL_PARAMS@- install inst_type=oss_client config=e   |  CLIENT_INSTALL_PARAMS@- install inst_type=oss_client conf
+7401d6967
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+7403d6968
+	requires_variable OMSAS_AI_SERVICE                      <  
+7405c6970
+	#requires_variable OMSAS_APPL_MEDIA_LOC                 |  	requires_variable OMSAS_APPL_MEDIA_LOC
+7429,7430d6993
+CLIENT_JUMP_DESC@$OMSAS_AI_SERVICE                              <  
+CLIENT_AI_SERVICE@$OMSAS_AI_SERVICE                             <  
+7432,7433c6995,6997
+CLIENT_APPL_TYPE@solonly                                        |  CLIENT_APPL_TYPE@cominf_install
+CLIENT_INSTALL_PARAMS@- install inst_type=solonly config=infr   |  CLIENT_APPL_MEDIA_LOC@$OMSAS_APPL_MEDIA_LOC
+                                                                >  CLIENT_INSTALL_PARAMS@- install inst_type=cominf config=i
+7440d7003
+                                                                <  
+7443d7005
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+7445d7006
+	requires_variable NEDSS_AI_SERVICE                      <  
+7471,7472d7031
+CLIENT_JUMP_DESC@$NEDSS_AI_SERVICE                              <  
+CLIENT_AI_SERVICE@$NEDSS_AI_SERVICE                             <  
+7483d7041
+                                                                <  
+7486d7043
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+7488d7044
+	requires_variable OMSERVM_AI_SERVICE                    <  
+7490c7046
+	#requires_variable OMSERVM_APPL_MEDIA_LOC               |  	requires_variable OMSERVM_APPL_MEDIA_LOC
+7514,7515d7069
+CLIENT_JUMP_DESC@$OMSERVM_AI_SERVICE                            <  
+CLIENT_AI_SERVICE@$OMSERVM_AI_SERVICE                           <  
+7517,7518c7071,7073
+CLIENT_APPL_TYPE@solonly                                        |  CLIENT_APPL_TYPE@cominf_install
+CLIENT_INSTALL_PARAMS@- install inst_type=cominf config=om_se   |  CLIENT_APPL_MEDIA_LOC@$OMSERVM_APPL_MEDIA_LOC
+                                                                >  CLIENT_INSTALL_PARAMS@- install inst_type=cominf config=o
+7524d7078
+                                                                <  
+7527d7080
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+7529d7081
+	requires_variable OMSERVS_AI_SERVICE                    <  
+7531c7083
+        #requires_variable OMSERVS_APPL_MEDIA_LOC               |          requires_variable OMSERVS_APPL_MEDIA_LOC
+7555,7556d7106
+CLIENT_JUMP_DESC@$OMSERVS_AI_SERVICE                            <  
+CLIENT_AI_SERVICE@$OMSERVS_AI_SERVICE                           <  
+7558,7559c7108,7110
+CLIENT_INSTALL_PARAMS@- install inst_type=solonly config=om_s   |  CLIENT_APPL_TYPE@cominf_install
+CLIENT_APPL_TYPE@solonly                                        |  CLIENT_APPL_MEDIA_LOC@$OMSERVS_APPL_MEDIA_LOC
+                                                                >  CLIENT_INSTALL_PARAMS@- install inst_type=cominf config=o
+7565d7115
+                                                                <  
+7568d7117
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+7571d7119
+                                                                <  
+7574d7121
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+7586,7587d7132
+	local X_JUMP_DESC=`eval echo \\$${PREFIX}_AI_SERVICE`   <  
+	local X_AI_SERVICE=`eval echo \\$${PREFIX}_AI_SERVICE   <  
+7592d7136
+	requires_variable X_AI_SERVICE                          <  
+7616,7617d7159
+CLIENT_JUMP_DESC@$X_AI_SERVICE                                  <  
+CLIENT_AI_SERVICE@$X_AI_SERVICE                                 <  
+7629d7170
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+7634d7174
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+7639d7178
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+7645,7646d7183
+	local X_JUMP_DESC=`eval echo \\$${PREFIX}_AI_SERVICE`   <  
+	local X_AI_SERVICE=`eval echo \\$${PREFIX}_AI_SERVICE   <  
+7744a7282,7284
+                                                                >          local X_Nummrsv=`eval echo \\$${PREFIXWADM}Nummrs
+                                                                >          local X_Numrouter_6672=`eval echo \\$${PREFIXWADM
+                                                                >  	local X_Numipworks=`eval echo \\$${PREFIXWADM}Numipwo
+7767d7306
+	requires_variable X_AI_SERVICE                          <  
+7829,7830d7367
+CLIENT_JUMP_DESC@$X_JUMP_DESC                                   <  
+CLIENT_AI_SERVICE@$X_AI_SERVICE                                 <  
+7834c7371
+CLIENT_INSTALL_PARAMS@- install label_disks inst_type=ossrc c   |  CLIENT_INSTALL_PARAMS@- install label_disks inst_type=oss
+8057a7595,7600
+                                                                >  ; number of MRSV nodes the OSSRC will support
+                                                                >  Nummrsv=$X_Nummrsv
+                                                                >  ; number of ROUTER_6672 nodes the OSSRC will support
+                                                                >  Numrouter_6672=$X_Numrouter_6672
+                                                                >  ; number of IPWORKS nodes the OSSRC will support
+                                                                >  Numipworks=$X_Numipworks
+8196d7738
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8198d7739
+	requires_variable ENIQE_AI_SERVICE                      <  
+8224,8225d7764
+CLIENT_JUMP_DESC@$ENIQE_AI_SERVICE                              <  
+CLIENT_AI_SERVICE@$ENIQE_AI_SERVICE                             <  
+8239d7777
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8277d7814
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8279d7815
+	requires_variable ENIQS_AI_SERVICE                      <  
+8305,8306d7840
+CLIENT_JUMP_DESC@$ENIQS_AI_SERVICE                              <  
+CLIENT_AI_SERVICE@$ENIQS_AI_SERVICE                             <  
+8320d7853
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8322d7854
+	requires_variable ENIQSC_AI_SERVICE                     <  
+8348,8349d7879
+CLIENT_JUMP_DESC@$ENIQSC_AI_SERVICE                             <  
+CLIENT_AI_SERVICE@$ENIQSC_AI_SERVICE                            <  
+8360d7889
+                                                                <  
+8363d7891
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8365d7892
+	requires_variable ENIQSE_AI_SERVICE                     <  
+8391,8392d7917
+CLIENT_JUMP_DESC@$ENIQSE_AI_SERVICE                             <  
+CLIENT_AI_SERVICE@$ENIQSE_AI_SERVICE                            <  
+8405d7929
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8407d7930
+	requires_variable ENIQSR1_AI_SERVICE                    <  
+8433,8434d7955
+CLIENT_JUMP_DESC@$ENIQSR1_AI_SERVICE                            <  
+CLIENT_AI_SERVICE@$ENIQSR1_AI_SERVICE                           <  
+8447d7967
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8449d7968
+	requires_variable ENIQSR2_AI_SERVICE                    <  
+8475,8476d7993
+CLIENT_JUMP_DESC@$ENIQSR2_AI_SERVICE                            <  
+CLIENT_AI_SERVICE@$ENIQSR2_AI_SERVICE                           <  
+8490d8006
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8492d8007
+	requires_variable SON_VIS_AI_SERVICE                    <  
+8518,8519d8032
+CLIENT_JUMP_DESC@$SON_VIS_AI_SERVICE                            <  
+CLIENT_AI_SERVICE@$SON_VIS_AI_SERVICE                           <  
+8533d8045
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8541d8052
+                                                                <  
+8544d8054
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8558d8067
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8565d8073
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8572d8079
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8579d8085
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8594d8099
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8599d8103
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8606c8110
+        $SSH -qt $ADM1_HOSTNAME "$MOUNTPOINT/bin/ollie_config   |          $SSH -qt $ADM1_HOSTNAME "$MOUNTPOINT/bin/configur
+8615d8118
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8631d8133
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8658d8159
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8663d8163
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8671d8170
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8694d8192
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8800d8297
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8808d8304
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8814d8309
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8820d8314
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8826d8319
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8832d8324
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8838d8329
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8844d8334
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8850d8339
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8856d8344
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8862d8349
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8868d8354
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8874d8359
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8880d8364
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8886d8369
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8892d8374
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8898d8379
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8904d8384
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8910d8389
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8928d8406
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8952d8429
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8976d8452
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8981d8456
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8986d8460
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8991d8464
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+8996d8468
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9001d8472
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9006d8476
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9011d8480
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9016d8484
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9021d8488
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9051d8517
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9074d8539
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9080d8544
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9086d8549
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9093d8555
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9100d8561
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9102d8562
+		$SSH -qt $OMSAS_HOSTNAME "echo 'LD_LIBRARY_PA   <  
+9107d8566
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9113d8571
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9119d8576
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9125d8581
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9131d8586
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9138d8592
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9145d8598
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9165d8617
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9179d8630
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9189d8639
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9201d8650
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9213d8661
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9223d8670
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9228d8674
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9242d8687
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9252d8696
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9262d8705
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9272d8714
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9282d8723
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9292d8732
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9302d8741
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9312d8750
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9322d8759
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9332d8768
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9342d8777
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9352d8786
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9362d8795
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9372d8804
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9382d8813
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9392d8822
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9402d8831
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9412d8840
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9422d8849
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9432d8858
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9442d8867
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9448d8872
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9453d8876
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9458d8880
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9496d8917
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9549d8969
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9557d8976
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9564d8982
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9571d8988
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9579d8995
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9587d9002
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9593d9007
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9599d9012
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9608d9020
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9616d9027
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9624d9034
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9653d9062
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9700d9108
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9755d9162
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9765d9171
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9783d9188
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9794c9199
+		SSHPASS="shroot12"                              |  		SSHPASS="shroot"
+9866d9270
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9874d9277
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9894d9296
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+9907c9309
+                SSHPASS="shroot12"                              |                  SSHPASS="shroot"
+10029d9430
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+10047d9447
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+10055d9454
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+10063d9461
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+10071d9468
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+10097d9493
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+10108d9503
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+10117d9511
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+10242d9635
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+10304d9696
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+10312d9703
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+10322d9712
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+10334d9723
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+10364d9752
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+10370d9757
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+10376d9762
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+10439,10440c9825
+	#POST_INSTALL_OMSAS="yes"                               |  	POST_INSTALL_OMSAS="yes"
+	POST_INSTALL_OMSAS="no"                                 <  
+10454d9838
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+10531d9914
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+10544c9927
+		INITIAL_INSTALL_OMSAS_PART2="yes"               |  		INITIAL_INSTALL_OMSAS_PART2="no"
+10609d9991
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+10687d10068
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+10750,10751c10131
+  #        POST_INSTALL_OMSAS="yes"                             |          POST_INSTALL_OMSAS="yes"
+        POST_INSTALL_OMSAS="no"                                 <  
+10765d10144
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+10774d10152
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+10783d10160
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+10800d10176
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+10815d10190
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+10831d10205
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+10838d10211
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+10873d10245
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+10885d10256
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+10897d10267
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+10909d10278
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+10921d10289
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+10935d10302
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+10948d10314
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+10976d10341
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+10989d10353
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+11219d10582
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+11236d10598
+			requires_variable ADM1_AI_SERVICE       <  
+11280d10641
+			requires_variable OSS2_ADM1_AI_SERVIC   <  
+11329d10689
+			requires_variable ADM2_AI_SERVICE       <  
+11354d10713
+			requires_variable OMSAS_AI_SERVICE      <  
+11356c10715
+			#requires_variable OMSAS_APPL_MEDIA_L   |  			requires_variable OMSAS_APPL_MEDIA_LO
+11400d10758
+			requires_variable OMSERVM_AI_SERVICE    <  
+11402c10760
+			#requires_variable OMSERVM_APPL_MEDIA   |  			requires_variable OMSERVM_APPL_MEDIA_
+11440d10797
+			requires_variable OMSERVS_AI_SERVICE    <  
+11442c10799
+			#requires_variable OMSERVS_APPL_MEDIA   |  			requires_variable OMSERVS_APPL_MEDIA_
+11477d10833
+			requires_variable NEDSS_AI_SERVICE      <  
+11512d10867
+				requires_variable UAS1_AI_SER   <  
+11551d10905
+				requires_variable PEER1_AI_SE   <  
+11598d10951
+				requires_variable EBAS_AI_SER   <  
+11635d10987
+			requires_variable ENIQE_AI_SERVICE      <  
+11690d11041
+			requires_variable ENIQS_AI_SERVICE      <  
+11717d11067
+                        requires_variable ENIQSC_AI_SERVICE     <  
+11749d11098
+                        requires_variable ENIQSE_AI_SERVICE     <  
+11776d11124
+                        requires_variable ENIQSR1_AI_SERVICE    <  
+11803d11150
+                        requires_variable ENIQSR2_AI_SERVICE    <  
+11830d11176
+                        requires_variable SON_VIS_AI_SERVICE    <  
+11936a11283
+                                                                >  			cpu_usage_logging
+12451,12454d11797
+                                                                <  
+                        $SSH -qt $UAS1_HOSTNAME "cd /usr/lib;   <  
+                                                                <  
+                                                                <  
+12550d11892
+                                                                <  
+12555d11896
+                                                                <  
+12793c12134
+                        parallel_requirements "$REQUIREMENT_A   |                          parallel_requirements "$REQUIREME
+12816c12157
+                                parallel_requirements "$REQUI   |                                  parallel_requirements "$R
+12823c12164
+                                parallel_requirements "$REQUI   |                                  parallel_requirements "$R
+12912c12253
+			parallel_requirements "$REQUIREMENT_A   |  			parallel_requirements "$REQUIREMENT_A
+12950c12291
+			parallel_requirements "$REQUIREMENT_P   |  			parallel_requirements "$REQUIREMENT_P
+13009c12350
+                        parallel_requirements "$REQUIREMENT_E   |                          parallel_requirements "$REQUIREME
+13524d12864
+			parallel_requirements "$REQUIREMENT_A   <  
+13542c12882
+                        parallel_requirements "$REQUIREMENT_N   |                          parallel_requirements "$REQUIREME
+13583d12922
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13608d12946
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13615d12952
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13622d12958
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13629d12964
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13637d12971
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13644d12977
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13661d12993
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13675d13006
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13702d13032
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13715d13044
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13731d13059
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13738d13065
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13745d13071
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13750d13075
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13755d13079
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13760d13083
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13765d13087
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13770d13091
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13775d13095
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13780d13099
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13785d13103
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13790d13107
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13795d13111
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13800d13115
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13805d13119
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13810d13123
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13815d13127
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13820d13131
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13825d13135
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13830d13139
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13835d13143
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13910d13217
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13925d13231
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13930d13235
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13958d13262
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13973d13276
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13978d13280
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13983d13284
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13988d13288
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13993d13292
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+13998d13296
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14006d13303
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14011d13307
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14016d13311
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14021d13315
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14026d13319
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14031d13323
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14036d13327
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14041d13331
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14046d13335
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14051d13339
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14056d13343
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14061d13347
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14066d13351
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14071d13355
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14076d13359
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14081d13363
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14086d13367
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14091d13371
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14121d13400
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14181,14183c13460
+function plumb_storage_nic_omservm ()                           |  function plumb_storage_nic_omservm () {
+{                                                               <  
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14186,14188c13463
+function plumb_storage_nic_omservs ()                           |  function plumb_storage_nic_omservs () {
+{                                                               <  
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14191,14193c13466
+function plumb_storage_nic_uas1 ()                              |  function plumb_storage_nic_uas1 () {
+{                                                               <  
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14196,14198c13469
+function plumb_storage_nic_ebas ()                              |  function plumb_storage_nic_ebas () {
+{                                                               <  
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14201,14203c13472
+function plumb_storage_nic_nedss ()                             |  function plumb_storage_nic_nedss () {
+{                                                               <  
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14206,14208c13475
+function plumb_storage_nic_prefix ()                            |  function plumb_storage_nic_prefix () {
+{                                                               <  
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14218d13484
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14246d13511
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14251d13515
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14256d13519
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14261d13523
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14266d13527
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14271d13531
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14276d13535
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14281d13539
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14286d13543
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14291d13547
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14296d13551
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14301d13555
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14306d13559
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14311d13563
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14316d13567
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14321d13571
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14326d13575
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14331d13579
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14336d13583
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14343d13589
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14373d13618
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14378d13622
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14383d13626
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14388d13630
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14393d13634
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14398d13638
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14403d13642
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14408d13646
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14413d13650
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14418d13654
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14423d13658
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14428d13662
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14433d13666
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14438d13670
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14443d13674
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14448d13678
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14453d13682
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14458d13686
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14463d13690
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14468d13694
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14488d13713
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14509d13733
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14527d13750
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14555d13777
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14573d13794
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14585d13805
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14594d13813
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14603d13821
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14624d13841
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14645d13861
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14668d13883
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14690d13904
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14709d13922
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14718d13930
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14727d13938
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14736d13946
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14744d13953
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14749d13957
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14754d13961
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14795d14001
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14816d14021
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14821d14025
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14826d14029
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14848d14050
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14868d14069
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14902d14102
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14928d14127
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14938d14136
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+14954d14151
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  
+15050d14246
+echo "$FUNCNAME:FUNCNAME=${FUNCNAME[*]}" >> /export/scripts/C   <  

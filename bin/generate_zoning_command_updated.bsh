@@ -1,0 +1,207 @@
+#!/bin/bash
+while getopts "f:z:c:" arg
+do
+    case $arg in
+        f) FILE="$OPTARG"
+        ;;
+        z) ZONE="$OPTARG"
+        ;;
+        c) CLARIION="$OPTARG"
+        ;;
+        \?) usage_msg
+        exit 1
+        ;;
+    esac
+done
+
+function usage_msg ()
+{
+echo "$0 -f file -z zone 
+-f File containing blade info from Balde Invetory script (eeirce)
+-c CLARIION, eother 6,41,57,62 or 2,4 (vnx)
+-z Zone (A or B)"
+}
+
+
+
+function main ()
+{
+if [[ ! -r $FILE ]]
+then
+    echo "Must enter full path to valid filename"
+    usage_msg
+    exit 1
+fi
+if [[ -z $ZONE ]]
+then
+    echo "Must enter zone A or B"
+    usage_msg
+    exit 1
+else
+case $ZONE in
+        A)
+           SIDE=1
+        ;;
+        B)
+           SIDE=2
+        ;;
+        *)
+           echo "You must enter A or B"
+        ;;
+esac
+fi
+if [[ -z $CLARIION ]]
+then
+    echo "Must enter 4,6,41,57,62 or 2"
+    usage_msg
+    exit 1
+fi
+
+if [[ $CLARIION -ne 41 ]] && [[ $CLARIION -ne 57 ]] && [[ $CLARIION -ne 6 ]] && [[ $CLARIION -ne 62 ]] && [[ $CLARIION -ne 2 ]]
+then
+   echo "Must 6,41,57,62 or 2 (vnx)"
+    usage_msg
+    exit 1
+fi
+
+cat $FILE  | grep -v "not found"| while read line
+do
+host=`echo $line | awk -F\; '{print $1}'`
+hba_a=`echo $line | awk -F\; '{print $3}' | awk '{print $3}'`
+hba_b=`echo $line | awk -F\; '{print $4}' | awk '{print $3}'`
+chassis=`echo $line | awk -F\; '{print $2}'`
+if [[ $CLARIION -eq 57 ]]
+then
+   case $chassis in
+        chassis14)
+                UPLINK=atcx457_SP${ZONE}3
+                ;;
+        chassis49)
+                UPLINK=atcx457_SP${ZONE}3
+                ;;
+        chassis63)
+                UPLINK=atcx457_SP${ZONE}3
+                ;;
+        chassis69)
+                UPLINK=atcx457_SP${ZONE}3
+                ;;
+        chassis39)
+                UPLINK=atcx457_SP${ZONE}0
+                ;;
+        chassis44)
+                UPLINK=atcx457_SP${ZONE}0
+                ;;
+        chassis50)
+                UPLINK=atcx457_SP${ZONE}4
+                ;;
+        chassis52)
+                UPLINK=atcx457_SP${ZONE}4
+                ;;
+        chassis53)
+                UPLINK=atcx457_SP${ZONE}0
+                ;;
+        chassis72)
+                UPLINK=atcx457_SP${ZONE}0
+                ;;
+        chassis66)
+                UPLINK=atcx457_SP${ZONE}2
+                ;;
+        chassis84)
+                UPLINK=atcx457_SP${ZONE}2
+                ;;
+        chassis101)
+                UPLINK=atcx457_SP${ZONE}6
+                ;;
+        chassis92)
+                UPLINK=atcx457_SP${ZONE}6
+                ;;
+        *)
+                UPLINK=#########NotKnownChassis########
+                ;;
+   esac
+elif [[ $CLARIION -eq 41 ]]
+then
+   case $chassis in
+        chassis14)
+                UPLINK=atcx441_SP${ZONE}1
+                ;;
+        chassis49)
+                UPLINK=atcx441_SP${ZONE}1
+                ;;
+        chassis63)
+                UPLINK=atcx441_SP${ZONE}1
+                ;;
+        chassis69)
+                UPLINK=atcx441_SP${ZONE}1
+                ;;
+        chassis39)
+                UPLINK=atcx441_SP${ZONE}0
+                ;;
+        chassis53)
+                UPLINK=atcx441_SP${ZONE}0
+                ;;
+        chassis44)
+                UPLINK=atcx441_SP${ZONE}0
+                ;;
+        chassis72)
+                UPLINK=atcx441_SP${ZONE}0
+                ;;
+        chassis66)
+                UPLINK=atcx441_SP${ZONE}4
+                ;;
+        chassis84)
+                UPLINK=atcx441_SP${ZONE}4
+                ;;
+        chassis101)
+                UPLINK=atcx441_SP${ZONE}4
+                ;;
+        chassis50)
+                UPLINK=####################OpenFabric################
+                ;;
+        chassis52)
+                UPLINK=####################OpenFabric################
+                ;;
+        *)
+                UPLINK=#########NotKnownChassis########
+                ;;
+   esac
+elif [[ $CLARIION -eq 2 ]]
+then
+   case $chassis in
+        *)
+                UPLINK=atvnx2_SP${ZONE}0
+                ;;
+    esac
+elif [[ $CLARIION -eq 6 ]]
+then
+   case $chassis in
+        *)
+                UPLINK=atcx46_SP${ZONE}0
+                ;;
+    esac
+elif [[ $CLARIION -eq 62 ]]
+then
+   case $chassis in
+        *)
+                UPLINK=atcx462_SP${ZONE}2
+                ;;
+    esac
+fi
+case $ZONE in
+    A)
+       echo "alicreate \"${host}_${SIDE}\",\"$hba_a\""
+    ;;
+    B)
+       echo "alicreate \"${host}_${SIDE}\",\"$hba_b\""
+    ;;
+esac
+echo "zonecreate \"Z_${host}_${SIDE}_to_${UPLINK}\",\"${host}_${SIDE};${UPLINK}\""
+echo "cfgadd \"ZC_Fabric_${ZONE}\",\"Z_${host}_${SIDE}_to_${UPLINK}\""
+echo -e "\n######Next Zone######\n\n"
+done
+echo "To enable enter:"
+echo "cfgsave"
+echo "cfgenable ZC_Fabric_${ZONE}"
+}
+
+main

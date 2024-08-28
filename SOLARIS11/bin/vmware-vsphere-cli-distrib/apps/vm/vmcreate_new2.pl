@@ -1,0 +1,725 @@
+#!/usr/bin/perl -w
+#
+# Copyright (c) 2007 VMware, Inc.  All rights reserved.
+#
+
+use strict;
+use warnings;
+
+use FindBin;
+use lib "$FindBin::Bin/../";
+
+use VMware::VIRuntime;
+#use XML::LibXML;
+#use AppUtil::XMLInputUtil;
+use AppUtil::HostUtil;
+
+$Util::script_version = "1.0";
+
+my $unit_number=0;
+my $ide_unit_number=0;
+my $bus_number=0;
+my $ide_bus_number=0;
+my $controllerKey;
+my $datacenter_name="";
+my $datacenter="";
+my $cluster_name="";
+my $esxihost="";
+my $host_view="";
+my $vmname="";
+
+my %opts = (
+   filepath => {
+      type => "=s",
+      help => "The location of the input xml file",
+      required => 0,
+      default => "../sampledata/vmcreate.xml",
+   },
+	esxihost => {
+		type => "=s",
+		help => "The compute resource to store the vm on, ie esxi host or cluster",
+		required => 1
+	},
+	datastore => {
+                type => "=s",
+                help => "The datastore to store the vm on",
+                required => 1
+        },
+	vmname => {
+                type => "=s",
+                help => "The name of the vm",
+                required => 1
+        }
+);
+
+Opts::add_options(%opts);
+Opts::parse();
+
+Util::connect();
+create_vm();
+Util::disconnect();
+exit 1;
+
+# This subroutine parses the input xml file to retrieve all the
+# parameters specified in the file and passes these parameters
+# to create_vm subroutine to create a single virtual machine
+# =============================================================
+sub create_vm {
+
+	parse_esxi_host();
+	my @vm_devices;
+#   my $parser = XML::LibXML->new();
+#   my $tree = $parser->parse_file(Opts::get_option('filename'));
+#   my $root = $tree->getDocumentElement;
+#   my @vms = $root->findnodes('Virtual-Machine');
+
+#   foreach (@vms) {
+      # default values will be used in case
+      # the user do not specify some parameters
+
+	$unit_number=0;
+	$ide_unit_number=0;
+	$bus_number=0;
+	$ide_bus_number=0;
+	my $line="";
+	my $datastore=Opts::get_option('datastore');
+	my $vmname=Opts::get_option('vmname');
+	my $ds_path="";
+	my $memory="";
+	my $num_cpus="";
+	my $guestid="";
+	my $vmhost="";
+	my $memoryMB="";
+	my $numCPUs="";
+
+	open(F,Opts::get_option('filepath')) or die("Could not open input file.");
+	foreach $line (<F>) {
+		chomp($line);
+
+		my @values = split(';', $line);
+
+		if (defined $values[0])
+		{
+		if ("$values[0]" eq "new_hard_disk")
+		{
+			#print "Creating a new hard disk\n";
+			my $disksizeKB=0;
+
+			if ( $values[1] =~ m/[kK][bB]$/ )
+                        {
+                                ($disksizeKB)=$values[1] =~ /(\d+)/g;
+                        }
+                        elsif ( $values[1] =~ m/[mM][bB]$/ )
+                        {
+                                my ($disksizeMB)=$values[1] =~ /(\d+)/g;
+                                ($disksizeKB)=($disksizeMB * 1024);
+                        }
+			elsif ( $values[1] =~ m/[gG][bB]$/ )
+                        {
+                                my ($disksizeGB)=$values[1] =~ /(\d+)/g;
+				my ($disksizeMB)=($disksizeGB * 1024);
+                                ($disksizeKB)=($disksizeMB * 1024);
+                        }
+                        else {
+                                print "ERROR: You must give the disksize in kb, mb or gb\n";
+                                exit 1;
+                        }
+
+
+			my %ds_info = HostUtils::get_datastore(host_view => $host_view,	datastore => $datastore, disksize => $disksizeKB);
+			if ($ds_info{mor} eq 0) {
+				if ($ds_info{name} eq 'datastore_error') {
+					Util::trace(0, "\nError creating VM '$vmname': "
+					. "Datastore $datastore doesn't seem to be available to this host $esxihost \n");
+					return;
+				}
+				if ($ds_info{name} eq 'disksize_error') {
+					Util::trace(0, "\nError creating VM '$vmname': The free space "
+					. "available is less than the specified disksize.\n");
+					return;
+				}
+			}
+			$ds_path = "[" . $ds_info{name} . "]";
+
+			my $disk_vm_dev_conf_spec = create_virtual_disk(ds_path => $ds_path, disksize => $disksizeKB, provisionType => $values[2], iolimit => $values[3]);
+			push(@vm_devices, $disk_vm_dev_conf_spec);
+		}
+		elsif ("$values[0]" eq "existing_hard_disk")
+                {
+                        #print "Creating an existing hard disk\n";
+                        my $disk_vm_dev_conf_spec = create_existing_virtual_disk(dest_vm_name => $values[1], dest_controller_no => $values[2],  dest_disk_no => $values[3]);
+                        push(@vm_devices, $disk_vm_dev_conf_spec);
+                }
+		elsif ("$values[0]" eq "dvd")
+                {
+                        #print "Creating an existing hard disk\n";
+                        my $dvd_conf_spec = create_dvd();
+			push(@vm_devices, $dvd_conf_spec);
+		}
+		elsif ("$values[0]" eq "scsi_controller")
+		{
+			#print "Creating a scsi controller\n";
+			my $controller_vm_dev_conf_spec = create_scsi_controller(sharing => $values[2], type => $values[1]);
+			push(@vm_devices, $controller_vm_dev_conf_spec);
+		}
+		elsif ("$values[0]" eq "ide_controller")
+                {
+			#print "Creating an ide controller\n";
+                	my $controller_vm_dev_conf_spec = create_ide_controller();
+                	push(@vm_devices, $controller_vm_dev_conf_spec);
+                }
+		elsif ("$values[0]" eq "nic")
+                {
+			#print "Creating a nic\n";
+			my $addressType="generated";
+			my $macAddress="";
+			if ((defined $values[2]) && ($values[2] ne "" ))
+			{
+				$addressType="manual";
+				$macAddress=$values[2];
+				#print "Setting manual mac\n";
+			}
+			my $nicType;
+			# Set the default nic type if not defined
+			if ($guestid =~ m/solaris/)
+			{
+				$nicType="e1000";
+			}
+			else
+			{
+				$nicType="pcnet";
+			}
+			if ((defined $values[3]) && ($values[3] ne "" ))
+                        {
+				if ("$values[3]" eq "vmx")
+				{
+					$nicType="vmx";
+				}
+				elsif ("$values[3]" eq "e1000")
+				{
+					$nicType="e1000";
+				}
+				elsif ("$values[3]" eq "pcnet")
+                                {
+					$nicType="pcnet";
+                                }
+                        }
+			my %net_settings = get_network(network_name => $values[1], poweron => 1, host_view => $host_view, addressType => $addressType, macAddress => $macAddress, nicType => $nicType);
+
+			if($net_settings{'error'} eq 0) {
+				push(@vm_devices, $net_settings{'network_conf'});
+			} elsif ($net_settings{'error'} eq 1) {
+				Util::trace(0, "\nError creating VM '$vmname': "
+				. "Network '$values[1]' not found\n");
+				return;
+			}
+		}
+		elsif ("$values[0]" eq "serial")
+                {
+                        #print "Creating a serial port\n";
+			my $vsp_back = VirtualSerialPortURIBackingInfo->new(serviceURI => "telnet://" . $values[1] . ":13370" , proxyURI => "vSPC.py", direction => "server" );
+			my $vsp = VirtualSerialPort->new( backing => $vsp_back, yieldOnPoll => 1, key => 0, unitNumber => 0 );
+			my $operation = VirtualDeviceConfigSpecOperation->new('add');
+			my $dcs = VirtualDeviceConfigSpec->new(device => $vsp,operation => $operation);
+			push(@vm_devices, $dcs);
+                }
+		elsif ("$values[0]" eq "os")
+                {
+                        #print "Setting the os\n";
+			$guestid=$values[1];
+                }
+		elsif ("$values[0]" eq "memory")
+                {
+                        #print "Setting the memory\n";
+			if ( $values[1] =~ m/[mM][bB]$/ )
+			{
+				($memoryMB)=$values[1] =~ /(\d+)/g;
+			}
+			elsif ( $values[1] =~ m/[gG][bB]$/ )
+			{
+				my ($memoryGB)=$values[1] =~ /(\d+)/g;
+				$memoryMB=($memoryGB * 1024);
+			}
+			else {
+				print "ERROR: You must give the ram in mb or gb\n";
+				exit 1;
+			}
+                }
+		elsif ("$values[0]" eq "cpus")
+                {
+                        #print "Setting the cpus\n";
+			$numCPUs=$values[1];
+                }
+		}
+	}
+	close (F);
+
+
+	my $files = VirtualMachineFileInfo->new(logDirectory => undef,
+		snapshotDirectory => undef,
+		suspendDirectory => undef,
+		vmPathName => $ds_path);
+	my $vm_config_spec = VirtualMachineConfigSpec->new(
+		name => $vmname,
+		memoryMB => $memoryMB,
+		files => $files,
+		numCPUs => $numCPUs,
+		guestId => $guestid,
+		deviceChange => \@vm_devices);
+
+	FindDatacenter(entity => $host_view->parent);
+#	if (defined $datacenter_name)
+#	{
+#		print "Datacenter for = $datacenter_name\n";
+	#}
+	#FindCluster(entity => $host_view->parent);
+        #if (defined $cluster_name)
+        #{
+        #        print "Cluster for = $cluster_name\n";
+        #}
+	my $datacenter_views = Vim::find_entity_views (view_type => 'Datacenter', filter => { name => $datacenter_name});
+
+	unless (@$datacenter_views) {
+		Util::trace(0, "\nError creating VM '$vmname': "
+		. "Datacenter '$datacenter_name' not found\n");
+		return;
+	}
+
+	if ($#{$datacenter_views} != 0) {
+		Util::trace(0, "\nError creating VM '$vmname': "
+		. "Datacenter '$datacenter_name' not unique\n");
+		return;
+	}
+	$datacenter = shift @$datacenter_views;
+	my $vm_folder_view = Vim::get_view(mo_ref => $datacenter->vmFolder);
+	my $comp_res_view = Vim::get_view(mo_ref => $host_view->parent);
+
+	eval {
+		$vm_folder_view->CreateVM(config => $vm_config_spec, pool => $comp_res_view->resourcePool);
+		Util::trace(0, "Successfully created virtual machine: '$vmname'\n");
+		Util::disconnect();
+		exit 0;
+	};
+    if ($@) {
+       Util::trace(0, "\nError creating VM '$vmname': ");
+       if (ref($@) eq 'SoapFault') {
+          if (ref($@->detail) eq 'PlatformConfigFault') {
+             Util::trace(0, "Invalid VM configuration: "
+                            . ${$@->detail}{'text'} . "\n");
+          }
+          elsif (ref($@->detail) eq 'InvalidDeviceSpec') {
+             Util::trace(0, "Invalid Device configuration: "
+                            . ${$@->detail}{'property'} . "\n");
+          }
+           elsif (ref($@->detail) eq 'DatacenterMismatch') {
+             Util::trace(0, "DatacenterMismatch, the input arguments had entities "
+                          . "that did not belong to the same datacenter\n");
+          }
+           elsif (ref($@->detail) eq 'HostNotConnected') {
+             Util::trace(0, "Unable to communicate with the remote host,"
+                         . " since it is disconnected\n");
+          }
+          elsif (ref($@->detail) eq 'InvalidState') {
+             Util::trace(0, "The operation is not allowed in the current state\n");
+          }
+          elsif (ref($@->detail) eq 'DuplicateName') {
+             Util::trace(0, "Virtual machine already exists.\n");
+          }
+          else {
+             Util::trace(0, "\n" . $@ . "\n");
+          }
+       }
+       else {
+          Util::trace(0, "\n" . $@ . "\n");
+       }
+   }
+	Util::disconnect();
+	exit 1;
+
+}
+
+sub parse_esxi_host ()
+{
+	$esxihost=Opts::get_option('esxihost');
+
+                        my $clusterlist = Vim::find_entity_views(view_type => 'ClusterComputeResource', filter => { 'name' => $esxihost});
+                        foreach ( @{$clusterlist} )
+                        {
+                                foreach my $cluster (@$clusterlist) {
+                                        my $hosts = Vim::get_views (mo_ref_array => $cluster->host);
+                                        foreach ( @{$hosts} )
+                                        {
+                                                $esxihost=$_->{"name"};
+                                                last;
+                                        }
+                                        last;
+                                }
+                                last;
+                        }
+
+                        $host_view = Vim::find_entity_view(view_type => 'HostSystem', filter => {'name' => $esxihost});
+                        if (!$host_view) {
+                                Util::trace(0, "\nError creating VM '$vmname': "
+                                . "Host or Cluster '$esxihost' not found, see list below of possible hosts\n");
+                                return;
+                        }
+}
+
+sub FindDatacenter
+{
+	my %args = @_;
+	my $entity = $args{entity};
+	# This condition should not happen, even on a standalone ESX host.
+	#unless ( defined $entity )
+	#{
+#		print "Root folder reached!!  Datacenter for $hostname was not found!!\n";
+#		return;
+#	}
+	
+	# If the object type is a Datacenter, set the passed value of the pass by reference
+	# of $datacenter_name
+	if($entity->type eq "Datacenter")
+	{
+		my $datacenter_view = Vim::get_view(mo_ref => $entity, properties =>  ['name']);
+		
+		$datacenter_name = $datacenter_view->name;
+		return;
+	}
+	
+	my $entity_view = Vim::get_view(mo_ref => $entity, properties => ['parent']);
+	FindDatacenter(entity => $entity_view->parent);
+}
+
+sub FindCluster
+{
+        my %args = @_;
+        my $entity = $args{entity};
+        # This condition should not happen, even on a standalone ESX host.
+        #unless ( defined $entity )
+        #{
+#               print "Root folder reached!!  Datacenter for $hostname was not found!!\n";
+#               return;
+#       }
+
+        # If the object type is a Datacenter, set the passed value of the pass by reference
+        # of $datacenter_name
+        if($entity->type eq "ClusterComputeResource")
+        {
+                my $datacenter_view = Vim::get_view(mo_ref => $entity, properties =>  ['name']);
+
+                $cluster_name = $datacenter_view->name;
+                return;
+        }
+
+        my $entity_view = Vim::get_view(mo_ref => $entity, properties => ['parent']);
+        FindCluster(entity => $entity_view->parent);
+}
+
+# create virtual device config spec for controller
+# ================================================
+sub create_scsi_controller{
+   my %args = @_;
+   my $sharing = $args{sharing};
+   my $type = $args{type};
+   my $controller;
+
+   if ($type eq "lsilogic")
+   {
+	$controller = VirtualLsiLogicController->new(key => $bus_number,
+                                     device => [0],
+                                     busNumber => $bus_number,
+                                     sharedBus => VirtualSCSISharing->new($sharing));
+   }
+   elsif ($type eq "lsilogicsas")
+   {
+	$controller = VirtualLsiLogicSASController->new(key => $bus_number,
+                                     device => [0],
+                                     busNumber => $bus_number,
+                                     sharedBus => VirtualSCSISharing->new($sharing));
+   }
+   elsif ($type eq "buslogic")
+   {
+	$controller = VirtualBusLogicController->new(key => $bus_number,
+                                     device => [0],
+                                     busNumber => $bus_number,
+                                     sharedBus => VirtualSCSISharing->new($sharing));
+   }
+   $controllerKey=$controller->key;
+   my $controller_vm_dev_conf_spec =
+      VirtualDeviceConfigSpec->new(device => $controller,
+         operation => VirtualDeviceConfigSpecOperation->new('add'));
+   $bus_number=$bus_number+1;
+   $unit_number=0;
+
+   return $controller_vm_dev_conf_spec;
+}
+
+sub create_ide_controller{
+
+	my $controller = VirtualIDEController->new
+                    (busNumber => $ide_bus_number,
+                    key => $ide_bus_number,
+                    device => [0],
+                    deviceInfo => Description->new
+                         ( label => "My IDE 0",
+                         summary => "My IDE 0 Label" ));
+	my $idespec = VirtualDeviceConfigSpec->new
+               ( device => $controller,
+                    operation => VirtualDeviceConfigSpecOperation->new( 'add' ) );
+
+
+	$controllerKey=$controller->key;
+	print "$controllerKey\n";
+	$ide_bus_number=$ide_bus_number+1;
+	$ide_unit_number=0;
+	return $idespec;
+
+}
+
+
+# create virtual device config spec for disk
+# ==========================================
+sub create_virtual_disk {
+   my %args = @_;
+   my $ds_path = $args{ds_path};
+   my $disksize = $args{disksize};
+   my $provisionType = $args{provisionType};
+   my $iolimit = $args{iolimit};
+   my $eagerlyScrub=0;
+   my $thinProvisioned=0;
+
+   if ($provisionType eq "thin")
+   {
+   	$eagerlyScrub=0;
+	$thinProvisioned=1;
+   }
+   elsif ($provisionType eq "eager")
+   {
+	$eagerlyScrub=1;
+        $thinProvisioned=0;
+   }
+   elsif ($provisionType eq "lazy")
+   {
+	$eagerlyScrub=0;
+        $thinProvisioned=0;
+   }
+
+   my $disk_backing_info =
+      VirtualDiskFlatVer2BackingInfo->new(diskMode => 'persistent', thinProvisioned => $thinProvisioned, eagerlyScrub => $eagerlyScrub, fileName => $ds_path);
+   my $disk = VirtualDisk->new(backing => $disk_backing_info,
+                               controllerKey => $controllerKey,
+                               key => 0,
+                               unitNumber => $unit_number,
+                               capacityInKB => $disksize,
+				storageIOAllocation => StorageIOAllocationInfo->new( limit => $iolimit)
+			);
+   my $disk_vm_dev_conf_spec =
+      VirtualDeviceConfigSpec->new(device => $disk,
+               fileOperation => VirtualDeviceConfigSpecFileOperation->new('create'),
+               operation => VirtualDeviceConfigSpecOperation->new('add'));
+
+   $unit_number=$unit_number+1;
+   return $disk_vm_dev_conf_spec;
+}
+
+
+sub create_dvd {
+my $cdspec = VirtualDeviceConfigSpec->new
+     ( device => VirtualCdrom->new
+           ( backing => VirtualCdromRemotePassthroughBackingInfo->new
+                ( deviceName => "/usr/lib/vmware/isoimages/linux.iso",
+                exclusive => 0),
+           connectable => VirtualDeviceConnectInfo->new
+                ( allowGuestControl => 1,
+                connected => 0, # why is this needed, documented as not needed
+                startConnected => 1 ),
+           controllerKey => $controllerKey,
+           key => 0,
+           unitNumber => $ide_unit_number),
+           operation => VirtualDeviceConfigSpecOperation->new( 'add' ) );
+   $ide_unit_number=$ide_unit_number+1;
+   return $cdspec;
+}
+
+sub create_existing_virtual_disk {
+   my %args = @_;
+   my $disksize = 0;
+	my $dest_vm_name = $args{dest_vm_name};
+	my $dest_controller_no = $args{dest_controller_no};
+	my $dest_disk_no = $args{dest_disk_no};
+
+   my $disk_backing_info = get_disk_backing_device (dest_vm_name => $dest_vm_name, dest_controller_no => $dest_controller_no, dest_disk_no => $dest_disk_no);
+ #     VirtualDiskFlatVer2BackingInfo->new(diskMode => 'persistent', thinProvisioned => $thinProvisioned, eagerlyScrub => $eagerlyScrub, fileName => $ds_path);
+	#VirtualDiskFlatVer2BackingInfo->new(diskMode => 'persistent', fileName => $ds_path);
+   my $disk = VirtualDisk->new(backing => $disk_backing_info,
+                               controllerKey => $controllerKey,
+                               key => 0,
+                               unitNumber => $unit_number,
+                               capacityInKB => $disksize);
+   my $disk_vm_dev_conf_spec =
+      VirtualDeviceConfigSpec->new(device => $disk,
+              # fileOperation => VirtualDeviceConfigSpecFileOperation->new('create'),
+               operation => VirtualDeviceConfigSpecOperation->new('add'));
+
+   $unit_number=$unit_number+1;
+   return $disk_vm_dev_conf_spec;
+}
+
+sub get_disk_backing_device {
+
+	my %args = @_;
+	my $dest_vm_name = $args{dest_vm_name};
+	my $dest_controller_no = $args{dest_controller_no};
+	my $dest_disk_no = $args{dest_disk_no};
+	my $vm_view = Vim::find_entity_views(view_type => 'VirtualMachine', filter => { 'name' => $dest_vm_name});
+	
+	foreach( sort {$a->summary->config->name cmp $b->summary->config->name} @$vm_view) {
+	my $controllerKeyNumber=99;
+
+        if($_->summary->runtime->connectionState->val eq 'connected') {
+	        if(!$_->config->template) {
+        		if($_->summary->config->name eq $dest_vm_name) {
+	        	        my $displayname = $_->summary->config->name;
+		                my $devices = $_->config->hardware->device;
+		                my $disk_string;
+				my $counter=0;
+				foreach(@$devices) {
+		                        if($_->isa('VirtualSCSIController')) {
+		                                if ($counter==$dest_controller_no) {
+							$controllerKeyNumber=$_->key;
+							last;
+		                                }
+						$counter=$counter+1;
+		                        }
+		                }
+				$counter=0;
+		                foreach(@$devices) {
+		                        if($_->isa('VirtualDisk')) {
+						if ($controllerKeyNumber==$_->controllerKey) {
+							if ($counter==$dest_disk_no)
+							{
+								return $_->backing;
+							}
+							$counter=$counter+1;
+						}
+		                        }
+		                }
+		        }
+        	}
+        }
+	}
+
+}
+
+# get network configuration
+# =========================
+sub get_network {
+   my %args = @_;
+   my $network_name = $args{network_name};
+   my $poweron = $args{poweron};
+   my $host_view = $args{host_view};
+   my $macAddress = $args{macAddress};
+   my $addressType = $args{addressType};
+   my $nicType = $args{nicType};
+   my $network = undef;
+   my $unit_num = 1;  # 1 since 0 is used by disk
+   my $nic_backing_info = undef;
+
+   if($network_name) {
+
+	my $switchName;
+    if ( $network_name=~ /([^\/]+)\/(.*)/ ) {
+        ( $switchName, $network_name) = ( $1, $2 );
+    }
+
+    my $dpg_view;
+    my $dpg_views =
+        Vim::find_entity_views(view_type => 'DistributedVirtualPortgroup', filter =>{ 'name' => $network_name});
+    if ( $dpg_views && $#{$dpg_views} > -1 ) {
+        if ( $switchName ) {
+            foreach my $view ( @{$dpg_views} ) {
+                my $dvs_view = Vim::get_view(mo_ref => $view->config->distributedVirtualSwitch);
+                if ( $dvs_view->{'name'} eq $switchName ) {
+                    $dpg_view = $view;
+                }
+            }
+        } else {
+            my $dvs_view = Vim::get_view(mo_ref => $dpg_views->[0]->{'config'}->distributedVirtualSwitch);
+            print "Using DistributedVirtualPortgroup in ". $dvs_view->{'name'} . "\n";
+            $dpg_view = $dpg_views->[0];
+        }
+    }
+
+    if ( $dpg_view ) {
+        my $dvSwitch_view = Vim::get_view(mo_ref => $dpg_view->{'config'}->{'distributedVirtualSwitch'});
+
+        my $dvspc = DistributedVirtualSwitchPortConnection->new(portgroupKey => $dpg_view->{key},
+                                                                switchUuid => $dvSwitch_view->{uuid});
+        $nic_backing_info = VirtualEthernetCardDistributedVirtualPortBackingInfo->new(port => $dvspc);
+    } else {
+        my $net_view =
+            Vim::find_entity_view(view_type => 'Network', filter =>{ 'name' => $network_name});
+        if ( ! $net_view ) {
+            print "ERROR: Could not find a network or portgroup called $network_name\n";
+            Util::disconnect();
+            exit 3;
+        }
+        $nic_backing_info = VirtualEthernetCardNetworkBackingInfo->new(deviceName => $network_name);
+    }
+            my $vd_connect_info =
+               VirtualDeviceConnectInfo->new(allowGuestControl => 1,
+                                             connected => 0,
+                                             startConnected => $poweron);
+		my $nic;
+		if ("$nicType" eq "pcnet")
+                {
+            $nic = VirtualPCNet32->new(backing => $nic_backing_info,
+                                          key => 0,
+                                          unitNumber => $unit_num,
+                                          addressType => $addressType,
+					  macAddress => $macAddress,
+                                          connectable => $vd_connect_info);
+		}
+                elsif ("$nicType" eq "vmx")
+                {
+	$nic = VirtualVmxnet->new(backing => $nic_backing_info,
+                                          key => 0,
+                                          unitNumber => $unit_num,
+                                          addressType => $addressType,
+                                          macAddress => $macAddress,
+                                          connectable => $vd_connect_info);
+		}
+		elsif ("$nicType" eq "e1000")
+                {
+	$nic = VirtualE1000->new(backing => $nic_backing_info,
+                                          key => 0,
+                                          unitNumber => $unit_num,
+                                          addressType => $addressType,
+                                          macAddress => $macAddress,
+                                          connectable => $vd_connect_info);
+		}
+
+            my $nic_vm_dev_conf_spec = VirtualDeviceConfigSpec->new(device => $nic, operation => VirtualDeviceConfigSpecOperation->new('add'));
+
+            return (error => 0, network_conf => $nic_vm_dev_conf_spec);
+         }
+    # default network will be used
+    return (error => 2);
+}
+
+sub get_dvPortgroup_info {
+	
+	my ($entity) = shift;
+	
+	my ($key, $dvs_uuid);
+	
+	$key = $entity->key;
+	
+	my $dvs = Vim::get_view(mo_ref => $entity->{'config.distributedVirtualSwitch'},
+							view_type => 'DistributedVirtualSwitch',
+							properties => ['uuid'], );
+														
+	$dvs_uuid = $dvs->{'uuid'};
+	
+	return ($key, $dvs_uuid);
+}

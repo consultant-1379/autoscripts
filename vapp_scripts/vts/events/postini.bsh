@@ -1,0 +1,17 @@
+#!/bin/bash
+
+IQ_INI=/eniq/installation/config/niq.ini
+if [ ! -r ${IQ_INI}.sav ] ; then
+    cp ${IQ_INI} ${IQ_INI}.sav
+fi
+cat ${IQ_INI}.sav | sed 's/^IQPageSize=.*/IQPageSize=65536/' > ${IQ_INI}
+
+#patch -i /tmp/mnt/events/dwh.diff ${IQ_INI}
+#patch -i /tmp/mnt/events/sunos.diff /eniq/installation/config/SunOS.ini
+#patch -i /tmp/mnt/events/storage.diff /eniq/installation/config/storage.ini
+
+if [ -r /eniq/sw/conf/niq.ini ] ; then
+    cp ${IQ_INI} /eniq/sw/conf/niq.ini
+fi
+
+#cp /eniq/installation/config/storage.ini /eniq/sw/conf/storage.ini

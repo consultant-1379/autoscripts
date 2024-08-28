@@ -1,0 +1,51 @@
+#!/bin/bash
+
+cat >> /var/named/zone.vts <<EOF
+eniq                A       192.168.0.20
+sfs                 A       192.168.253.10
+EOF
+cat >> /var/named/revp.192.168.0 <<EOF
+20             PTR     eniq.vts.com.
+EOF
+service named restart
+
+ENIQ_IP=`getent hosts eniq | awk '{print $1}'`
+
+
+# SSH
+iptables --append PREROUTING --table nat --proto tcp  --in-interface eth0 --dport 2220 --jump DNAT --to ${ENIQ_IP}:22
+
+# MZ Client
+iptables --append PREROUTING --table nat --proto tcp  --in-interface eth0 --dport 6792 --jump DNAT --to ${ENIQ_IP}:6792
+iptables --append PREROUTING --table nat --proto tcp  --in-interface eth0 --dport 6790 --jump DNAT --to ${ENIQ_IP}:6790
+
+# FTP
+cp /etc/sysconfig/iptables-config /var/tmp/iptables-config
+cat /var/tmp/iptables-config | sed 's/IPTABLES_MODULES=.*/IPTABLES_MODULES="ip_conntrack_tftp ip_nat_tftp nf_conntrack_ftp"/' > /etc/sysconfig/iptables-config
+iptables --append PREROUTING --table nat --proto tcp  --in-interface eth0 --dport 21 --jump DNAT --to ${ENIQ_IP}:21
+
+/etc/init.d/iptables save
+/etc/init.d/iptables restart
+
+
+cat > /etc/httpd/conf.d/eniq_proxy.conf <<EOF
+ProxyRequests Off
+
+<Proxy *>
+Order deny,allow
+Allow from all
+</Proxy>
+
+ProxyHTMLEnable On
+ProxyHTMLExtended On
+
+ProxyPass /EniqEventsUI http://eniq.vts.com:18080/EniqEventsUI
+ProxyPassReverse /EniqEventsUI http://eniq.vts.com:18080/EniqEventsUI
+ProxyHTMLURLMap http://eniq.vts.com:18080/EniqEventsUI /EniqEventsUI
+ProxyPass /EniqEventsServices http://eniq.vts.com:18080/EniqEventsServices
+ProxyPassReverse /EniqEventsServices http://eniq.vts.com:18080/EniqEventsServices
+ProxyHTMLURLMap http://eniq.vts.com:18080/EniqEventsServices /EniqEventsServices
+RequestHeader   unset   Accept-Encoding
+
+EOF
+service httpd restart

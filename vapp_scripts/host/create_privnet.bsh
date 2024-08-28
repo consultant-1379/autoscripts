@@ -1,0 +1,26 @@
+!#/bin/bash
+
+CLUSTER="$1"
+if [ -z "${CLUSTER}" ] ; then
+   echo "Usage: $0 Cluster"
+   exit 1
+fi
+
+ESXI_SRV_LIST=`vicfg-hostops --operation info --cluster "${CLUSTER}" | grep 'Host Name' | awk -F: '{print $2}' | sed 's/^ *//'`
+SWITCH_NAME=vSwitch0
+for ESXI_SRV in ${ESXI_SRV_LIST} ; do
+    echo ${ESXI_SRV}
+    INDEX=1
+    VLAN_ID=2000
+    while [ ${INDEX} -le 20 ] ; do 
+	VLAN_ID=`expr ${VLAN_ID} + 1`     
+	PG_NAME=`printf "privnet_%02d" ${INDEX}`
+	echo "${PG_NAME} ${VLAN_ID}"
+	vicfg-vswitch --vihost ${ESXI_SRV} --add-pg ${PG_NAME} ${SWITCH_NAME}
+	vicfg-vswitch --vihost ${ESXI_SRV} --vlan ${VLAN_ID} --pg ${PG_NAME} ${SWITCH_NAME}
+	vicfg-vswitch --vihost ${ESXI_SRV} --del-pg-uplink vmnic0 --pg ${PG_NAME} ${SWITCH_NAME}
+	vicfg-vswitch --vihost ${ESXI_SRV} --del-pg-uplink vmnic1 --pg ${PG_NAME} ${SWITCH_NAME}
+	
+	INDEX=`expr ${INDEX} + 1`
+    done
+done

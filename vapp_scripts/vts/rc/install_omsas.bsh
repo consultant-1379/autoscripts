@@ -1,0 +1,185 @@
+#!/bin/bash
+
+# bash /root/js.bsh omsas 192.168.0.3 00:50:56:00:00:03
+# - install inst_type=cominf config=infra_omsas nox
+# export OMSAS_MEDIA=/net/159.107.177.94/export/SW_LOCATION/OMSAS_MEDIA/OMSAS_O12_0/12.0.7
+# dd if=/dev/zero of=/dev/rdsk/c1t0d0p0 count=5000 ; sync ; reboot -n
+
+VSPC_HOST=$1
+VM=$2
+OMSAS_MEDIA=$3
+if [ -z "${OMSAS_MEDIA}" ] ; then
+    echo "ERROR: Usage $0 vSPC_Host VM OMSAS_MEDIA"
+    exit 1
+fi
+TELNET_PORT=`/root/vSPC.py ${VSPC_HOST} | egrep "^${VM}:" | awk -F: '{print $3}'`
+if [ -z "${TELNET_PORT}" ] ; then
+    echo "Cannot locate telnet port for ${VM}"
+    exit 1
+fi
+
+
+ROOT_DIR=`dirname $0`
+ROOT_DIR=`cd ${ROOT_DIR} ; cd ../.. ; pwd`
+
+
+export OSS_MASTER_IP=`getent hosts ossmaster | awk '{print $1}'`
+if [ -z "${OSS_MASTER_IP}" ] ; then
+    echo "ERROR: Cannot resolve ossmaster"
+    exit 1
+fi
+
+
+DO_JUMPSTART=1
+DO_POSTINSTALL=1
+DO_INST_TOOLS=1
+
+if [ ${DO_JUMPSTART} -eq 1 ] ; then
+    /usr/bin/expect <<EOF
+log_file -noappend "/tmp/omsas_jumpstart.log"
+set timeout -1
+
+spawn telnet $VSPC_HOST $TELNET_PORT
+
+expect -re { DNS Domain Name.*: }
+send "vts.com\r"
+expect "LDAP Domain Name"
+send "vts.com\r"
+expect "Directory Manager DN:"
+send "\r"
+expect {
+ -re {masterservice for the OSS RC} { send "ossmaster\r" }
+ -re {masterservice.*:}             { send "ossmaster\r" }
+}
+
+expect {
+ "IP address of masterservice"      { send "$OSS_MASTER_IP\r" }
+ -re {IP address.*:}                { send "$OSS_MASTER_IP\r" }
+}
+
+expect "Manager password:"
+send "ldappass\r"
+expect "Re-enter password:"
+send "ldappass\r"
+expect "migration password:"
+send "ldappass\r"
+expect "Re-enter password:"
+send "ldappass\r"
+expect "maintenence password:"
+send "ldappass\r"
+expect "Re-enter password:"
+send "ldappass\r"
+expect "proxyagent password:"
+send "ldappass\r"
+expect "Re-enter password:"
+send "ldappass\r"
+
+expect "values correct"
+send "y\r"
+
+
+expect "Entering ERIC Bootstrap Stage cleanup"
+
+send_user "Waiting 1200 secs for reboot to complete"
+set timeout 180
+expect eof
+EOF
+    sleep 120
+fi 
+
+if [ ${DO_POSTINSTALL} -eq 1 ] ; then
+    /usr/bin/expect <<EOF
+log_file -noappend "/tmp/omsas_post.log"
+set timeout -1
+spawn ssh -o UserKnownHostsFile=/dev/null -o CheckHostIP=no -o StrictHostKeyChecking=no root@omsas
+expect "Password:"
+send "shroot\r"
+expect "#"
+
+send "echo 'PS1=\"omsas # \"' > /.bashrc\r"
+expect "#"
+
+send "echo 'server 192.168.0.1' > /etc/inet/ntp.conf\r"
+expect "#"
+send "svcadm enable svc:/network/ntp:default\r"
+expect "#"
+
+send "echo 'domain vts.com' > /etc/resolv.conf\r"
+expect "#"
+send "echo 'nameserver 192.168.0.1' >> /etc/resolv.conf\r"
+expect "#"
+send "cp /etc/nsswitch.conf /etc/nsswitch.conf.sav\r"
+expect "#"
+send "cat /etc/nsswitch.conf.sav | sed 's/^hosts: .*/hosts: files dns/' > /etc/nsswitch.conf\r"
+expect "#"
+
+send "cd $OMSAS_MEDIA/omsas_base_sw/bin\r"
+expect "#"
+send "./install.sh\r"
+expect "Choose one:"
+send "2\r"
+expect "new packages"
+send "y\r"
+expect "Done."
+expect "#"
+
+
+send "/opt/ericsson/secinst/bin/config.sh\r"
+expect "Detecting installed packages"
+expect {
+    -re {Select.*main:} { 
+        send "2\r"
+        exp_continue
+    }
+    "Enter password for \"cn=directory manager\":" {
+        send "ldappass\r"
+        exp_continue
+    }
+    
+    "create a CAAS Admin user now" {
+        send "y\r"
+        expect "username for the new user"
+        send "caasadm\r"
+      expect "New Password:"
+        send "caasadm\r"
+        expect "Re-enter new Password:"
+        send "caasadm\r"
+        
+        exp_continue
+    }
+    
+    "cn=CaasAdmin,dc=vts,dc=com\":" {
+        send "caasadm\r"
+
+        exp_continue
+    }
+	
+    "ssl assignment to slapd now" {
+        send "y\r"
+
+        exp_continue
+    }
+
+    "Enter new password for " {
+        send "caasadm\r"
+        expect "Confirm password for"
+        send "caasadm\r"
+    }
+    
+    "#" {}
+}
+
+send "/opt/ericsson/secinst/bin/backup.sh\r"
+expect "#"
+send "cp /var/tmp/ERICsinst/backup/secinst_omsas_backup.zip /var/tmp/secinst_omsas_backup_postinstall.zip\r"
+expect "#"
+
+send "exit\r"
+expect eof
+EOF
+fi
+
+if [ ${DO_INST_TOOLS} -eq 1 ] ; then
+    ${ROOT_DIR}/misc/inst_vmtools.bsh omsas
+fi
+

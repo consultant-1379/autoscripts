@@ -1,0 +1,29 @@
+#!/bin/bash
+
+if [ "$1" = "start" ] || [ -z "$1" ]  ; then
+    if [ -r /usr/sbin/vmtoolsd ] ; then
+	ID=`/usr/sbin/vmtoolsd --cmd "machine.id.get"`       
+	VAPP=`echo "${ID}" | awk -F: '{print $1}'`
+	cat > /etc/motd <<EOF
+************************************************************
+************************************************************
+  This VM is part of the vAPP ${VAPP}
+************************************************************
+************************************************************
+EOF
+    fi
+elif [ "$1" = "install" ] ; then
+    cp $0 /etc/init.d/vmmotd
+    chmod 755 /etc/init.d/vmmotd
+    if [ -d /etc/rc3.d/ ] ; then
+	RC_DIR=/etc/rc3.d
+    elif [ -d /etc/init.d/rc3.d ] ; then
+	RC_DIR=/etc/init.d/rc3.d
+    fi
+    if [ -z "${RC_DIR}" ] ; then
+	echo "ERROR: Cound not find rc3.d dir"
+	exit 1
+    fi
+
+    ln -f -s /etc/init.d/vmmotd ${RC_DIR}/S99zvmmotd
+fi

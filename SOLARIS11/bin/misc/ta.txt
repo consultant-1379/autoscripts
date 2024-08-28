@@ -1,0 +1,14 @@
+alicreate "enter file name_1",""
+zonecreate "Z_enter file name_1_to_#########NotKnownChassis########","enter file name_1;#########NotKnownChassis########"
+cfgadd "ZC_Fabric_A","Z_enter file name_1_to_#########NotKnownChassis########"
+
+######Next Zone######
+
+
+alicreate "atrcxb1682_1","50:01:43:80:12:0c:f4:b8"
+zonecreate "Z_atrcxb1682_1_to_#########NotKnownChassis########","atrcxb1682_1;#########NotKnownChassis########"
+cfgadd "ZC_Fabric_A","Z_atrcxb1682_1_to_#########NotKnownChassis########"
+
+######Next Zone######
+
+

@@ -1,0 +1,18 @@
+enter file name
+2102;chassis82;	 Port 1: 50:01:43:80:18:70:b8:80;	 Port 2: 50:01:43:80:18:70:b8:82;	 Ethernet FlexNIC LOM:1-a - 44:1E:A1:52:39:70{***BROCADE not found ***}
+2103;chassis82;	 Port 1: 50:01:43:80:18:70:b8:78;	 Port 2: 50:01:43:80:18:70:b8:7a;	 Ethernet FlexNIC LOM:1-a - 44:1E:A1:52:39:F0{***BROCADE not found ***}
+2104;chassis82;	 Port 1: 50:01:43:80:18:70:95:fc;	 Port 2: 50:01:43:80:18:70:95:fe;	 Ethernet FlexNIC LOM:1-a - 44:1E:A1:52:D9:A0{***BROCADE not found ***}
+2105;chassis82;	 Port 1: 50:01:43:80:18:70:96:18;	 Port 2: 50:01:43:80:18:70:96:1a;	 Ethernet FlexNIC LOM:1-a - 44:1E:A1:52:B8:80{***BROCADE not found ***}
+1090;chassis7;	 Port 1: 50:01:43:80:05:69:d0:64;	 Port 2: 50:01:43:80:05:69:d0:66;	 Ethernet FlexNIC LOM:1-a - D8:D3:85:DE:D6:00{***BROCADE not found ***}
+1095;chassis7{***HBA not found ***}
+1095{***BROCADE not found ***}
+1497;chassis40;	 Port 1: 50:01:43:80:12:0c:5e:70;	 Port 2: 50:01:43:80:12:0c:5e:72;	 Ethernet FlexNIC LOM:1-a - 98:4B:E1:61:4C:98{***BROCADE not found ***}
+1797;chassis61;	 Port 1: 50:01:43:80:12:0c:ff:b8;	 Port 2: 50:01:43:80:12:0c:ff:ba;	 Ethernet FlexNIC LOM:1-a - 98:4B:E1:63:22:88{***BROCADE not found ***}
+2067{***Server not found ***}
+2068;chassis8;	 Port 1: 50:01:43:80:05:69:a5:98;	 Port 2: 50:01:43:80:05:69:a5:9a;{***BROCADE not found ***}
+2100;chassis82;	 Port 1: 50:01:43:80:18:70:b8:b4;	 Port 2: 50:01:43:80:18:70:b8:b6;	 Ethernet FlexNIC LOM:1-a - 44:1E:A1:52:79:58{***BROCADE not found ***}
+2101;chassis82;	 Port 1: 50:01:43:80:18:70:b9:48;	 Port 2: 50:01:43:80:18:70:b9:4a;	 Ethernet FlexNIC LOM:1-a - 44:1E:A1:52:79:78{***BROCADE not found ***}
+2120{***Server not found ***}
+2121{***Server not found ***}
+2129{***Server not found ***}
+2130;chassis82;	 Port 1: 50:01:43:80:18:70:b4:68;	 Port 2: 50:01:43:80:18:70:b4:6a;	 Ethernet FlexNIC LOM:1-a - 44:1E:A1:4B:55:48{***BROCADE not found ***}

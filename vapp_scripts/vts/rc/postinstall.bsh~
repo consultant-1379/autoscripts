@@ -1,0 +1,729 @@
+#!/bin/bash
+
+HAS_OMSAS=1
+
+HAS_OMSRVM=1
+CONFIG_OMSRVM=0
+
+CONFIG_OSSMASTER=0
+
+HAS_UAS=0
+HAS_NEDSS=1
+
+ROOT_DIR=`dirname $0`
+ROOT_DIR=`cd ${ROOT_DIR} ; cd ../.. ; pwd`
+
+
+#
+# Setup omsas/omsrvm 
+#
+if [ ${HAS_OMSAS} -eq 1 ] && [ ${HAS_OMSRVM} -eq 1 ] && [ ${CONFIG_OMSRVM} -eq 1 ] ; then
+    /usr/bin/expect <<EOF
+set timeout -1
+log_file -noappend "/tmp/omsrvm_config.log"
+
+spawn ssh -o UserKnownHostsFile=/dev/null -o CheckHostIP=no -o StrictHostKeyChecking=no root@omsrvm
+expect "Password:"
+send "shroot\r"
+expect "#"
+
+send "/opt/ericsson/secinst/bin/config.sh\r"
+expect {
+  "The user scsuser is the user" {
+	expect "set one now"
+	send "y\r"
+	expect "New Password:"
+	send "scsuser\r"
+	expect "Re-enter new Password:"
+	send "scsuser\r"
+	exp_continue
+    }
+
+    "The user neuser is the user" {
+	expect "set one now"
+	send "y\r"
+	expect "New Password:"
+	send "neuser\r"
+	expect "Re-enter new Password:"
+	send "neuser\r"
+	exp_continue
+    }
+
+    "Select ldap domain:" { 
+	send "2\r"    
+	exp_continue
+    }
+
+    -re {Enter password for "cn=directory manager":} {
+	send "ldappass\r"
+	exp_continue
+    }
+
+    -re {Enter password.*cn=CaasAdmin.*:} {
+	send "caasadm\r"
+	exp_continue
+    }
+
+    "zipfile to the OMSAS and process the request" {
+	send_user "zipfile block start"
+	expect "#"
+	send_user "zipfile block end"
+    }
+}
+
+send "scp -o UserKnownHostsFile=/dev/null -o CheckHostIP=no -o StrictHostKeyChecking=no /var/tmp/ERICsinst/config/secinst_omsrvm_config.zip root@omsas:/var/tmp\r"
+expect "Password:" 
+send "shroot\r"
+expect "#"
+
+send "ssh -o UserKnownHostsFile=/dev/null -o CheckHostIP=no -o StrictHostKeyChecking=no root@omsas\r"
+expect "Password:"
+send "shroot\r"
+expect "#"
+send "/opt/ericsson/secinst/bin/config.sh -R /var/tmp/secinst_omsrvm_config.zip\r"
+
+expect -re {Creating zip file .*/config/(.+)\.zip}
+set filename \$expect_out(1,string)
+append filename ".zip"
+expect "#"
+send "exit\r"
+expect "#"
+
+send "scp -o UserKnownHostsFile=/dev/null -o CheckHostIP=no -o StrictHostKeyChecking=no root@omsas:/var/tmp/ERICsinst/config/\$filename /var/tmp\r"
+expect "Password:"
+send "shroot\r"
+expect "#"
+
+send "/opt/ericsson/secinst/bin/config.sh -r /var/tmp/\$filename\r"
+expect {
+    -re {change the ssl assignment to slapd now.*\]} {
+	send "y\r"
+	expect "directory manager\":"
+	send "ldappass\r"
+	exp_continue
+    }
+
+    "Adding CaasAdmin user" {
+	expect -re {password for.*:} 
+	send "caasadm\r"
+	expect -re {password for.*:} 
+	send "caasadm\r"
+	exp_continue
+    }	
+
+    "Select ldap domain:" {
+	send "2\r"    
+	exp_continue
+    }
+
+    -re {Enter password for "cn=directory manager":} {
+	send "ldappass\r"
+	exp_continue
+    }
+
+    -re {Enter password.*cn=CaasAdmin.*:} {
+	send "caasadm\r"
+	exp_continue
+    }
+
+
+
+    "#" {}
+}
+
+send "/opt/ericsson/secinst/bin/backup.sh\r"
+expect "#"
+send "cp /var/tmp/ERICsinst/backup/secinst_omsrvm_backup.zip /var/tmp/secinst_omsrvm_backup_postinstall.zip\r"
+expect "#"
+
+send "exit\r"
+expect eof
+EOF
+
+    /usr/bin/expect <<EOF
+set timeout -1
+log_file -noappend "/tmp/omsrvm_backup_omsas.log"
+
+spawn ssh -o UserKnownHostsFile=/dev/null -o CheckHostIP=no -o StrictHostKeyChecking=no root@omsas
+expect "Password:"
+send "shroot\r"
+expect "#"
+
+send "/opt/ericsson/secinst/bin/backup.sh\r"
+expect "#"
+send "cp /var/tmp/ERICsinst/backup/secinst_omsas_backup.zip /var/tmp/secinst_omsas_backup_postomsrvm.zip\r"
+expect "#"
+
+send "exit\r"
+expect eof
+EOF
+fi
+
+
+#
+# ossmaster
+#
+export OMSRVM_IP=`getent hosts omsrvm | awk '{print $1}'`
+if [ ${CONFIG_OSSMASTER} -eq 1 ] && [ ${HAS_OMSRVM} -eq 1 ] ; then
+    /usr/bin/expect <<EOF
+log_file -noappend "/tmp/ossmaster_ldapmig.log"
+set timeout -1
+
+spawn ssh -o UserKnownHostsFile=/dev/null -o CheckHostIP=no -o StrictHostKeyChecking=no root@ossmaster
+expect "Password:"
+send "shroot\r"
+expect "ossmaster{root} #"
+
+send "scp -o UserKnownHostsFile=/dev/null -o CheckHostIP=no -o StrictHostKeyChecking=no root@omsas:/opt/ericsson/csa/certs/DSCertCA.pem /var/tmp/rootca.cer\r"
+expect "Password:" 
+send "shroot\r"
+expect "ossmaster{root} #"
+
+send "echo \"${OMSRVM_IP} omsrvm.vts.com omsrvm\" >> /etc/hosts\r"
+expect "ossmaster{root} #"
+send "rm -f /var/ldap/*.db\r"
+expect "ossmaster{root} #"
+send "/usr/sfw/bin/certutil -N -d /var/ldap\r"
+expect "Enter new password"
+send "ldappass\r"
+expect "Re-enter password"
+send "ldappass\r"
+expect "ossmaster{root} #"
+send "/usr/sfw/bin/certutil -A -d /var/ldap -n \"cacert\" -t C,, -i /var/tmp/rootca.cer\r"
+expect "ossmaster{root} #"
+send "chmod 444 /var/ldap/*.db\r"
+expect "ossmaster{root} #"
+
+send "/opt/ericsson/sck/bin/configure_ldap.bsh -g -y\r"
+expect "ossmaster{root} #"
+
+send "/opt/ericsson/sck/bin/configure_ldap.bsh -m\r"
+expect -re {LDAP migration now on the Master Server[^\]]*\]}
+send "y\r"
+expect -re {LDAP DS IP address.*:}
+send "${OMSRVM_IP}\r"
+expect -re {LDAP domain name.*:}
+send "vts.com\r"
+expect -re {LDAP migration bind DN.*:}
+send "\r"
+expect -re {Are the values ok.*\]}
+send "y\r"
+expect {
+ "LDAP migration bind password:" {
+   send "ldappass\r"
+  }
+  -re {Continue to update LDAP\[[^\]]*\]} {
+    send "y\r"
+    exp_continue
+  }
+}
+expect "ossmaster{root} #"
+
+send "/opt/ericsson/sck/bin/configure_ldap.bsh -i\r"
+expect { 
+ -re {completed.*\]} {
+ send "Y\r"
+    exp_continue
+ }
+ -re {Continue to run.*\] } { 
+  send "y\r"
+  exp_continue 
+ }
+ -re {LDAP DS IP address.*} {
+    send "$OMSRVM_IP\r"
+    exp_continue
+ }
+ -re {LDAP domain name.*:} {
+  send "vts.com\r"
+  exp_continue
+ }
+ -re {LDAP client profile.*: } {
+  send "\r"
+  exp_continue
+ }
+ -re {LDAP proxy agent DN.*: } {
+  send "\r"
+  exp_continue
+ }
+ -re {Are the values ok.*\]} {
+  send "y\r"
+  exp_continue
+ }
+ -re {LDAP proxy agent password: } {
+   send "ldappass\r"
+   exp_continue
+  }
+ "ossmaster{root} #" {}
+}
+
+send "/opt/ericsson/sck/bin/configure_ldap.bsh -e\r"
+expect {
+  -re {Continue to update LDAP\[[^\]]*\]} {
+    send "yes\r"
+    exp_continue
+  }
+  "ossmaster{root} #" {
+  }
+}
+
+send "/opt/ericsson/sck/bin/maintain_ldap.bsh\r"
+expect {
+  -re {Continue to update LDAP.*q\]} {
+    send "y\r"
+    exp_continue
+  }
+
+  -re {LDAP DS IP address[^:]*:} {
+    send "\r"
+    exp_continue
+  }
+ -re {LDAP domain name[^:]*:} {
+   send "\r"
+   exp_continue
+  }
+
+ -re {LDAP .* bind DN[^:]*:} {
+  send "\r"
+  exp_continue
+ }
+ 
+ -re {Are the values ok.*\]} {
+  send "y\r"
+    exp_continue
+  }
+
+ -re {LDAP .* bind password:} {
+    send "ldappass\r"
+    exp_continue
+  }
+
+
+  "ossmaster{root} #" {
+  }
+}
+
+send "exit\r"
+expect eof
+EOF
+
+    # comnfadm login
+    /usr/bin/expect <<EOF
+log_file -noappend "/tmp/ossmaster_omsrvm_ssh.log"
+set timeout -1
+
+spawn scp -o UserKnownHostsFile=/dev/null -o CheckHostIP=no -o StrictHostKeyChecking=no ${ROOT_DIR}/vts/rc/sshkeygen.bsh root@omsrvm:/var/tmp
+expect "Password:" 
+send "shroot\r"
+expect eof
+
+spawn ssh -o UserKnownHostsFile=/dev/null -o CheckHostIP=no -o StrictHostKeyChecking=no root@omsrvm 
+expect "Password:"
+send "shroot\r"
+expect "#"
+
+send "/var/tmp/sshkeygen.bsh dsa\r"
+expect "#"
+
+send "scp -o UserKnownHostsFile=/dev/null -o CheckHostIP=no -o StrictHostKeyChecking=no /.ssh/id_dsa.pub root@ossmaster:/tmp\r"
+expect "Password:"
+send "shroot\r" 
+expect "#"
+
+send "exit\r"
+expect eof
+
+spawn ssh -o UserKnownHostsFile=/dev/null -o CheckHostIP=no -o StrictHostKeyChecking=no root@ossmaster 
+expect "Password:"
+send "shroot\r"
+expect "ossmaster{root} #"
+
+send "su - comnfadm\r"
+expect "ossmaster{comnfadm} #"
+send "mkdir .ssh\r"
+expect "ossmaster{comnfadm} #"
+send "cat /tmp/id_dsa.pub >> .ssh/authorized_keys2\r"
+expect "ossmaster{comnfadm} #"
+send "chmod -R 0700 /home/comnfadm/.ssh/\r"
+expect "ossmaster{comnfadm} #"
+
+send "exit\r"
+expect "ossmaster{root} #"
+send "exit\r"
+expect eof
+
+spawn ssh -o UserKnownHostsFile=/dev/null -o CheckHostIP=no -o StrictHostKeyChecking=no root@omsrvm 
+expect "Password:"
+send "shroot\r"
+expect "#"
+send "ssh comnfadm@ossmaster\r"
+expect {
+ -re {Are you sure you want.*? } {
+  send "yes\r"
+  exp_continue
+ }
+ "ossmaster{comnfadm} #" {
+  send "exit\r"
+ }
+}
+
+expect "#"
+send "exit\r"
+expect eof
+
+EOF
+fi
+
+#
+# UAS
+#
+if [ ${HAS_UAS} -eq 1 ] ; then
+    /usr/bin/expect <<EOF
+set prompt "# "
+set timeout -1
+
+spawn ssh -o UserKnownHostsFile=/dev/null -o CheckHostIP=no -o StrictHostKeyChecking=no root@ossmaster
+expect "Password:"
+send "shroot\r"
+expect "ossmaster{root} #"
+send "/opt/ericsson/sck/bin/activate_uas -i $UAS_IP -n uas1\r"
+expect {
+ -re {overwrite with uas1.*\)} { 
+  send "y\r"
+   exp_continue
+ }  
+ -re {Continue to update LDAP.*q\]} {
+   send "y\r"
+   exp_continue
+ }
+ -re {LDAP domain.*\]:} {
+  send "\r"
+  exp_continue
+ }
+ -re {LDAP DS IP address list.*\]:} {
+  send "\r"
+  exp_continue
+ }
+ -re {LDAP maintenance bind DN.*\]:} {
+  send "\r"
+  exp_continue
+ }
+ -re {LDAP maintenance bind password:} {
+  send "ldappass\r"
+  exp_continue
+ }
+ -re {values ok.*q\]} {
+  send "y\r"
+  exp_continue
+ }
+ "ossmaster{root} #" {
+  send "exit\r"
+ }
+}
+
+expect eof
+EOF
+fi
+
+#
+# NEDSS
+#
+if [ ${HAS_NEDSS} -eq 1  ] ; then
+    DO_CONFIG_OSSMASTER=1
+    DO_OMSRVM_CREATE_TREE=1
+    DO_OMSRVM_CREATE_SLAVE=1
+
+    if [ ${DO_CONFIG_OSSMASTER} -eq 1 ] ; then
+	cat <<EOF
+***********************************
+*
+*
+*
+* Configure OSS Master    
+*
+*
+*
+***********************************
+EOF
+	/usr/bin/expect <<EOF
+log_file -noappend "/tmp/nedss_cfg_ossmaster.log"
+set timeout -1
+
+spawn scp -o UserKnownHostsFile=/dev/null -o CheckHostIP=no -o StrictHostKeyChecking=no ${ROOT_DIR}/vts/rc/config_smrs_ossmaster.bsh root@ossmaster:/var/tmp
+expect "Password:" 
+send "shroot\r"
+expect eof
+
+spawn scp -o UserKnownHostsFile=/dev/null -o CheckHostIP=no -o StrictHostKeyChecking=no ${ROOT_DIR}/vts/rc/sshkeygen.bsh root@ossmaster:/var/tmp
+expect "Password:" 
+send "shroot\r"
+expect eof
+
+spawn ssh -o UserKnownHostsFile=/dev/null -o CheckHostIP=no -o StrictHostKeyChecking=no root@ossmaster /var/tmp/config_smrs_ossmaster.bsh
+expect "Password:"
+send "shroot\r"
+expect eof
+EOF
+    fi
+
+    if [ ${DO_OMSRVM_CREATE_TREE} -eq 1  ]; then
+	cat <<EOF
+***********************************
+*
+*
+*
+* Create Tree on omsrvm
+*
+*
+*
+***********************************
+EOF
+
+	MASTER_IP=`getent hosts ossmaster | awk '{print $1}'`
+	cat > /tmp/create_tree.config <<EOF
+OSS_MASTER=ossmaster
+OSS_IP=${MASTER_IP}
+SUPPORT_GRAN=yes
+SUPPORT_CORE=yes
+SUPPORT_WRAN=yes
+SUPPORT_LRAN=yes
+EOF
+
+	/usr/bin/expect <<EOF
+log_file -noappend "/tmp/nedss_cfg_smrsmaster.log"
+set timeout -1
+
+spawn scp -o UserKnownHostsFile=/dev/null -o CheckHostIP=no -o StrictHostKeyChecking=no /tmp/create_tree.config root@omsrvm:/ericsson/smrs/etc/create_tree.config
+expect "Password:" 
+send "shroot\r"
+expect eof
+
+spawn ssh -o UserKnownHostsFile=/dev/null -o CheckHostIP=no -o StrictHostKeyChecking=no root@omsrvm
+expect "Password:"
+send "shroot\r"
+expect "#"
+
+send "/ericsson/smrs/bin/create_tree.sh -f /ericsson/smrs/etc/create_tree.config\r"
+expect "master server?"
+send "shroot\r"
+
+set failed 0
+expect {
+ "ERROR" {
+  set failed 1
+  exp_continue
+ }
+ "#" {
+  send "exit\r"
+ }
+}
+expect eof
+exit \$failed
+EOF
+	if [ $? -ne 0 ] ; then 
+	    echo "ERROR: create_tree failed"
+	    exit 1
+	fi
+    fi
+
+    if [ ${DO_OMSRVM_CREATE_SLAVE} -eq 1 ] ; then
+	cat <<EOF
+***********************************
+*
+*
+*
+* Create Slave on omsrvm
+*
+*
+*
+***********************************
+EOF
+	SLAVE_IP=`getent hosts nedss | awk '{print $1}'`
+	cat > /tmp/configure_slave.nedss <<EOF
+SLAVE=nedss
+SLAVE_IP=${SLAVE_IP}
+SUPPORT_GRAN=yes
+SUPPORT_CORE=yes
+SUPPORT_WRAN=yes
+SUPPORT_LRAN=yes
+ARNE_IMPORT=yes
+EOF
+
+	# Workaround, /.ssh doesn't exist when add_smrs_slave tries to copy keys to the nedss
+	/usr/bin/expect <<EOF
+spawn ssh -o UserKnownHostsFile=/dev/null -o CheckHostIP=no -o StrictHostKeyChecking=no root@nedss
+expect "Password:"
+send "shroot\r"
+expect "#"
+send "if \[ ! -d /.ssh \] ; then echo \"WORKAROUND: Creating /.ssh\" ; mkdir /.ssh ; chmod 700 /.ssh ; fi\r"
+expect "#"
+send "exit\r"
+expect eof
+EOF
+
+	/usr/bin/expect <<EOF
+log_file -noappend "/tmp/nedss_cfg_smrsslave.log"
+set timeout -1
+
+spawn scp -o UserKnownHostsFile=/dev/null -o CheckHostIP=no -o StrictHostKeyChecking=no /tmp/configure_slave.nedss root@omsrvm:/ericsson/smrs/etc/configure_slave.nedss
+expect "Password:" 
+send "shroot\r"
+expect eof
+
+spawn ssh -o UserKnownHostsFile=/dev/null -o CheckHostIP=no -o StrictHostKeyChecking=no root@omsrvm
+expect "Password:"
+send "shroot\r"
+expect "#"
+
+send "/ericsson/smrs/bin/add_smrs_slave.sh -f /ericsson/smrs/etc/configure_slave.nedss\r"
+expect "password for the slave?"
+send "shroot\r"
+expect "password for these FTPServices?"
+send "ftppass\r"
+expect "confirm the password for the FTPServices:"
+send "ftppass\r"
+expect -re {restart BI_SMRS_MC.*\[Yes\]}
+send "\r"
+
+set failed 0
+expect {
+ "ERROR" {
+  set failed 1
+  exp_continue
+ }
+ "#" {
+  send "exit\r"
+ }
+}
+expect eof
+exit \$failed
+EOF
+	if [ $? -ne 0 ] ; then 
+	    echo "ERROR: add_smrs_slave failed"
+	    exit 1
+	fi
+    fi
+
+    /usr/bin/expect <<EOF
+log_file -noappend "/tmp/nedss_cfgsmoaif.log"
+set timeout -1
+
+
+spawn ssh -o UserKnownHostsFile=/dev/null -o CheckHostIP=no -o StrictHostKeyChecking=no root@omsrvm
+expect "Password:"
+send "shroot\r"
+expect "#"
+
+
+send "/ericsson/smrs/bin/add_smo_ftp_service.sh GRAN\r"
+expect "user name for this FTPService?"
+send "granftp\r"
+expect "password for this FTPService?"
+send "granftp\r"
+expect "password for this FTPService?"
+send "granftp\r"
+expect -re {\[yes\]}
+send "\r"
+expect -re {\[ yes \]}
+send "\r"
+expect "#"
+
+send "/ericsson/smrs/bin/add_smo_ftp_service.sh CORE\r"
+expect "user name for this FTPService?"
+send "coreftp\r"
+expect "password for this FTPService?"
+send "coreftp\r"
+expect "password for this FTPService?"
+send "coreftp\r"
+expect -re {\[yes\]}
+send "\r"
+expect -re {\[ yes \]}
+send "\r"
+expect "#"
+
+set userpass "wranftp"
+send "/ericsson/smrs/bin/add_smo_ftp_service.sh WRAN\r"
+expect {
+ "user name for this FTPService?" { 
+   send "\$userpass\r"
+   exp_continue
+ }
+  
+ "password for this FTPService?" {
+   send "\$userpass\r"
+   exp_continue
+ }
+
+ expect -re {\[yes\]} {
+  send "\r"
+ } 
+}
+expect -re {\[ yes \]}
+send "\r"
+expect "#"
+
+set userpass "lranftp"
+send "/ericsson/smrs/bin/add_smo_ftp_service.sh LRAN\r"
+expect {
+ "user name for this FTPService?" { 
+   send "\$userpass\r"
+   exp_continue
+ }
+  
+ "password for this FTPService?" {
+   send "\$userpass\r"
+   exp_continue
+ }
+
+ expect -re {\[yes\]} {
+  send "\r"
+ }
+}
+expect -re {\[ yes \]}
+send "\r"
+expect "#"
+
+
+send "/ericsson/smrs/bin/add_aif_user.sh WRAN\r"
+expect "slave name:"
+send "nedss\r"
+expect "name for this user?"
+send "aifwran\r"
+expect "password for this user?"
+send "aifwran\r"
+expect "password for this user?"
+send "aifwran\r"
+expect -re {\[yes\]}
+send "\r"
+expect -re {\[ yes \]}
+send "\r"
+expect -re {\[ yes \]}
+send "\r"
+expect "#"
+
+send "/ericsson/smrs/bin/add_aif_user.sh LRAN\r"
+expect "slave name:"
+send "nedss\r"
+expect "name for this user?"
+send "aiflran\r"
+expect "password for this user?"
+send "aiflran\r"
+expect "password for this user?"
+send "aiflran\r"
+expect -re {\[yes\]}
+send "\r"
+expect -re {\[ yes \]}
+send "\r"
+expect {
+ -re {\[Yes\]} {
+  send "\r"
+  exp_continue
+ }
+ "#" {
+ }
+}
+
+send "exit\r"
+exect eof
+EOF
+
+fi

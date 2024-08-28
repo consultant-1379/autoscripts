@@ -1,0 +1,30 @@
+#!/bin/bash
+
+ROOT_DIR=`dirname $0`
+ROOT_DIR=`cd ${ROOT_DIR} ; cd ../.. ; pwd`
+
+VAPP=$1
+PRIV_NET=$2
+if [ -z "${PRIV_NET}" ] ; then
+    echo "Usage: $0 <vAppName> <vAppNetwork>"
+    exit 1
+fi
+
+VM_LIST=`${ROOT_DIR}/vm/vApp.pl --vapp ${VAPP} --op listvm`
+if [ $? -ne 0 ] ; then
+   echo "ERROR: Failed to get VM list from ${VAPP}"
+   exit 1
+fi
+
+for VM in ${VM_LIST} ; do
+    VNIC=1
+    echo "${VM}" | egrep 'gateway$' > /dev/null
+    if [ $? -eq 0 ] ; then
+	VNIC=2
+    fi
+    ${ROOT_DIR}/vm/connectNIC.pl --vmname ${VM} --pg ${PRIV_NET} --vnic ${VNIC}
+    if [ $? -ne 0 ] ; then
+        echo "ERROR: connectNIC.pl failed"
+        exit 1
+    fi
+done

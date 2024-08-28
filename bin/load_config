@@ -1,0 +1,131 @@
+		CONFIG_SPLIT="`echo \"$CONFIG\" | sed 's/:/ /g'`"
+                for entry in $CONFIG_SPLIT
+                do
+                        entry=`echo "$entry" | sed 's/\.\.//g'`
+                        #echo "INFO: Loading config $MOUNTPOINT/$entry: "
+                        if [[ -f $MOUNTPOINT/$entry ]]
+                        then
+				#dos2unix -q $MOUNTPOINT/$entry > /dev/null 2>&1
+                                . $MOUNTPOINT/$entry
+                        #        echo "OK"
+			elif [[ -f $entry ]]
+			then
+				#dos2unix -q $entry > /dev/null 2>&1
+				. $entry
+                        #        echo "OK"
+                        else
+				if [[ -f $MOUNTPOINT/configs/$entry/variables.txt ]]
+				then
+					#dos2unix -q $MOUNTPOINT/configs/$entry/variables.txt > /dev/null 2>&1
+					. $MOUNTPOINT/configs/$entry/variables.txt
+					if [[ -f $MOUNTPOINT/configs/$entry/media.txt ]]
+					then
+						#dos2unix -q $MOUNTPOINT/configs/$entry/media.txt > /dev/null 2>&1
+						. $MOUNTPOINT/configs/$entry/media.txt
+					fi
+				else
+                                	echo "ERROR: Can't find config file $entry"
+                                	exit 1
+				fi
+                        fi
+                done
+
+	# Jumpstart server settings
+        # Default to atjumpx1 if its not set
+        if [[ "$DHCP_SERVER" == '' ]]
+        then
+                DHCP_SERVER="atjumpx1"
+        fi
+	# Load the file containing the mws server settings
+	if [[ -f /export/scripts/CLOUD/configs/MWS_configs/${DHCP_SERVER}.txt ]]
+	then
+	        . /export/scripts/CLOUD/configs/MWS_configs/${DHCP_SERVER}.txt
+	else
+		if [[ "$DHCP_SERVER_IP" == "" ]]
+		then
+			echo "ERROR: Can't find a configuration file for this MWS $DHCP_SERVER, please contact the cloud team"
+			exit 1
+		fi
+	fi
+
+	# Set the backup ip to the main MWS ip if behind a gateway (until vApp has its own MWS)
+	if [[ "$BEHIND_GATEWAY" == "yes" ]]
+	then
+		MWS_BACKUP_IP="$DHCP_SERVER_IP"
+	fi
+
+	if [[ "$OMSERVS_HOSTNAME" == "" ]]
+	then
+		OMSERVS_HOSTNAME="dummy"
+		OMSERVS_IP_ADDR="1.2.3.4"
+		OMSERVS_CLIENT_IP_ADDR_V6="fd37:96e7:fe4a:600::99/64"
+	fi
+
+	# Figure out ipv6 addresses from prefixes
+	OMSERVM_IPV6_ADDR=`echo "$OMSERVM_CLIENT_IP_ADDR_V6" | awk -F/ '{print $1}'`
+	OMSERVS_IPV6_ADDR=`echo "$OMSERVS_CLIENT_IP_ADDR_V6" | awk -F/ '{print $1}'`
+	OMSERVM_IPV6_PREFIX=`echo "$OMSERVM_CLIENT_IP_ADDR_V6" | awk -F/ '{print $2}'`
+        OMSERVS_IPV6_PREFIX=`echo "$OMSERVS_CLIENT_IP_ADDR_V6" | awk -F/ '{print $2}'`
+
+	# Set a default citrix license server
+	if [[ "$CITRIX_LICENSE_SERVER" == "" ]]
+	then
+		CITRIX_LICENSE_SERVER="159.107.177.163"
+	fi
+
+	# Set some defaults
+	if [[ "$UAS1_STOR_HOSTNAME" == "" ]]
+	then
+	        UAS1_STOR_HOSTNAME="uas1svip"
+	fi
+
+	if [[ "$EBAS_STOR_HOSTNAME" == "" ]]
+        then
+                EBAS_STOR_HOSTNAME="ebassvip"
+        fi
+	
+	if [[ "$PEER1_STOR_HOSTNAME" == "" ]]
+        then
+                PEER1_STOR_HOSTNAME="peer1svip"
+        fi
+
+	# Set smrs variables
+	if [[ "$NEDSS_SMRS_OSS_ID" != "" ]]
+        then
+
+	        NEDSS_POOL_NAME="${NEDSS_SMRS_OSS_ID}_SMRS"
+	        NEDSS_SMRS_SYS_ID="${NEDSS_SMRS_OSS_ID}_SMRS"
+		NEDSS_SMRS_SYS_ID_OLD="SMRS_${NEDSS_SMRS_OSS_ID}"
+	
+	        # FS Names
+	        NEDSS_FSCOMMON_NAME_CORE="core_common"
+	        NEDSS_FSCOMMON_NAME_GRAN="gran_common"
+	        NEDSS_FSCOMMON_NAME_WRAN="wran_common"
+	        NEDSS_FSCOMMON_NAME_LRAN="lran_common"
+	
+	        NEDSS_FS4_NAME_CORE="core_${NEDSS_SLAVE_SERV_ID4}"
+	        NEDSS_FS4_NAME_GRAN="gran_${NEDSS_SLAVE_SERV_ID4}"
+	        NEDSS_FS4_NAME_WRAN="wran_${NEDSS_SLAVE_SERV_ID4}"
+	        NEDSS_FS4_NAME_LRAN="lran_${NEDSS_SLAVE_SERV_ID4}"
+	
+	        NEDSS_FS6_NAME_CORE="core_${NEDSS_SLAVE_SERV_ID6}"
+	        NEDSS_FS6_NAME_GRAN="gran_${NEDSS_SLAVE_SERV_ID6}"
+	        NEDSS_FS6_NAME_WRAN="wran_${NEDSS_SLAVE_SERV_ID6}"
+	        NEDSS_FS6_NAME_LRAN="lran_${NEDSS_SLAVE_SERV_ID6}"
+
+	        # Full names, ie sys_id-fs_name
+	        NEDSS_FULL_FSCOMMON_NAME_CORE="${NEDSS_SMRS_SYS_ID}-${NEDSS_FSCOMMON_NAME_CORE}"
+	        NEDSS_FULL_FSCOMMON_NAME_GRAN="${NEDSS_SMRS_SYS_ID}-${NEDSS_FSCOMMON_NAME_GRAN}"
+	        NEDSS_FULL_FSCOMMON_NAME_WRAN="${NEDSS_SMRS_SYS_ID}-${NEDSS_FSCOMMON_NAME_WRAN}"
+	        NEDSS_FULL_FSCOMMON_NAME_LRAN="${NEDSS_SMRS_SYS_ID}-${NEDSS_FSCOMMON_NAME_LRAN}"
+	
+	        NEDSS_FULL_FS4_NAME_CORE="${NEDSS_SMRS_SYS_ID}-${NEDSS_FS4_NAME_CORE}"
+	        NEDSS_FULL_FS4_NAME_GRAN="${NEDSS_SMRS_SYS_ID}-${NEDSS_FS4_NAME_GRAN}"
+	        NEDSS_FULL_FS4_NAME_WRAN="${NEDSS_SMRS_SYS_ID}-${NEDSS_FS4_NAME_WRAN}"
+	        NEDSS_FULL_FS4_NAME_LRAN="${NEDSS_SMRS_SYS_ID}-${NEDSS_FS4_NAME_LRAN}"
+	
+	        NEDSS_FULL_FS6_NAME_CORE="${NEDSS_SMRS_SYS_ID}-${NEDSS_FS6_NAME_CORE}"
+	        NEDSS_FULL_FS6_NAME_GRAN="${NEDSS_SMRS_SYS_ID}-${NEDSS_FS6_NAME_GRAN}"
+	        NEDSS_FULL_FS6_NAME_WRAN="${NEDSS_SMRS_SYS_ID}-${NEDSS_FS6_NAME_WRAN}"
+	        NEDSS_FULL_FS6_NAME_LRAN="${NEDSS_SMRS_SYS_ID}-${NEDSS_FS6_NAME_LRAN}"
+        fi

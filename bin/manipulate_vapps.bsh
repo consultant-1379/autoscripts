@@ -1,0 +1,190 @@
+#!/bin/bash
+while getopts "f:e:l:" arg
+do
+    case $arg in
+        f) FUNCTION="$OPTARG"
+        ;;
+        e) ESXiCLUSTERS="$OPTARG"
+        ;;
+        l) FILENAME="$OPTARG"
+        ;;
+        \?) usage_msg
+        exit 1
+        ;;
+    esac
+done
+
+function usage_msg ()
+{
+echo "$0 -f function -l vapp_list_file -e esxi_list_file
+-f Function List
+    clone - Clone VMs to moved
+    poweron - poweron vapps in vapp_list_file
+    getgatewayips - get a list of atvtsnames from a list of vApps
+-l vapp_list_file - Full path to file containing list of vapps or vapp templates, output from :
+    /export/scripts/CLOUD/bin/vCloudFunctions.sh --username root --password xxxxxx --organization System -f list_vapps_in_org --orgname XXXXX
+-e esxi_list_file - A file which contains a list of all esxi hosts in the cluster you are wokring with "
+}
+
+
+function clone ()
+{
+   cat $FILENAME | grep vapp | while read line
+   do 
+   VAPPTEST=`echo $line | grep vapptemplate`
+   
+      if [[ -n $VAPPTEST ]]
+         then
+   	 vapptemplate=`echo $line | grep vapptemplate | awk -F\; '{print $2}'`
+      	 vappname=`echo $line | awk -F\; '{print $1}'`
+            ISMASTER=`echo $vappname | grep "^doncarem\."`
+            number=0   #initialize
+            FLOOR=2
+            TOP=`cat $ESXiCLUSTERS | wc -l`
+	    while [ "$number" -le $FLOOR ]
+            do
+ 	       number=$RANDOM
+  	       let "number %= $TOP"  # Scales $number down within $RANGE.
+           done
+               RND1=$number
+               RND2=`expr $number - 1`
+               ESXHOST1=`cat $ESXiCLUSTERS | head -${RND1} | tail -1`
+               ESXHOST2=`cat $ESXiCLUSTERS | head -${RND2} | tail -1`
+               if [[ -n $ISMASTER ]]
+               then
+                  echo "Skipping $vappname as it is a master copy"
+               else 
+                  echo -e "\n\n\n\n###############################################################################"
+                  echo "Starting at: `date`"
+                  echo "###############################################################################"
+                  echo "Getting list of VMs from vAPP in $vappname"
+                  /export/scripts/CLOUD/bin/vCloudFunctions.sh --username root --password shroot12 --organization System -f list_vms_in_vapp_template --vapptemplateid  $vapptemplate > /tmp/vapp
+                  cat /tmp/vapp |  while read vmline
+                  do
+                     VMNAME=`echo $vmline | awk -F\; '{print $2}'`
+                     echo "Migrating $VMNAME in vAPP $vappname to $ESXHOST1"
+                     ssh -n -q atvcli4.athtem.eei.ericsson.se "source /opt/vmware/vma/bin/vifptarget --set atvcen3.athtem.eei.ericsson.se;/export/scripts/CLOUD/bin/migratevm.pl --dst $ESXHOST1 --vmname \"$VMNAME\"" >> /tmp/${vappname}_migration.txt
+                     echo "Migrating $VMNAME in vAPP $vappname to $ESXHOST2"
+                     ssh -n -q atvcli4.athtem.eei.ericsson.se "source /opt/vmware/vma/bin/vifptarget --set atvcen3.athtem.eei.ericsson.se;/export/scripts/CLOUD/bin/migratevm.pl --dst $ESXHOST2 --vmname \"$VMNAME\"" >> /tmp/${vappname}_migration.txt
+                  done
+	          echo -e "Cloning vApp Template $vappname"
+		  /export/scripts/CLOUD/bin/vCloudFunctions.sh -u root -p shroot12 -o System -f copy_vapp_template --vapptemplateid $vapptemplate --newvapptemplatename ${vappname}_moved --destcatalogname same
+		  echo "Clone of vApp Template $vappname complete"
+                  echo "###############################################################################"
+                  echo "Finishing at: `date`"
+                  echo "###############################################################################"
+               fi
+	else
+	       vapp=`echo $line | grep -v vapptemplate | awk -F\; '{print $2}'`
+               vappname=`echo $line | awk -F\; '{print $1}'`
+               ISMASTER=`echo $vappname | grep "^m\."`
+               number=0   #initialize
+               FLOOR=2
+               TOP=16
+	       while [ "$number" -le $FLOOR ]
+	       do
+  	          number=$RANDOM
+  	          let "number %= $TOP"  # Scales $number down within $RANGE.
+	       done
+               RND1=$number
+	       RND2=`expr $number - 1`
+	       ESXHOST1=`cat $ESXiCLUSTERS | head -${RND1} | tail -1`
+               ESXHOST2=`cat $ESXiCLUSTERS | head -${RND2} | tail -1`
+               if [[ -n $ISMASTER ]]
+               then
+                   echo "Skipping $vappname as it is a master copy"
+               else 
+                   echo -e "\n\n\n\n###############################################################################"
+                   echo "Starting at: `date`"
+                   echo "###############################################################################"
+                   echo "Getting list of VMs from vAPP $vappname"
+                   /export/scripts/CLOUD/bin/vCloudFunctions.sh --username root --password shroot12 --organization System -f list_vms_in_vapp --vappid $vapp > /tmp/vapp
+                   cat /tmp/vapp |  while read vmline
+                   do
+                      VMNAME=`echo $vmline | awk -F\; '{print $2}'`
+                      echo "Migrating $VMNAME in vAPP $vappname to $ESXHOST1"
+                      ssh -n -q atvcli4.athtem.eei.ericsson.se "source /opt/vmware/vma/bin/vifptarget --set atvcen3.athtem.eei.ericsson.se;/export/scripts/CLOUD/bin/migratevm.pl --dst $ESXHOST1 --vmname \"$VMNAME\"" >> /tmp/${vappname}_migration.txt
+                      echo "Migrating $VMNAME in vAPP $vappname to $ESXHOST2"
+                      ssh -n -q atvcli4.athtem.eei.ericsson.se "source /opt/vmware/vma/bin/vifptarget --set atvcen3.athtem.eei.ericsson.se;/export/scripts/CLOUD/bin/migratevm.pl --dst $ESXHOST2 --vmname \"$VMNAME\"" >> /tmp/${vappname}_migration.txt
+                   done
+   		   echo "Cloning vApp $vappname"
+   		   /export/scripts/CLOUD/bin/vCloudFunctions.sh -u root -p shroot12 -o System -f clone_vapp --linkedclone false --vappid "$vapp" --newvappname "${vappname}_moved"
+   		   echo "Clone of vApp $vappname complete"
+                   echo "###############################################################################"
+                   echo "Finishing at: `date`"
+                   echo "###############################################################################"
+                   rm /tmp/vapp
+               fi
+	fi
+   done
+}
+function poweron ()
+{
+   cat $FILENAME | while read line
+   do
+      vappname=`echo $line | awk -F\; '{print $1}'`
+      vappid=`echo $line | awk -F\; '{print $2}'`
+      echo "Powering on $vappname"
+      /export/scripts/CLOUD/bin/vCloudFunctions.sh --username root --password shroot12 --organization System -f start_vapp --vappid $vappid
+      echo "Powered on $vappname"
+   done
+}
+
+function getgatewayips ()
+{
+echo "VAPP;vtsname"
+   cat $FILENAME | grep vapp | while read line
+   do
+      vapp=`echo $line | grep -v vapptemplate | awk -F\; '{print $2}'`
+      vappname=`echo $line | awk -F\; '{print $1}'`
+      GATEWAYID=`/export/scripts/CLOUD/bin/vCloudFunctions.sh --username root --password shroot12 --organization System -f list_vms_in_vapp --vappid $vapp | grep gateway | awk -F\; '{print $3}'`
+      GATEWAYIP=`/export/scripts/CLOUD/bin/vCloudFunctions.sh --username root --password shroot12 --organization System -f list_nics_on_vm --vmid $GATEWAYID | grep vts | awk -F\; '{print $5}'`
+      GATEWAYHOSTNAME=`getent hosts $GATEWAYIP | awk '{print $2}' | awk -F. '{print $1}'`
+      echo -e "$vappname;$GATEWAYHOSTNAME"
+   done
+}
+
+
+
+
+function main ()
+{
+if [[ ! -r $FILENAME ]]
+then
+    echo "Must enter full path to valid filename"
+    usage_msg
+    exit 1
+fi
+if [[ ! -r $ESXiCLUSTERS ]]
+then
+    echo "Must enter full path to valid esx cluster filename"
+    usage_msg
+    exit 1
+fi
+if [[ -z $FUNCTION ]]
+then
+    echo "Must enter a function"
+    usage_msg
+    exit 1
+else
+   case $FUNCTION in
+        clone)
+        echo "Performing clone funstion"
+        ;;
+        poweron)
+        echo "performing Poweron function"
+        ;;
+        getgatewayips)
+        echo "Getting vapp atvts names"
+        ;;
+        *)
+        echo "Unknown Function. Exit."
+        exit 2
+        ;;
+   esac
+fi
+
+$FUNCTION
+}
+
+main

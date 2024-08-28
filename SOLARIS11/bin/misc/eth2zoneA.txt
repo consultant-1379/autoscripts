@@ -1,0 +1,126 @@
+alicreate "atesx1188_1","50:01:43:80:05:6a:6f:68"
+zonecreate "Z_atesx1188_1_to_#########NotKnownChassis########","atesx1188_1;#########NotKnownChassis########"
+cfgadd "ZC_Fabric_A","Z_atesx1188_1_to_#########NotKnownChassis########"
+-e 
+######Next Zone######
+
+
+alicreate "atesx1187_1","50:01:43:80:05:6a:6f:1c"
+zonecreate "Z_atesx1187_1_to_#########NotKnownChassis########","atesx1187_1;#########NotKnownChassis########"
+cfgadd "ZC_Fabric_A","Z_atesx1187_1_to_#########NotKnownChassis########"
+-e 
+######Next Zone######
+
+
+alicreate "atesx1186_1","50:01:43:80:05:6a:6e:e0"
+zonecreate "Z_atesx1186_1_to_#########NotKnownChassis########","atesx1186_1;#########NotKnownChassis########"
+cfgadd "ZC_Fabric_A","Z_atesx1186_1_to_#########NotKnownChassis########"
+-e 
+######Next Zone######
+
+
+alicreate "atesx1185_1","50:01:43:80:05:6a:70:84"
+zonecreate "Z_atesx1185_1_to_#########NotKnownChassis########","atesx1185_1;#########NotKnownChassis########"
+cfgadd "ZC_Fabric_A","Z_atesx1185_1_to_#########NotKnownChassis########"
+-e 
+######Next Zone######
+
+
+alicreate "atesx1184_1","50:01:43:80:05:6a:7c:50"
+zonecreate "Z_atesx1184_1_to_#########NotKnownChassis########","atesx1184_1;#########NotKnownChassis########"
+cfgadd "ZC_Fabric_A","Z_atesx1184_1_to_#########NotKnownChassis########"
+-e 
+######Next Zone######
+
+
+alicreate "atesx1183_1","50:01:43:80:07:2f:50:ec"
+zonecreate "Z_atesx1183_1_to_#########NotKnownChassis########","atesx1183_1;#########NotKnownChassis########"
+cfgadd "ZC_Fabric_A","Z_atesx1183_1_to_#########NotKnownChassis########"
+-e 
+######Next Zone######
+
+
+alicreate "atesx1454_1","50:01:43:80:07:2f:e3:00"
+zonecreate "Z_atesx1454_1_to_#########NotKnownChassis########","atesx1454_1;#########NotKnownChassis########"
+cfgadd "ZC_Fabric_A","Z_atesx1454_1_to_#########NotKnownChassis########"
+-e 
+######Next Zone######
+
+
+alicreate "atesx121_1","50:01:43:80:05:6a:49:e4"
+zonecreate "Z_atesx121_1_to_atcx457_SPA3","atesx121_1;atcx457_SPA3"
+cfgadd "ZC_Fabric_A","Z_atesx121_1_to_atcx457_SPA3"
+-e 
+######Next Zone######
+
+
+alicreate "atesx119_1","50:01:43:80:05:6a:58:00"
+zonecreate "Z_atesx119_1_to_atcx457_SPA3","atesx119_1;atcx457_SPA3"
+cfgadd "ZC_Fabric_A","Z_atesx119_1_to_atcx457_SPA3"
+-e 
+######Next Zone######
+
+
+alicreate "atesx125_1","50:01:43:80:05:6a:53:a4"
+zonecreate "Z_atesx125_1_to_atcx457_SPA3","atesx125_1;atcx457_SPA3"
+cfgadd "ZC_Fabric_A","Z_atesx125_1_to_atcx457_SPA3"
+-e 
+######Next Zone######
+
+
+alicreate "atesx1478_1","50:01:43:80:12:0b:e4:88"
+zonecreate "Z_atesx1478_1_to_atcx457_SPA0","atesx1478_1;atcx457_SPA0"
+cfgadd "ZC_Fabric_A","Z_atesx1478_1_to_atcx457_SPA0"
+-e 
+######Next Zone######
+
+
+alicreate "atesx126_1","50:01:43:80:05:6a:53:ac"
+zonecreate "Z_atesx126_1_to_atcx457_SPA3","atesx126_1;atcx457_SPA3"
+cfgadd "ZC_Fabric_A","Z_atesx126_1_to_atcx457_SPA3"
+-e 
+######Next Zone######
+
+
+alicreate "atesx1984_1","50:01:43:80:16:79:f5:e8"
+zonecreate "Z_atesx1984_1_to_atcx457_SPA3","atesx1984_1;atcx457_SPA3"
+cfgadd "ZC_Fabric_A","Z_atesx1984_1_to_atcx457_SPA3"
+-e 
+######Next Zone######
+
+
+alicreate "atesx1445_1","50:01:43:80:18:70:b8:80"
+zonecreate "Z_atesx1445_1_to_atcx457_SPA0","atesx1445_1;atcx457_SPA0"
+cfgadd "ZC_Fabric_A","Z_atesx1445_1_to_atcx457_SPA0"
+-e 
+######Next Zone######
+
+
+alicreate "atesx1444_1","50:01:43:80:18:70:96:18"
+zonecreate "Z_atesx1444_1_to_atcx457_SPA0","atesx1444_1;atcx457_SPA0"
+cfgadd "ZC_Fabric_A","Z_atesx1444_1_to_atcx457_SPA0"
+-e 
+######Next Zone######
+
+
+alicreate "atesx2232_1","50:01:43:80:18:70:95:fc"
+zonecreate "Z_atesx2232_1_to_atcx457_SPA0","atesx2232_1;atcx457_SPA0"
+cfgadd "ZC_Fabric_A","Z_atesx2232_1_to_atcx457_SPA0"
+-e 
+######Next Zone######
+
+
+alicreate "atesx2233_1","50:01:43:80:12:0b:c1:7c"
+zonecreate "Z_atesx2233_1_to_atcx457_SPA0","atesx2233_1;atcx457_SPA0"
+cfgadd "ZC_Fabric_A","Z_atesx2233_1_to_atcx457_SPA0"
+-e 
+######Next Zone######
+
+
+alicreate "atesx2235_1","50:01:43:80:12:0c:5f:90"
+zonecreate "Z_atesx2235_1_to_atcx457_SPA0","atesx2235_1;atcx457_SPA0"
+cfgadd "ZC_Fabric_A","Z_atesx2235_1_to_atcx457_SPA0"
+-e 
+######Next Zone######
+
+

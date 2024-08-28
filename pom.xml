@@ -1,0 +1,52 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+<parent>
+        <groupId>com.ericsson.oss</groupId>
+        <artifactId>integration</artifactId>
+        <version>1.0.110</version>
+    </parent>
+    <groupId>com.ericsson.ci.cloud</groupId>
+    <artifactId>autoscripts</artifactId>
+    <version>1.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <properties>
+        <scm.url>scm:git:ssh://gerrit.ericsson.se/a/OSS/com.ericsson.ci.cloud/autoscripts</scm.url>
+    </properties>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <descriptor>assembly/bin.xml</descriptor>
+                    <finalName>master</finalName>
+                    <appendAssemblyId>false</appendAssemblyId>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+        </plugins>
+    </build>
+    <distributionManagement>
+        <repository>
+            <id>releases</id>
+            <name>Release repo</name>
+            <url>http://eselivm2v214l.lmera.ericsson.se:8081/nexus/content/repositories/releases</url>
+        </repository>
+    </distributionManagement>
+
+    <scm>
+        <connection>${scm.url}</connection>
+        <developerConnection>${scm.url}</developerConnection>
+    </scm>
+
+</project>

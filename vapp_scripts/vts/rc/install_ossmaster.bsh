@@ -1,0 +1,270 @@
+#!/bin/bash
+
+
+# - install inst_type=ossrc config=system label_disks ppass=ldappass dpass=ldappass environ=test pschema=ANY
+# - install inst_type=ossrc config=system label_disks environ=test ppass=ldappass dpass=ldappass 
+# - install inst_type=ossrc config=system label_disks environ=test
+# bash /root/js.bsh ossmaster 192.168.0.5 00:50:56:00:00:05
+# 
+
+VSPC_HOST=$1
+VM=$2
+if [ -z "${VM}" ] ; then
+    echo "ERROR: Usage $0 vSPC_Host VM"
+    exit 1
+fi
+TELNET_PORT=`/root/vSPC.py ${VSPC_HOST} | egrep "^${VM}:" | awk -F: '{print $3}' | tail -1`
+if [ -z "${TELNET_PORT}" ] ; then
+    echo "Cannot locate telnet port for ${VM}"
+    exit 1
+fi
+
+ROOT_DIR=`dirname $0`
+ROOT_DIR=`cd ${ROOT_DIR} ; cd ../.. ; pwd`
+
+if [ ! -r /tmp/veritas/LICENSES.txt ] ; then
+    mkdir /tmp/veritas
+    mount -o vers=3 159.107.220.94:/export/veritas /tmp/veritas
+fi
+
+export VERITAS_LIC=`cat /tmp/veritas/LICENSES.txt | egrep 'License1_i386=OSSRC_O11@' | awk -F@ '{print $2}'`
+
+DO_JUMPSTART=1
+DO_POSTINSTALL=1
+DO_IPV6=1
+DO_OFFLINE_MC=1
+DO_INST_TOOLS=1
+
+
+if [ ${DO_JUMPSTART} -eq 1 ] ; then
+    /usr/bin/expect <<EOF
+log_file -noappend "/tmp/ossmaster_jumpstart.log"
+
+set veritas_lic "\$env(VERITAS_LIC)"
+
+set num_core 2
+set num_gsm 100
+spawn telnet $VSPC_HOST $TELNET_PORT
+set telnetid \$spawn_id
+
+set timeout -1
+
+expect {
+ -re {Please.*preinirate.*:} {
+  send "\r"
+  exp_continue
+ }
+ -re {Total number of GSM Cells [^:]*:} {}
+}
+
+send "\$num_gsm\r"
+expect -re {UTRAN Cells [^:]*:}
+send "100\r"
+expect -re {LTE Cells [^:]*:}
+send "100\r"
+expect -re {Core Nodes [^:]*:}
+send \$num_core
+send "\r"
+
+if { \$num_core > 0 } {
+ expect -re {AXD based nodes are to be supported[^:]*:}
+ send "1\r"
+ expect -re {TGR application be used[^:]*:}
+ send "YES\r"
+
+ expect -re {TeS nodes.*0\]:}
+ send "1\r"
+}
+
+expect {
+ -re {Total volume of events based.*:} {
+  send "\r"
+  exp_continue
+ }
+  
+ -re {SGW [^:]*:} {
+   send "YES\r"
+   exp_continue
+ }
+ -re {PMS [^:]*:} {
+   send "YES\r"
+   exp_continue
+ }
+ -re {EBSW [^:]*:} {
+   send "YES\r"
+   exp_continue
+ }
+ -re {RPMO [^:]*:} {
+   send "YES\r"
+   exp_continue
+ }
+ -re {RTT [^:]*:} {
+   send "YES\r"
+   exp_continue
+ }
+
+ -re {EBS-S [^:]*:} {
+   send "YES\r"
+   exp_continue
+ }
+
+ -re {EBS-G [^:]*:} {
+   send "YES\r"
+   exp_continue
+ }
+ 
+ -re {RNO Database Export Interface [^:]*:} {
+   send "YES\r"
+   exp_continue
+ }
+
+ -re {sites that the OSS-RC installation will support[^\]]*]} {
+  send "100\r"
+ }
+}
+
+expect -re {IRATHOM application: [^\]]*]}
+send "1\r"
+
+expect -re {STN nodes that the OSS-RC installation will support: [^\]]*]}
+send "1\r"
+
+if { \$num_core > 0 } {
+ expect -re {MGW nodes .* support: [^\]]*]}
+ send "1\r"
+ expect -re {SGSN nodes .* support: [^\]]*]}
+ send "1\r"
+ expect -re {SGSN MME nodes .* support: [^\]]*]}
+ send "1\r"
+ expect -re {GGSN nodes .* OSS-RC: [^\]]*]}
+ send "1\r"
+ expect -re {2G/3G SAUs .* OSS-RC: [^\]]*]}
+ send "1\r"
+ expect -re {4G SAUs .* OSS-RC: [^\]]*]}
+ send "1\r"
+ expect -re {APG43 nodes .* support: [^\]]*]}
+ send "1\r"
+ expect -re {Redback SmartEdge nodes .* support: [^\]]*]}
+ send "1\r"
+ expect -re {SASN based nodes .* support: [^\]]*]}
+ send "1\r"
+}
+
+
+
+expect -re {\[[^\]]*\]: *}
+send "\r"
+expect -re {\[[^\]]*\]: *}
+send "\r"
+expect -re {\[[^\]]*\]: *}
+send "\r"
+
+expect "SQL_DEF_USER_PW"
+expect -re {\[[^\]]*\]: *}
+send "sybase11\r"
+
+expect -re {\[[^\]]*\]: *}
+send "\r"
+expect -re {\[[^\]]*\]: *}
+send "\r"
+
+expect -re {DNS-server's ip-address.*:}
+send "192.168.0.1\r"
+expect -re {company.domain.com.*:}
+send "vts.com\r"
+expect -re {company.domain.com.*:}
+send "vts.com\r"
+
+expect -re {sls\]: *}
+send "https://omsrvm:8443/ericsson/servlet/sls\r"
+
+expect "SENTINEL_LICENSE_FILE_PATH"
+expect -re {Leave empty if have nothing to give.*:}
+
+spawn ssh -o UserKnownHostsFile=/dev/null -o CheckHostIP=no -o StrictHostKeyChecking=no root@ossmaster
+expect "Password:"
+send "shroot\r"
+expect "#"
+send "/usr/sfw/bin/wget -O /var/tmp/sentinel_license ftp://ossread:ossread@159.107.220.96/sentinel/O12/sentinel_license_full\r"
+expect "#"
+send "exit\r"
+expect eof
+set spawn_id \$telnetid
+
+send "/var/tmp/sentinel_license\r"
+expect -re {\[server\]:}
+send "\r"
+
+expect "VXVMLIC"
+expect -re {\[[^\]]*]:}
+send "\$veritas_lic\r"
+
+expect -re {GSM900/1800\]:}
+send "\r"
+expect "IM_ROOT"
+expect -re {\[[^\]]*]:}
+send "ONRM_RootMo\r"
+expect -re {_X29\]:}
+send "\r"
+
+expect -re {192.168.5.100\]:}
+send "\r"
+expect "add it later."
+send "\r"
+expect -re {values ok?[^\]]*]}
+send "y\r"
+
+expect "Entering ERIC Bootstrap Stage cleanup"
+
+send_user "Waiting 1200 secs for reboot to complete"
+set timeout 1200
+expect eof
+EOF
+fi
+
+if [ ${DO_OFFLINE_MC} -eq 1 ] ; then
+    /usr/bin/expect <<EOF
+log_file -noappend "/tmp/ossmaster_offmc.log"
+set timeout -1
+
+spawn scp -o UserKnownHostsFile=/dev/null -o CheckHostIP=no -o StrictHostKeyChecking=no ${ROOT_DIR}/vts/rc/off_mc.bsh root@ossmaster:/tmp/off_mc.bsh
+expect "Password:"
+send "shroot\r"
+expect eof
+
+spawn ssh -o UserKnownHostsFile=/dev/null -o CheckHostIP=no -o StrictHostKeyChecking=no root@ossmaster /tmp/off_mc.bsh 5
+expect "Password:"
+send "shroot\r"
+expect eof
+EOF
+fi
+
+if [ ${DO_POSTINSTALL} -eq 1 ] ; then
+    /usr/bin/expect <<EOF
+log_file -noappend "/tmp/ossmaster_postjump.log"
+set timeout -1
+
+spawn ssh -o UserKnownHostsFile=/dev/null -o CheckHostIP=no -o StrictHostKeyChecking=no root@ossmaster
+expect "Password:"
+send "shroot\r"
+expect "ossmaster{root} #"
+ 
+send "/opt/ericsson/sck/bin/config_ossrc_server -a -U 0 -G 0 -C 0 -L 0 -D 0 -F\r"
+expect "ossmaster{root} #"
+
+send "/opt/ericsson/sck/bin/update_nmsadm.ksh -r\r"
+expect "New Password:"
+send "nmsadm275\r"
+expect "Re-enter new Password:"
+send "nmsadm275\r"
+expect "ossmaster{root} #"
+
+
+send "exit\r"
+expect eof
+EOF
+fi
+
+if [ ${DO_INST_TOOLS} -eq 1 ] ; then
+    ${ROOT_DIR}/misc/inst_vmtools.bsh ossmaster
+fi

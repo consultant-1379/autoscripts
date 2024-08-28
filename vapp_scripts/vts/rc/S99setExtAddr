@@ -1,0 +1,18 @@
+#!/bin/bash
+copyext()
+{
+mkdir /tmp/mntpnt.$$
+mount 192.168.0.1:/exthostname /tmp/mntpnt.$$
+cat /tmp/mntpnt.$$/IP > /etc/IP
+cat /tmp/mntpnt.$$/HOSTNAME > /etc/HOSTNAME
+}
+
+if [ "$1" = "start" ] ; then
+   copyext
+   EXT_ADDR=`cat /etc/IP`
+   ERICSSON_CONFIG=`cat /ericsson/config/ericsson_use_config|awk -F= '{print $2}'`
+   if [ "$ERICSSON_CONFIG" = "appserv" ]
+   then
+      /opt/CTXSmf/sbin/ctxalt -d ${EXT_ADDR}
+   fi
+fi

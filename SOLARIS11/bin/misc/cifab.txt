@@ -1,0 +1,63 @@
+alicreate "enter file name_1",""
+zonecreate "Z_enter file name_1_to_#########NotKnownChassis########","enter file name_1;#########NotKnownChassis########"
+cfgadd "ZC_Fabric_A","Z_enter file name_1_to_#########NotKnownChassis########"
+
+######Next Zone######
+
+
+alicreate "atrcxb2416_1","50:01:43:80:16:7e:1b:50"
+zonecreate "Z_atrcxb2416_1_to_atcx458_SPA0","atrcxb2416_1;atcx458_SPA0"
+cfgadd "ZC_Fabric_A","Z_atrcxb2416_1_to_atcx458_SPA0"
+
+######Next Zone######
+
+
+alicreate "atrcxb2417_1","50:01:43:80:16:7e:1c:6c"
+zonecreate "Z_atrcxb2417_1_to_atcx458_SPA0","atrcxb2417_1;atcx458_SPA0"
+cfgadd "ZC_Fabric_A","Z_atrcxb2417_1_to_atcx458_SPA0"
+
+######Next Zone######
+
+
+alicreate "atrcxb2418_1","50:01:43:80:16:7e:1c:04"
+zonecreate "Z_atrcxb2418_1_to_atcx458_SPA0","atrcxb2418_1;atcx458_SPA0"
+cfgadd "ZC_Fabric_A","Z_atrcxb2418_1_to_atcx458_SPA0"
+
+######Next Zone######
+
+
+alicreate "atrcxb2419_1","50:01:43:80:16:7e:1d:6c"
+zonecreate "Z_atrcxb2419_1_to_atcx458_SPA0","atrcxb2419_1;atcx458_SPA0"
+cfgadd "ZC_Fabric_A","Z_atrcxb2419_1_to_atcx458_SPA0"
+
+######Next Zone######
+
+
+alicreate "atrcxb2420_1","50:01:43:80:16:7e:1d:8c"
+zonecreate "Z_atrcxb2420_1_to_atcx458_SPA0","atrcxb2420_1;atcx458_SPA0"
+cfgadd "ZC_Fabric_A","Z_atrcxb2420_1_to_atcx458_SPA0"
+
+######Next Zone######
+
+
+alicreate "atrcxb2421_1","50:01:43:80:16:7e:1c:08"
+zonecreate "Z_atrcxb2421_1_to_atcx458_SPA0","atrcxb2421_1;atcx458_SPA0"
+cfgadd "ZC_Fabric_A","Z_atrcxb2421_1_to_atcx458_SPA0"
+
+######Next Zone######
+
+
+alicreate "atrcxb2422_1","50:01:43:80:16:7e:1c:2c"
+zonecreate "Z_atrcxb2422_1_to_atcx458_SPA0","atrcxb2422_1;atcx458_SPA0"
+cfgadd "ZC_Fabric_A","Z_atrcxb2422_1_to_atcx458_SPA0"
+
+######Next Zone######
+
+
+alicreate "atrcxb2423_1","50:01:43:80:16:7e:1c:20"
+zonecreate "Z_atrcxb2423_1_to_atcx458_SPA0","atrcxb2423_1;atcx458_SPA0"
+cfgadd "ZC_Fabric_A","Z_atrcxb2423_1_to_atcx458_SPA0"
+
+######Next Zone######
+
+

@@ -1,0 +1,40 @@
+./sort4.sh: line 85: $'1639:69:\t Port 1: 50:01:43:80:12:0b:5a:e4\r:\t Port 2: 50:01:43:80:12:0b:5a:e6\r': command not found
+
+./sort4.sh: line 85: $'1686:69:\t Port 1: 50:01:43:80:12:0c:f3:b0\r:\t Port 2: 50:01:43:80:12:0c:f3:b2\r': command not found
+
+./sort4.sh: line 85: $'1908:53:\t Port 1: 50:01:43:80:14:0d:68:48\r:\t Port 2: 50:01:43:80:14:0d:68:4a\r': command not found
+
+./sort4.sh: line 85: $'1909:53:\t Port 1: 50:01:43:80:14:0d:68:6c\r:\t Port 2: 50:01:43:80:14:0d:68:6e\r': command not found
+
+./sort4.sh: line 85: $'1910:53:\t Port 1: 50:01:43:80:14:0d:6c:5c\r:\t Port 2: 50:01:43:80:14:0d:6c:5e\r': command not found
+
+./sort4.sh: line 85: $'1911:53:\t Port 1: 50:01:43:80:14:0d:6b:f8\r:\t Port 2: 50:01:43:80:14:0d:6b:fa\r': command not found
+
+./sort4.sh: line 85: $'1916:53:\t Port 1: 50:01:43:80:14:0d:60:d4\r:\t Port 2: 50:01:43:80:14:0d:60:d6\r': command not found
+
+./sort4.sh: line 85: $'1917:53:\t Port 1: 50:01:43:80:14:0d:61:98\r:\t Port 2: 50:01:43:80:14:0d:61:9a\r': command not found
+
+./sort4.sh: line 85: $'1918:53:\t Port 1: 50:01:43:80:14:0d:61:54\r:\t Port 2: 50:01:43:80:14:0d:61:56\r': command not found
+
+./sort4.sh: line 85: $'1919:53:\t Port 1: 50:01:43:80:14:0d:63:94\r:\t Port 2: 50:01:43:80:14:0d:63:96\r': command not found
+
+./sort4.sh: line 85: $'985:63:\t Port 1: 50:01:43:80:04:c2:d7:18\r:\t Port 2: 50:01:43:80:04:c2:d7:1a\r': command not found
+
+atesx1013
+atc7000-63
+HBA not found *********************
+-----------------------------------
+./sort4.sh: line 85: $'1337:63:\t Port 1: 50:01:43:80:07:2f:00:a0\r:\t Port 2: 50:01:43:80:07:2f:00:a2\r': command not found
+
+./sort4.sh: line 85: $'1338:63:\t Port 1: 50:01:43:80:07:2f:00:8c\r:\t Port 2: 50:01:43:80:07:2f:00:8e\r': command not found
+
+./sort4.sh: line 85: $'1340:63:\t Port 1: 50:01:43:80:12:0c:f5:a8\r:\t Port 2: 50:01:43:80:12:0c:f5:aa\r': command not found
+
+./sort4.sh: line 85: $'1341:63:\t Port 1: 50:01:43:80:07:2f:00:d4\r:\t Port 2: 50:01:43:80:07:2f:00:d6\r': command not found
+
+./sort4.sh: line 85: $'1575:52:\t Port 1: 50:01:43:80:07:30:0c:d8\r:\t Port 2: 50:01:43:80:07:30:0c:da\r': command not found
+
+./sort4.sh: line 85: $'1688:69:\t Port 1: 50:01:43:80:12:0c:f4:1c\r:\t Port 2: 50:01:43:80:12:0c:f4:1e\r': command not found
+
+./sort4.sh: line 85: $'1689:69:\t Port 1: 50:01:43:80:12:0c:f6:a0\r:\t Port 2: 50:01:43:80:12:0c:f6:a2\r': command not found
+

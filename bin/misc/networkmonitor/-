@@ -1,0 +1,6 @@
+10.44.92.173
+spawn /usr/bin/ssh cloud@10.44.92.173 -o StrictHostKeyChecking=no
+10.44.92.173
+spawn /usr/bin/ssh cloud@10.44.92.173 -o StrictHostKeyChecking=no
+Password: 10.44.92.173
+spawn /usr/bin/ssh cloud@10.44.92.173 -o StrictHostKeyChecking=no

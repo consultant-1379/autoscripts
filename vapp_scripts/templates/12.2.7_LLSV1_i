@@ -1,0 +1,6 @@
+gateway:gateway:no:no:no
+netsim:netsim_R24H:no:no:no
+omsas:solaris_R2G_D72GT:yes:yes:no
+omsrvm:solaris_R2G_D72GT:yes:yes:yes
+ossmaster:solaris_R2G_D72GT:yes:yes:yes
+uas1:solaris_R2G_D72GT:yes:yes:no

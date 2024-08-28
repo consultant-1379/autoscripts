@@ -1,0 +1,183 @@
+#!/bin/sh
+
+ROOT_DIR=`dirname $0`
+ROOT_DIR=`cd ${ROOT_DIR} ; cd ../.. ; pwd`
+
+while getopts  "v:c:h:n:s:d:p:t:f:" flag
+do
+    case "$flag" in
+        v) VAPP="${OPTARG}";;
+	c) CLUST="${OPTARG}";;
+	h) HOST="${OPTARG}";;
+	n) PRIV_NET="${OPTARG}";;
+	p) PUB_NET="${OPTARG}";;
+        s) VSPC="${OPTARG}";;
+        f) FOLDER="${OPTARG}";;
+	t) TEMPLATE_MAP="${OPTARG}";;
+	d) DATASTORE="${OPTARG}";;
+        *) 
+           echo "ERROR: Unknown option $flag"
+	   exit 1
+	   ;;
+
+    esac
+done
+
+for VAR_NAME in VAPP CLUST HOST PRIV_NET PUB_NET VSPC DATASTORE TEMPLATE_MAP ; do
+    VAR_VALUE=`eval echo \\$${VAR_NAME}`
+    if [ -z "${VAR_VALUE}" ] ; then
+	echo "No value for ${VAR_NAME}"
+	cat <<EOF 
+Usage: $0 -v <vAppName> -c <ClusterName> -h <HostInCluster> 
+          -n <vAppNetwork> -p <PublicNetwork> 
+          -s <vSPC_Host> -d <DataStore> -t <TemplateMapFile>
+          [-f folderPath]
+EOF
+	exit 1
+    fi
+done
+
+FOLDER_OPT=""
+if [ "${FOLDER}" ] ; then
+    FOLDER_OPT="--folder ${FOLDER}"
+fi
+${ROOT_DIR}/vm/vApp.pl --vapp ${VAPP} --op create --cluster "${CLUST}" ${FOLDER_OPT}
+if [ $? -ne 0 ] ; then
+    echo "ERROR: Create vApp failed"
+    exit 1
+fi	
+
+VM_LIST=""
+for VM_PARAM in gateway:1:120:2:1 eniq:3:900:1:20 sfs:2:900:1,2:0 ; do
+
+    SHORT_NAME=`echo "${VM_PARAM}" | awk -F: '{print $1}'`
+    START_ORDER=`echo "${VM_PARAM}" | awk -F: '{print $2}'`
+    STOP_DELAY=`echo "${VM_PARAM}" | awk -F: '{print $3}'`
+    PRIV_NIC=`echo "${VM_PARAM}" | awk -F: '{print $4}'`
+    MAC_OCTET=`echo "${VM_PARAM}" | awk -F: '{print $5}'`
+
+
+    VM="${VAPP}_${SHORT_NAME}"
+    MAC=`printf "00:50:56:00:00:%02X" ${MAC_OCTET}`
+
+    SRC_VM=`egrep "^${SHORT_NAME}:" ${TEMPLATE_MAP} | awk -F: '{print $2}'`
+    echo "${VM} ${MAC} ${START_ORDER}:${STOP_DELAY}s vnic${PRIV_NIC}"
+
+    if [ ! -z "${SRC_VM}" ] ; then
+	VM_LIST="${VM_LIST} ${VM}"
+
+	echo " Cloning from ${SRC_VM}"
+	/usr/share/doc/vmware-vcli/samples/vm/vmprovision.pl --operation clone --vmhost ${HOST} \
+	    --vmhost_destination ${HOST} --vmname ${SRC_VM} --vmname_destination ${VM} --datastore "${DATASTORE}"
+	if [ $? -ne 0 ] ; then
+            echo "ERROR: Clone failed"
+            exit 1
+	fi	
+	
+        #
+        # Add to vApp and set start order
+        #
+	echo " Add to vApp"
+	${ROOT_DIR}/vm/vApp.pl --vapp ${VAPP} --op addvm --vm ${VM}
+	echo " Set vApp start/stop parameters"
+	${ROOT_DIR}/vm/vApp.pl --vapp ${VAPP} --op order --vm ${VM} --startorder ${START_ORDER} --stopdelay ${STOP_DELAY}
+
+	NUM_PRIV_NIC=`echo ${PRIV_NIC} | awk -F, '{print NF}'`
+	PRIV_NIC_LIST=""
+	PRIV_NIC_INDEX=0
+	while [ ${PRIV_NIC_INDEX} -lt ${NUM_PRIV_NIC} ] ; do
+	    PRIV_NIC_INDEX=`expr ${PRIV_NIC_INDEX} + 1`
+
+	    NIC_ID=`echo ${PRIV_NIC} | awk -F, -v ind=${PRIV_NIC_INDEX} '{print $ind}'`
+	    PRIV_NIC_LIST="${PRIV_NIC_LIST} ${NIC_ID}"
+	done
+
+	for NIC in ${PRIV_NIC_LIST} ; do
+	    echo " Connect vnic${NIC} to ${PRIV_NET}"
+	    ${ROOT_DIR}/vm/connectNIC.pl --vmname ${VM} --pg ${PRIV_NET} --vnic ${NIC}
+	    if [ $? -ne 0 ] ; then
+		echo "ERROR: connectNIC.pl failed"
+		exit 1
+	    fi
+	done
+
+       #
+       # Update NIC MAC address
+       #
+       SET_MAC=`egrep "^${SHORT_NAME}:" ${TEMPLATE_MAP} | awk -F: '{print $4}'`
+       if [ "${SET_MAC}" = "yes" ] ; then
+	    echo " Set MAC address for ${PRIV_NIC} to ${MAC}"
+	    ${ROOT_DIR}/vm/vmNICManagement.pl --vmname ${VM} --vnic ${PRIV_NIC} --operation updatemac --mac ${MAC}
+	    if [ $? -ne 0 ] ; then
+		echo "ERROR: MAC update failed"
+		exit 1
+	    fi
+       fi
+
+       #
+       # Setup serial console
+       #
+	HAS_SERIAL_PORT=`egrep "^${SHORT_NAME}:" ${TEMPLATE_MAP} | awk -F: '{print $3}'`
+	if [ "${HAS_SERIAL_PORT}" = "yes" ] ; then
+	    echo " Add serial port"
+	    ${ROOT_DIR}/vm/serial.pl --op add --vmname ${VM} --vspc ${VSPC}
+	fi		
+    else
+	echo " No template, skipping"
+    fi	
+done
+
+echo "Connect gateway to ${PUB_NET}"
+${ROOT_DIR}/vm/connectNIC.pl --vmname ${VAPP}_gateway --pg ${PUB_NET} --vnic 1
+if [ $? -ne 0 ] ; then
+    echo "ERROR: Failed to connect gateway ${GATEWAY_VM} to ${PUB_NET}"
+    exit 1
+fi
+
+echo "${VM_LIST}" | grep sfs > /dev/null
+if [ $? -eq 0 ] ; then
+    echo "Modifing sfs VM"
+    SFS_VM=${VAPP}_sfs
+
+    for NIC in 3 4 ; do
+	echo " Set vnic${NIC} to disconnected"
+	${ROOT_DIR}/vm/connectNIC.pl --vmname ${SFS_VM} --pg "VM Network" --vnic ${NIC} --connected false
+	if [ $? -ne 0 ] ; then
+	    echo "ERROR: Failed"
+	    exit 1
+	fi
+    done
+
+    echo " Add 500GB disk"
+    ${ROOT_DIR}/vm/addDisk.pl --vmname ${SFS_VM} --size 500 --bus 1 --unit 0 --type thin
+    if [ $? -ne 0 ] ; then
+	echo "ERROR: Failed to add disk to SFS ${GATEWAY_VM}"
+	exit 1
+    fi
+fi
+
+echo "${VM_LIST}" | grep eniq > /dev/null
+if [ $? -eq 0 ] ; then
+    echo "Modifing events VM"
+    ENIQ_VM=${VAPP}_eniq
+
+    echo " Set CPU/Memory"
+    ${ROOT_DIR}/vm/updateVmCpuMem.pl --vmname ${ENIQ_VM} --mem 32768 --cpu 4
+
+    UNIT_INDEX=0
+    for DISK_SIZE in 32 32 25 25 25 25 35 ; do
+	echo " Add ${DISK_SIZE}GB disk"
+	${ROOT_DIR}/vm/addDisk.pl --vmname ${ENIQ_VM} --size ${DISK_SIZE} --bus 1 --unit ${UNIT_INDEX} --type thin
+	if [ $? -ne 0 ] ; then
+	    echo "ERROR: Failed to add disk to ${ENIQ_VM} size ${DISK_SIZE} unit ${UNIT_INDEX}"
+	    exit 1
+	fi
+
+	UNIT_INDEX=`expr ${UNIT_INDEX} + 1`
+    done
+fi
+
+echo "Create coloc rules"
+${ROOT_DIR}/vm/vApp.pl --vapp ${VAPP} --op coloc
+echo "Set name variables"
+${ROOT_DIR}/vm/vApp.pl --vapp ${VAPP} --op setnamevar

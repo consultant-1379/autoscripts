@@ -1,0 +1,128 @@
+  3 Fibre Channel     BROCADE              On      OK        Off 10.45.210.136  
+  4 Fibre Channel     BROCADE              On      OK        Off 10.45.210.137  
+Server Blade #1 Information:
+	Type: Server Blade
+	Server Name: atesx2489.athtem.eei.ericsso
+	   Port 1: 50:01:43:80:12:0b:c0:2c
+	   Port 2: 50:01:43:80:12:0b:c0:2e
+Server Blade #2 Information:
+	Type: Server Blade
+	Server Name: atesx2490.
+	   Port 1: 50:01:43:80:07:2f:df:84
+	   Port 2: 50:01:43:80:07:2f:df:86
+Server Blade #3 Information:
+	Type: Server Blade
+	Server Name: atesx2491.
+	   Port 1: 50:01:43:80:14:0e:6c:50
+	   Port 2: 50:01:43:80:14:0e:6c:52
+Server Blade #4 Information:
+	Type: Server Blade
+	Server Name: atesx2492.
+	   Port 1: 50:01:43:80:14:0d:40:18
+	   Port 2: 50:01:43:80:14:0d:40:1a
+Server Blade #5 Information:
+	Type: Server Blade
+	Server Name: atesx2494.
+	   Port 1: 50:01:43:80:12:0c:78:b8
+	   Port 2: 50:01:43:80:12:0c:78:ba
+Server Blade #6 Information:
+	Type: Server Blade
+	Server Name: atesx2495.
+	   Port 1: 50:01:43:80:07:2f:d3:50
+	   Port 2: 50:01:43:80:07:2f:d3:52
+Server Blade #7 Information:
+	Server Blade Type: No Server Blade Installed
+Server Blade #8 Information:
+	Server Blade Type: No Server Blade Installed
+Server Blade #9 Information:
+	Type: Server Blade
+	Server Name: atesx2496.
+	   Port 1: 50:01:43:80:07:2f:df:50
+	   Port 2: 50:01:43:80:07:2f:df:52
+Server Blade #10 Information:
+	Type: Server Blade
+	Server Name: atesx2497.
+	   Port 1: 50:01:43:80:07:30:36:00
+	   Port 2: 50:01:43:80:07:30:36:02
+Server Blade #11 Information:
+	Type: Server Blade
+	Server Name: atesx2498.
+	   Port 1: 50:01:43:80:07:31:25:2c
+	   Port 2: 50:01:43:80:07:31:25:2e
+Server Blade #12 Information:
+	Type: Server Blade
+	Server Name: atesx2499.
+	   Port 1: 50:01:43:80:12:0b:c8:c8
+	   Port 2: 50:01:43:80:12:0b:c8:ca
+Server Blade #13 Information:
+	Server Blade Type: No Server Blade Installed
+Server Blade #14 Information:
+	Server Blade Type: No Server Blade Installed
+Server Blade #15 Information:
+	Server Blade Type: No Server Blade Installed
+Server Blade #16 Information:
+	Server Blade Type: No Server Blade Installed
+  3 Fibre Channel     BROCADE              On      OK        Off 10.45.210.136  
+  4 Fibre Channel     BROCADE              On      OK        Off 10.45.210.137  
+Server Blade #1 Information:
+	Type: Server Blade
+	Server Name: atesx2489.athtem.eei.ericsso
+	   Port 1: 50:01:43:80:12:0b:c0:2c
+	   Port 2: 50:01:43:80:12:0b:c0:2e
+Server Blade #2 Information:
+	Type: Server Blade
+	Server Name: atesx2490.
+	   Port 1: 50:01:43:80:07:2f:df:84
+	   Port 2: 50:01:43:80:07:2f:df:86
+Server Blade #3 Information:
+	Type: Server Blade
+	Server Name: atesx2491.
+	   Port 1: 50:01:43:80:14:0e:6c:50
+	   Port 2: 50:01:43:80:14:0e:6c:52
+Server Blade #4 Information:
+	Type: Server Blade
+	Server Name: atesx2492.
+	   Port 1: 50:01:43:80:14:0d:40:18
+	   Port 2: 50:01:43:80:14:0d:40:1a
+Server Blade #5 Information:
+	Type: Server Blade
+	Server Name: atesx2494.
+	   Port 1: 50:01:43:80:12:0c:78:b8
+	   Port 2: 50:01:43:80:12:0c:78:ba
+Server Blade #6 Information:
+	Type: Server Blade
+	Server Name: atesx2495.
+	   Port 1: 50:01:43:80:07:2f:d3:50
+	   Port 2: 50:01:43:80:07:2f:d3:52
+Server Blade #7 Information:
+	Server Blade Type: No Server Blade Installed
+Server Blade #8 Information:
+	Server Blade Type: No Server Blade Installed
+Server Blade #9 Information:
+	Type: Server Blade
+	Server Name: atesx2496.
+	   Port 1: 50:01:43:80:07:2f:df:50
+	   Port 2: 50:01:43:80:07:2f:df:52
+Server Blade #10 Information:
+	Type: Server Blade
+	Server Name: atesx2497.
+	   Port 1: 50:01:43:80:07:30:36:00
+	   Port 2: 50:01:43:80:07:30:36:02
+Server Blade #11 Information:
+	Type: Server Blade
+	Server Name: atesx2498.
+	   Port 1: 50:01:43:80:07:31:25:2c
+	   Port 2: 50:01:43:80:07:31:25:2e
+Server Blade #12 Information:
+	Type: Server Blade
+	Server Name: atesx2499.
+	   Port 1: 50:01:43:80:12:0b:c8:c8
+	   Port 2: 50:01:43:80:12:0b:c8:ca
+Server Blade #13 Information:
+	Server Blade Type: No Server Blade Installed
+Server Blade #14 Information:
+	Server Blade Type: No Server Blade Installed
+Server Blade #15 Information:
+	Server Blade Type: No Server Blade Installed
+Server Blade #16 Information:
+	Server Blade Type: No Server Blade Installed

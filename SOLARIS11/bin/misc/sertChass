@@ -1,0 +1,858 @@
+{***Server not found ***}
+{***Server not found ***}
+atrcxb974;chassis2{***HBA not found ***}
+atrcxb974{***BROCADE not found ***}
+atrcxb975;chassis2{***BROCADE not found ***}
+atrcxb976;chassis2{***BROCADE not found ***}
+atrcxb978;chassis2{***BROCADE not found ***}
+atrcxb979;chassis2{***BROCADE not found ***}
+atrcxb982;chassis2{***BROCADE not found ***}
+atrcxb980;chassis2{***BROCADE not found ***}
+atrcxb981esxi;chassis2{***BROCADE not found ***}
+atrcxb983;chassis2{***BROCADE not found ***}
+chassis2;{****no of HBA missings*****}1;{****no of BROC missings*****}1
+atrcxb1859;chassis70; Port 1: 50:01:43:80:14:0d:6a:f0; Port 2: 50:01:43:80:14:0d:6a:f2; LOM:1-a - 98:4B:E1:69:D0:88
+atrcxb1860;chassis70; Port 1: 50:01:43:80:14:0d:5f:18; Port 2: 50:01:43:80:14:0d:5f:1a; LOM:1-a - 98:4B:E1:68:5B:F0
+atrcxb1861;chassis70; Port 1: 50:01:43:80:14:0d:67:98; Port 2: 50:01:43:80:14:0d:67:9a; LOM:1-a - 98:4B:E1:68:CC:20
+atrcxb1862;chassis70; Port 1: 50:01:43:80:14:0d:67:64; Port 2: 50:01:43:80:14:0d:67:66; LOM:1-a - 98:4B:E1:68:FC:38
+atrcxb1863;chassis70; Port 1: 50:01:43:80:14:0d:60:20; Port 2: 50:01:43:80:14:0d:60:22; LOM:1-a - 98:4B:E1:68:3B:50
+atrcxb1877;chassis70; Port 1: 50:01:43:80:14:0d:63:00; Port 2: 50:01:43:80:14:0d:63:02; LOM:1-a - 98:4B:E1:68:4C:08
+atrcxb1878;chassis70; Port 1: 50:01:43:80:14:0d:64:08; Port 2: 50:01:43:80:14:0d:64:0a; LOM:1-a - 98:4B:E1:69:60:F8
+atrcxb1879;chassis70; Port 1: 50:01:43:80:14:0d:62:30; Port 2: 50:01:43:80:14:0d:62:32; LOM:1-a - 98:4B:E1:69:E0:58
+atrcxb1880;chassis70; Port 1: 50:01:43:80:14:0d:67:e0; Port 2: 50:01:43:80:14:0d:67:e2; LOM:1-a - 98:4B:E1:63:54:88
+atrcxb1881;chassis70; Port 1: 50:01:43:80:14:0d:64:0c; Port 2: 50:01:43:80:14:0d:64:0e; LOM:1-a - 98:4B:E1:68:9C:F8
+atrcxb1882;chassis70; Port 1: 50:01:43:80:14:0d:69:c8; Port 2: 50:01:43:80:14:0d:69:ca; LOM:1-a - 98:4B:E1:68:1B:00
+atrcxb1883;chassis70; Port 1: 50:01:43:80:14:0d:65:44; Port 2: 50:01:43:80:14:0d:65:46; LOM:1-a - 98:4B:E1:69:71:B0
+atrcxb1884;chassis70; Port 1: 50:01:43:80:14:0d:67:48; Port 2: 50:01:43:80:14:0d:67:4a; LOM:1-a - 98:4B:E1:69:61:00
+atrcxb1885;chassis70; Port 1: 50:01:43:80:14:0d:5d:3c; Port 2: 50:01:43:80:14:0d:5d:3e; LOM:1-a - 98:4B:E1:68:3B:B8
+atrcxb1886;chassis70; Port 1: 50:01:43:80:14:0d:64:c8; Port 2: 50:01:43:80:14:0d:64:ca; LOM:1-a - D4:85:64:5C:2F:B8
+atrcxb1887;chassis70; Port 1: 50:01:43:80:14:0d:60:f8; Port 2: 50:01:43:80:14:0d:60:fa; LOM:1-a - 98:4B:E1:68:EC:58
+chassis70;{****no of HBA missings*****}0;{****no of BROC missings*****}0
+atrcxb1854;chassis68{***BROCADE not found ***}
+atrcxb1855;chassis68{***BROCADE not found ***}
+atrcxb1856;chassis68{***BROCADE not found ***}
+atrcxb1018;chassis68{***BROCADE not found ***}
+atrcxb1857;chassis68{***BROCADE not found ***}
+atrcxb1858;chassis68{***BROCADE not found ***}
+atrcxb1864;chassis68{***BROCADE not found ***}
+atrcxb1874;chassis68{***BROCADE not found ***}
+chassis68;{****no of HBA missings*****}0;{****no of BROC missings*****}1
+atrcxb1926;chassis73; Port 1: 50:01:43:80:14:0e:62:80; Port 2: 50:01:43:80:14:0e:62:82; LOM:1-a - 00:17:A4:77:60:00
+atrcxb1930;chassis73; Port 1: 50:01:43:80:14:0e:71:84; Port 2: 50:01:43:80:14:0e:71:86; LOM:1-a - 00:17:A4:77:60:40
+atrcxb1928;chassis73; Port 1: 50:01:43:80:14:0e:6f:90; Port 2: 50:01:43:80:14:0e:6f:92; LOM:1-a - 00:17:A4:77:60:10
+atrcxb1929;chassis73; Port 1: 50:01:43:80:14:0e:6f:e0; Port 2: 50:01:43:80:14:0e:6f:e2; LOM:1-a - 00:17:A4:77:60:18
+atrcxb1865;chassis73; Port 1: 50:01:43:80:14:0d:68:a0; Port 2: 50:01:43:80:14:0d:68:a2; LOM:1-a - 00:17:A4:77:60:20
+atrcxb2143;chassis73; Port 1: 50:01:43:80:18:70:af:64; Port 2: 50:01:43:80:18:70:af:66; LOM:1-a - 00:17:A4:77:60:28
+atrcxb1867;chassis73; Port 1: 50:01:43:80:14:0d:66:24; Port 2: 50:01:43:80:14:0d:66:26; LOM:1-a - 00:17:A4:77:60:30
+atrcxb1868;chassis73; Port 1: 50:01:43:80:14:0d:62:84; Port 2: 50:01:43:80:14:0d:62:86; LOM:1-a - 00:17:A4:77:60:38
+atrcxb1927;chassis73; Port 1: 50:01:43:80:14:0e:5f:ec; Port 2: 50:01:43:80:14:0e:5f:ee; LOM:1-a - 00:17:A4:77:60:08
+atrcxb1931;chassis73; Port 1: 50:01:43:80:14:0e:62:a0; Port 2: 50:01:43:80:14:0e:62:a2; LOM:1-a - 00:17:A4:77:60:48
+atrcxb2144;chassis73; Port 1: 50:01:43:80:18:70:ae:f8; Port 2: 50:01:43:80:18:70:ae:fa; LOM:1-a - 00:17:A4:77:60:50
+atrcxb1869;chassis73; Port 1: 50:01:43:80:14:0d:5f:cc; Port 2: 50:01:43:80:14:0d:5f:ce; LOM:1-a - 00:17:A4:77:60:58
+atrcxb1870;chassis73; Port 1: 50:01:43:80:14:0d:6a:7c; Port 2: 50:01:43:80:14:0d:6a:7e; LOM:1-a - 00:17:A4:77:60:60
+atrcxb1871;chassis73; Port 1: 50:01:43:80:14:0d:64:1c; Port 2: 50:01:43:80:14:0d:64:1e; LOM:1-a - 00:17:A4:77:60:68
+atrcxb1872;chassis73; Port 1: 50:01:43:80:14:0d:6a:44; Port 2: 50:01:43:80:14:0d:6a:46; LOM:1-a - 00:17:A4:77:60:70
+atrcxb1873;chassis73; Port 1: 50:01:43:80:14:0d:5e:48; Port 2: 50:01:43:80:14:0d:5e:4a; LOM:1-a - 00:17:A4:77:60:78
+chassis73;{****no of HBA missings*****}0;{****no of BROC missings*****}0
+atrcxb1920;chassis74; Port 1: 50:01:43:80:12:0c:f0:78; Port 2: 50:01:43:80:12:0c:f0:7a; LOM:1-a - 98:4B:E1:62:9E:68
+atrcxb1921;chassis74; Port 1: 50:01:43:80:12:0c:e7:70; Port 2: 50:01:43:80:12:0c:e7:72; LOM:1-a - 98:4B:E1:62:BE:48
+atrcxb1922;chassis74; Port 1: 50:01:43:80:12:0c:e8:e4; Port 2: 50:01:43:80:12:0c:e8:e6; LOM:1-a - 98:4B:E1:62:0D:A0
+atrcxb1923;chassis74; Port 1: 50:01:43:80:12:0c:f2:70; Port 2: 50:01:43:80:12:0c:f2:72; LOM:1-a - 98:4B:E1:62:0D:C0
+atrcxb1722;chassis74; Port 1: 50:01:43:80:14:0e:6c:a0; Port 2: 50:01:43:80:14:0e:6c:a2; LOM:1-a - 98:4B:E1:68:AC:88
+atrcxb1726;chassis74; Port 1: 50:01:43:80:14:0f:13:40; Port 2: 50:01:43:80:14:0f:13:42; LOM:1-a - 98:4B:E1:61:3C:A8
+atrcxb1662;chassis74; Port 1: 50:01:43:80:12:0c:a7:78; Port 2: 50:01:43:80:12:0c:a7:7a; LOM:1-a - 98:4B:E1:63:C6:38
+atrcxb1664;chassis74; Port 1: 50:01:43:80:12:0c:e7:d0; Port 2: 50:01:43:80:12:0c:e7:d2; LOM:1-a - 98:4B:E1:63:C2:98
+atrcxb1665;chassis74; Port 1: 50:01:43:80:12:0c:f0:a4; Port 2: 50:01:43:80:12:0c:f0:a6; LOM:1-a - 98:4B:E1:63:C6:F0
+atrcxb1201;chassis74; Port 1: 50:01:43:80:14:0d:63:44; Port 2: 50:01:43:80:14:0d:63:46; LOM:1-a - 78:E7:D1:56:FD:A8
+atrcxb1019;chassis74; Port 1: 50:01:43:80:05:68:7a:f0; Port 2: 50:01:43:80:05:68:7a:f2; LOM:1-a - F4:CE:46:BB:C7:90
+atrcxb1997;chassis74; Port 1: 50:01:43:80:04:26:8a:4c; Port 2: 50:01:43:80:04:26:8a:4e; LOM:1-a - F4:CE:46:83:4B:70
+atrcxb2007;chassis74; Port 1: 50:01:43:80:04:26:27:44; Port 2: 50:01:43:80:04:26:27:46; LOM:1-a - F4:CE:46:83:5C:E8
+chassis74;{****no of HBA missings*****}0;{****no of BROC missings*****}0
+atrcxb1963;chassis75; Port 1: 50:01:43:80:16:7a:06:58; Port 2: 50:01:43:80:16:7a:06:5a; LOM:1-a - 00:17:A4:77:4C:00
+atrcxb1964;chassis75; Port 1: 50:01:43:80:16:7a:05:90; Port 2: 50:01:43:80:16:7a:05:92; LOM:1-a - 00:17:A4:77:4C:10
+atrcxb1939;chassis75; Port 1: 50:01:43:80:16:7a:05:0c; Port 2: 50:01:43:80:16:7a:05:0e; LOM:1-a - 00:17:A4:77:4C:20
+atrcxb1940;chassis75; Port 1: 50:01:43:80:16:7a:05:3c; Port 2: 50:01:43:80:16:7a:05:3e; LOM:1-a - 00:17:A4:77:4C:28
+atrcxb1941;chassis75; Port 1: 50:01:43:80:16:7a:01:80; Port 2: 50:01:43:80:16:7a:01:82; LOM:1-a - 00:17:A4:77:4C:34
+atrcxb1942;chassis75; Port 1: 50:01:43:80:16:7a:01:b8; Port 2: 50:01:43:80:16:7a:01:ba; LOM:1-a - 00:17:A4:77:4C:90
+atrcxb1943;chassis75; Port 1: 50:01:43:80:16:7a:05:7c; Port 2: 50:01:43:80:16:7a:05:7e; LOM:1-a - 00:17:A4:77:4C:48
+atrcxb1944;chassis75; Port 1: 50:01:43:80:16:7a:04:a0; Port 2: 50:01:43:80:16:7a:04:a2; LOM:1-a - 00:17:A4:77:4C:50
+atrcxb1945;chassis75; Port 1: 50:01:43:80:16:7a:05:10; Port 2: 50:01:43:80:16:7a:05:12; LOM:1-a - 00:17:A4:77:4C:5C
+atrcxb1946;chassis75; Port 1: 50:01:43:80:16:7a:04:f8; Port 2: 50:01:43:80:16:7a:04:fa; LOM:1-a - 00:17:A4:77:4C:64
+atrcxb1947;chassis75; Port 1: 50:01:43:80:16:7a:07:50; Port 2: 50:01:43:80:16:7a:07:52; LOM:1-a - 00:17:A4:77:4C:68
+atrcxb1948;chassis75; Port 1: 50:01:43:80:16:7a:03:28; Port 2: 50:01:43:80:16:7a:03:2a; LOM:1-a - 00:17:A4:77:4C:40
+atrcxb1949;chassis75; Port 1: 50:01:43:80:16:79:de:7c; Port 2: 50:01:43:80:16:79:de:7e; LOM:1-a - 00:17:A4:77:4C:74
+atrcxb1950;chassis75; Port 1: 50:01:43:80:16:7a:01:50; Port 2: 50:01:43:80:16:7a:01:52; LOM:1-a - 00:17:A4:77:4C:80
+chassis75;{****no of HBA missings*****}0;{****no of BROC missings*****}0
+atrcxb1965;chassis76; Port 1: 50:01:43:80:16:78:ca:30; Port 2: 50:01:43:80:16:78:ca:32; LOM:1-a - B4:99:BA:A7:23:66
+atrcxb1966;chassis76; Port 1: 50:01:43:80:16:78:cc:94; Port 2: 50:01:43:80:16:78:cc:96; LOM:1-a - B4:99:BA:A7:DF:98
+atrcxb1951;chassis76; Port 1: 50:01:43:80:16:78:cb:04; Port 2: 50:01:43:80:16:78:cb:06; LOM:1-a - D4:85:64:47:5C:D0
+atrcxb1952;chassis76; Port 1: 50:01:43:80:16:78:cc:8c; Port 2: 50:01:43:80:16:78:cc:8e; LOM:1-a - 3C:4A:92:EC:AB:B0
+atrcxb1953;chassis76; Port 1: 50:01:43:80:16:79:d8:c0; Port 2: 50:01:43:80:16:79:d8:c2; LOM:1-a - 1C:C1:DE:05:05:60
+atrcxb1954;chassis76; Port 1: 50:01:43:80:16:79:c5:dc; Port 2: 50:01:43:80:16:79:c5:de; LOM:1-a - D4:85:64:4D:6F:78
+atrcxb1955;chassis76; Port 1: 50:01:43:80:16:78:ca:a4; Port 2: 50:01:43:80:16:78:ca:a6; LOM:1-a - 1C:C1:DE:EC:07:B0
+atrcxb1956;chassis76; Port 1: 50:01:43:80:16:79:f9:c0; Port 2: 50:01:43:80:16:79:f9:c2; LOM:1-a - D4:85:64:47:89:00
+atrcxb1957;chassis76; Port 1: 50:01:43:80:16:78:cc:74; Port 2: 50:01:43:80:16:78:cc:76; LOM:1-a - 68:B5:99:C9:2B:58
+atrcxb1958;chassis76; Port 1: 50:01:43:80:16:79:d8:88; Port 2: 50:01:43:80:16:79:d8:8a; LOM:1-a - 68:B5:99:BF:EC:F0
+atrcxb1959;chassis76; Port 1: 50:01:43:80:16:79:f9:c8; Port 2: 50:01:43:80:16:79:f9:ca; LOM:1-a - 78:E7:D1:57:90:A8
+atrcxb1265;chassis76; Port 1: 50:01:43:80:05:6a:6e:98; Port 2: 50:01:43:80:05:6a:6e:9a;
+chassis76;{****no of HBA missings*****}0;{****no of BROC missings*****}0
+ethrcxb1980;chassis78{***BROCADE not found ***}
+ethrcxb1981;chassis78{***BROCADE not found ***}
+ethrcxb124;chassis78{***BROCADE not found ***}
+ethrcxb1983;chassis78{***BROCADE not found ***}
+ethrcxb1998;chassis78{***BROCADE not found ***}
+ethrcxb1999;chassis78{***BROCADE not found ***}
+ethrcxb2000;chassis78{***BROCADE not found ***}
+ethrcxb1985;chassis78{***BROCADE not found ***}
+ethrcxb1987;chassis78{***BROCADE not found ***}
+chassis78;{****no of HBA missings*****}0;{****no of BROC missings*****}1
+atrcxb2010;chassis77; Port 1: 50:01:43:80:04:26:28:7c; Port 2: 50:01:43:80:04:26:28:7e; LOM:1-a - F4:CE:46:83:5C:38
+atrcxb2009;chassis77; Port 1: 50:01:43:80:04:26:26:b8; Port 2: 50:01:43:80:04:26:26:ba; LOM:1-a - F4:CE:46:83:3B:30
+atrcxb2006;chassis77; Port 1: 50:01:43:80:04:26:27:3c; Port 2: 50:01:43:80:04:26:27:3e; LOM:1-a - F4:CE:46:83:8C:A8
+atrcxb1020;chassis77; Port 1: 50:01:43:80:05:68:7b:a8; Port 2: 50:01:43:80:05:68:7b:aa; LOM:1-a - F4:CE:46:BB:E7:E0
+atrcxb1021;chassis77; Port 1: 50:01:43:80:05:68:7b:0c; Port 2: 50:01:43:80:05:68:7b:0e; LOM:1-a - F4:CE:46:BB:3C:60
+atrcxb1022;chassis77; Port 1: 50:01:43:80:05:68:79:e8; Port 2: 50:01:43:80:05:68:79:ea; LOM:1-a - F4:CE:46:BB:BA:F8
+atrcxb1023;chassis77; Port 1: 50:01:43:80:05:68:76:08; Port 2: 50:01:43:80:05:68:76:0a; LOM:1-a - F4:CE:46:BB:E3:F0
+atrcxb2011;chassis77; Port 1: 50:01:43:80:04:26:27:5c; Port 2: 50:01:43:80:04:26:27:5e; LOM:1-a - F4:CE:46:83:5B:78
+atrcxb2012;chassis77; Port 1: 50:01:43:80:04:26:28:20; Port 2: 50:01:43:80:04:26:28:22; LOM:1-a - F4:CE:46:83:4B:08
+atrcxb1727;chassis77; Port 1: 50:01:43:80:14:0f:12:38; Port 2: 50:01:43:80:14:0f:12:3a; LOM:1-a - 98:4B:E1:68:5B:D8
+atrcxb2008;chassis77; Port 1: 50:01:43:80:04:26:28:28; Port 2: 50:01:43:80:04:26:28:2a; LOM:1-a - F4:CE:46:83:5B:28
+atrcxb1025;chassis77; Port 1: 50:01:43:80:05:68:76:54; Port 2: 50:01:43:80:05:68:76:56; LOM:1-a - F4:CE:46:BB:A4:D0
+atrcxb1024;chassis77; Port 1: 50:01:43:80:05:68:78:64; Port 2: 50:01:43:80:05:68:78:66; LOM:1-a - 78:E7:D1:5C:F8:D0
+atrcxb2146;chassis77; Port 1: 50:01:43:80:18:70:af:1c; Port 2: 50:01:43:80:18:70:af:1e; LOM:1-a - 44:1E:A1:52:D9:D8
+atrcxb2145;chassis77; Port 1: 50:01:43:80:18:70:af:90; Port 2: 50:01:43:80:18:70:af:92; LOM:1-a - 44:1E:A1:52:C9:90
+atrcxb2285;chassis77; Port 1: 50:01:43:80:18:72:09:34; Port 2: 50:01:43:80:18:72:09:36; LOM:1-a - E8:39:35:B5:B8:E8
+chassis77;{****no of HBA missings*****}0;{****no of BROC missings*****}0
+atrcxb2037;chassis6; Port 1: 50:01:43:80:18:70:ab:a8; Port 2: 50:01:43:80:18:70:ab:aa; LOM:1-a - 44:1E:A1:45:13:70
+atrcxb2038;chassis6; Port 1: 50:01:43:80:18:70:a7:94; Port 2: 50:01:43:80:18:70:a7:96; LOM:1-a - 44:1E:A1:45:66:C0
+atrcxb2241;chassis6; Port 1: 50:01:43:80:18:72:03:b8; Port 2: 50:01:43:80:18:72:03:ba; LOM:1-a - 3C:4A:92:F0:2E:B0
+atrcxb2128;chassis6; Port 1: 50:01:43:80:18:70:37:0c; Port 2: 50:01:43:80:18:70:37:0e; LOM:1-a - 44:1E:A1:4B:55:E8
+atrcxb1127;chassis6; Port 1: 50:01:43:80:05:6c:2e:30; Port 2: 50:01:43:80:05:6c:2e:32;
+atrcxb1128;chassis6; Port 1: 50:01:43:80:04:bf:48:94; Port 2: 50:01:43:80:04:bf:48:96;
+atrcxb2039;chassis6; Port 1: 50:01:43:80:18:70:ad:34; Port 2: 50:01:43:80:18:70:ad:36; LOM:1-a - 44:1E:A1:45:06:C0
+atrcxb2040;chassis6; Port 1: 50:01:43:80:18:70:ab:8c; Port 2: 50:01:43:80:18:70:ab:8e; LOM:1-a - 44:1E:A1:4B:35:68
+atrcxb1484;chassis6; Port 1: 50:01:43:80:12:0b:f0:48; Port 2: 50:01:43:80:12:0b:f0:4a; LOM:1-a - 3C:4A:92:F6:08:B8
+atrcxb1485;chassis6; Port 1: 50:01:43:80:12:0b:ed:1c; Port 2: 50:01:43:80:12:0b:ed:1e; LOM:1-a - 98:4B:E1:61:7B:E8
+atrcxb2142;chassis6; Port 1: 50:01:43:80:09:aa:35:48; Port 2: 50:01:43:80:09:aa:35:4a; LOM:1-a - 44:1E:A1:52:49:00
+atrcxb2286;chassis6; Port 1: 50:01:43:80:18:72:08:d4; Port 2: 50:01:43:80:18:72:08:d6; LOM:1-a - 68:B5:99:BF:70:D0
+chassis6;{****no of HBA missings*****}0;{****no of BROC missings*****}0
+atrcxb2107;chassis65; Port 1: 50:01:43:80:18:70:99:5c; Port 2: 50:01:43:80:18:70:99:5e; LOM:1-a - 44:1E:A1:52:2A:50
+atrcxb2108;chassis65; Port 1: 50:01:43:80:18:70:c6:84; Port 2: 50:01:43:80:18:70:c6:86; LOM:1-a - 44:1E:A1:52:D9:A8
+atrcxb2111;chassis65; Port 1: 50:01:43:80:18:70:c6:98; Port 2: 50:01:43:80:18:70:c6:9a; LOM:1-a - 44:1E:A1:52:A9:18
+atrcxb2112;chassis65; Port 1: 50:01:43:80:18:70:94:88; Port 2: 50:01:43:80:18:70:94:8a; LOM:1-a - 44:1E:A1:52:59:D8
+atrcxb2113;chassis65; Port 1: 50:01:43:80:18:70:c5:c4; Port 2: 50:01:43:80:18:70:c5:c6; LOM:1-a - 44:1E:A1:52:B9:28
+atrcxb2114;chassis65; Port 1: 50:01:43:80:18:70:c5:c0; Port 2: 50:01:43:80:18:70:c5:c2; LOM:1-a - 44:1E:A1:52:B9:18
+atrcxb2195;chassis65{***HBA not found ***}
+atrcxb2196;chassis65{***HBA not found ***}
+atrcxb2197;chassis65{***HBA not found ***}
+atrcxb2198;chassis65{***HBA not found ***}
+chassis65;{****no of HBA missings*****}4;{****no of BROC missings*****}0
+atrcxb2088;chassis79; Port 1: 50:01:43:80:18:70:b8:e8; Port 2: 50:01:43:80:18:70:b8:ea;
+atrcxb2089;chassis79; Port 1: 50:01:43:80:18:70:b8:74; Port 2: 50:01:43:80:18:70:b8:76;
+atrcxb2093;chassis79; Port 1: 50:01:43:80:18:70:b8:7c; Port 2: 50:01:43:80:18:70:b8:7e;
+atrcxb2092;chassis79; Port 1: 50:01:43:80:18:70:b8:90; Port 2: 50:01:43:80:18:70:b8:92;
+atrcxb2220;chassis79; Port 1: 50:01:43:80:18:70:ea:fc; Port 2: 50:01:43:80:18:70:ea:fe;
+atrcxb2216;chassis79; Port 1: 50:01:43:80:18:70:ed:30; Port 2: 50:01:43:80:18:70:ed:32;
+atrcxb2217;chassis79; Port 1: 50:01:43:80:18:70:ec:ac; Port 2: 50:01:43:80:18:70:ec:ae;
+atrcxb2094;chassis79; Port 1: 50:01:43:80:18:70:b7:08; Port 2: 50:01:43:80:18:70:b7:0a;
+atrcxb2095;chassis79; Port 1: 50:01:43:80:18:70:b8:b0; Port 2: 50:01:43:80:18:70:b8:b2;
+atrcxb2096;chassis79; Port 1: 50:01:43:80:18:70:b8:00; Port 2: 50:01:43:80:18:70:b8:02;
+atrcxb2097;chassis79; Port 1: 50:01:43:80:18:70:b9:3c; Port 2: 50:01:43:80:18:70:b9:3e;
+atrcxb2221;chassis79; Port 1: 50:01:43:80:18:70:ec:6c; Port 2: 50:01:43:80:18:70:ec:6e;
+atrcxb2218;chassis79; Port 1: 50:01:43:80:18:70:eb:dc; Port 2: 50:01:43:80:18:70:eb:de;
+atrcxb2219;chassis79; Port 1: 50:01:43:80:18:70:ea:bc;;
+chassis79;{****no of HBA missings*****}0;{****no of BROC missings*****}0
+atrcxb2098;chassis82{***BROCADE not found ***}
+atrcxb2099;chassis82{***BROCADE not found ***}
+atrcxb2100;chassis82{***BROCADE not found ***}
+atrcxb2101;chassis82{***BROCADE not found ***}
+atrcxb2102;chassis82{***HBA not found ***}
+atrcxb2102{***BROCADE not found ***}
+atrcxb2103;chassis82{***HBA not found ***}
+atrcxb2103{***BROCADE not found ***}
+atrcxb2104;chassis82{***HBA not found ***}
+atrcxb2104{***BROCADE not found ***}
+atrcxb2105;chassis82{***HBA not found ***}
+atrcxb2105{***BROCADE not found ***}
+atrcxb2106;chassis82{***BROCADE not found ***}
+atrcxb2130;chassis82{***BROCADE not found ***}
+chassis82;{****no of HBA missings*****}4;{****no of BROC missings*****}1
+chassis21;{****no of HBA missings*****}0;{****no of BROC missings*****}0
+chassis38;{****no of HBA missings*****}0;{****no of BROC missings*****}0
+atrcxb946;chassis4; Port 1: 50:01:43:80:04:bf:56:04 Port 1: 50:01:43:80:04:bf:56:04; Port 2: 50:01:43:80:04:bf:56:06 Port 2: 50:01:43:80:04:bf:56:06;
+atrcxb949;chassis4; Port 1: 50:01:43:80:04:bf:48:18 Port 1: 50:01:43:80:04:bf:48:18; Port 2: 50:01:43:80:04:bf:48:1a Port 2: 50:01:43:80:04:bf:48:1a;
+atrcxb948;chassis4; Port 1: 50:01:43:80:04:bf:47:68 Port 1: 50:01:43:80:04:bf:47:68; Port 2: 50:01:43:80:04:bf:47:6a Port 2: 50:01:43:80:04:bf:47:6a;
+atrcxb947;chassis4; Port 1: 50:01:43:80:04:bf:57:58 Port 1: 50:01:43:80:04:bf:57:58; Port 2: 50:01:43:80:04:bf:57:5a Port 2: 50:01:43:80:04:bf:57:5a;
+atrcxb950;chassis4; Port 1: 50:01:43:80:04:bf:45:68 Port 1: 50:01:43:80:04:bf:45:68; Port 2: 50:01:43:80:04:bf:45:6a Port 2: 50:01:43:80:04:bf:45:6a;
+atrcxb1343;chassis4{***HBA not found ***}
+atrcxb1032;chassis4; Port 1: 50:01:43:80:12:0a:a7:88 Port 1: 50:01:43:80:12:0a:a7:88; Port 2: 50:01:43:80:12:0a:a7:8a Port 2: 50:01:43:80:12:0a:a7:8a;
+atrcxb951;chassis4; Port 1: 50:01:43:80:04:bf:4e:b4 Port 1: 50:01:43:80:04:bf:4e:b4; Port 2: 50:01:43:80:04:bf:4e:b6 Port 2: 50:01:43:80:04:bf:4e:b6;
+atrcxb952;chassis4; Port 1: 50:01:43:80:04:bf:59:c0 Port 1: 50:01:43:80:04:bf:59:c0; Port 2: 50:01:43:80:04:bf:59:c2 Port 2: 50:01:43:80:04:bf:59:c2;
+atrcxb953;chassis4; Port 1: 50:01:43:80:04:bf:55:20 Port 1: 50:01:43:80:04:bf:55:20; Port 2: 50:01:43:80:04:bf:55:22 Port 2: 50:01:43:80:04:bf:55:22;
+atrcxb954;chassis4{***HBA not found ***}
+atrcxb955;chassis4{***HBA not found ***}
+atrcxb946;chassis4; Port 1: 50:01:43:80:04:bf:56:04 Port 1: 50:01:43:80:04:bf:56:04; Port 2: 50:01:43:80:04:bf:56:06 Port 2: 50:01:43:80:04:bf:56:06;
+atrcxb949;chassis4; Port 1: 50:01:43:80:04:bf:48:18 Port 1: 50:01:43:80:04:bf:48:18; Port 2: 50:01:43:80:04:bf:48:1a Port 2: 50:01:43:80:04:bf:48:1a;
+atrcxb948;chassis4; Port 1: 50:01:43:80:04:bf:47:68 Port 1: 50:01:43:80:04:bf:47:68; Port 2: 50:01:43:80:04:bf:47:6a Port 2: 50:01:43:80:04:bf:47:6a;
+atrcxb947;chassis4; Port 1: 50:01:43:80:04:bf:57:58 Port 1: 50:01:43:80:04:bf:57:58; Port 2: 50:01:43:80:04:bf:57:5a Port 2: 50:01:43:80:04:bf:57:5a;
+atrcxb950;chassis4; Port 1: 50:01:43:80:04:bf:45:68 Port 1: 50:01:43:80:04:bf:45:68; Port 2: 50:01:43:80:04:bf:45:6a Port 2: 50:01:43:80:04:bf:45:6a;
+atrcxb1343;chassis4{***HBA not found ***}
+atrcxb1032;chassis4; Port 1: 50:01:43:80:12:0a:a7:88 Port 1: 50:01:43:80:12:0a:a7:88; Port 2: 50:01:43:80:12:0a:a7:8a Port 2: 50:01:43:80:12:0a:a7:8a;
+atrcxb951;chassis4; Port 1: 50:01:43:80:04:bf:4e:b4 Port 1: 50:01:43:80:04:bf:4e:b4; Port 2: 50:01:43:80:04:bf:4e:b6 Port 2: 50:01:43:80:04:bf:4e:b6;
+atrcxb952;chassis4; Port 1: 50:01:43:80:04:bf:59:c0 Port 1: 50:01:43:80:04:bf:59:c0; Port 2: 50:01:43:80:04:bf:59:c2 Port 2: 50:01:43:80:04:bf:59:c2;
+atrcxb953;chassis4; Port 1: 50:01:43:80:04:bf:55:20 Port 1: 50:01:43:80:04:bf:55:20; Port 2: 50:01:43:80:04:bf:55:22 Port 2: 50:01:43:80:04:bf:55:22;
+atrcxb954;chassis4{***HBA not found ***}
+atrcxb955;chassis4{***HBA not found ***}
+chassis4;{****no of HBA missings*****}6;{****no of BROC missings*****}0
+atrcxb1122;chassis9{***BROCADE not found ***}
+atrcxb1123;chassis9{***BROCADE not found ***}
+atrcxb1126;chassis9{***BROCADE not found ***}
+atrcxb1465;chassis9{***BROCADE not found ***}
+atrcxb1467;chassis9{***BROCADE not found ***}
+atrcxb1468;chassis9{***BROCADE not found ***}
+atrcxb1132;chassis9{***BROCADE not found ***}
+atrcxb1469;chassis9{***BROCADE not found ***}
+atrcxb1721;chassis9{***BROCADE not found ***}
+chassis9;{****no of HBA missings*****}0;{****no of BROC missings*****}1
+atrcxb1134;chassis5; Port 1: 50:01:43:80:12:0a:b4:a0; Port 2: 50:01:43:80:12:0a:b4:a2;
+atrcxb1133;chassis5; Port 1: 50:01:43:80:12:0a:b9:64; Port 2: 50:01:43:80:12:0a:b9:66;
+atrcxb1135;chassis5; Port 1: 50:01:43:80:05:69:d2:50; Port 2: 50:01:43:80:05:69:d2:52;
+atrcxb1136;chassis5; Port 1: 50:01:43:80:05:69:b4:6c; Port 2: 50:01:43:80:05:69:b4:6e;
+atrcxb2282;chassis5; Port 1: 50:01:43:80:16:7d:b2:b0; Port 2: 50:01:43:80:16:7d:b2:b2;
+atrcxb1140;chassis5; Port 1: 50:01:43:80:05:6a:57:00; Port 2: 50:01:43:80:05:6a:57:02;
+atrcxb1141;chassis5; Port 1: 50:01:43:80:05:6a:57:4c; Port 2: 50:01:43:80:05:6a:57:4e;
+atrcxb1142;chassis5; Port 1: 50:01:43:80:05:6a:56:64; Port 2: 50:01:43:80:05:6a:56:66;
+atrcxb2214;chassis5; Port 1: 50:01:43:80:18:70:f4:f0; Port 2: 50:01:43:80:18:70:f4:f2;
+atrcxb2215;chassis5; Port 1: 50:01:43:80:18:70:f1:74; Port 2: 50:01:43:80:18:70:f1:76;
+localhost,;chassis5; Port 1: 50:01:43:80:05:6a:55:1c; Port 2: 50:01:43:80:05:6a:55:1e;
+atrcxb1144;chassis5; Port 1: 50:01:43:80:05:6a:51:e4; Port 2: 50:01:43:80:05:6a:51:e6;
+atrcxb2283;chassis5; Port 1: 50:01:43:80:16:7d:b2:20; Port 2: 50:01:43:80:16:7d:b2:22;
+atrcxb2284;chassis5; Port 1: 50:01:43:80:16:7d:b2:a0; Port 2: 50:01:43:80:16:7d:b2:a2;
+chassis5;{****no of HBA missings*****}0;{****no of BROC missings*****}0
+atrcxb1225;chassis16; Port 1: 50:01:43:80:12:0a:a7:c0; Port 2: 50:01:43:80:12:0a:a7:c2; LOM:1-a - 00:17:A4:77:C4:00
+atrcxb1226;chassis16; Port 1: 50:01:43:80:09:ab:7c:f0; Port 2: 50:01:43:80:09:ab:7c:f2; LOM:1-a - 00:17:A4:77:C4:10
+atrcxb1229;chassis16; Port 1: 50:01:43:80:05:6c:5c:f4; Port 2: 50:01:43:80:05:6c:5c:f6; LOM:1-a - 00:17:A4:77:C4:20
+atrcxb1230;chassis16; Port 1: 50:01:43:80:05:6c:5c:ac; Port 2: 50:01:43:80:05:6c:5c:ae; LOM:1-a - 00:17:A4:77:C4:34
+atrcxb1231;chassis16; Port 1: 50:01:43:80:05:6c:85:cc; Port 2: 50:01:43:80:05:6c:85:ce; LOM:1-a - 00:17:A4:77:C4:3C
+atrcxb1317;chassis16; Port 1: 50:01:43:80:07:2f:00:94; Port 2: 50:01:43:80:07:2f:00:96; LOM:1-a - 00:17:A4:77:C4:84
+atrcxb1318;chassis16; Port 1: 50:01:43:80:07:2f:00:18; Port 2: 50:01:43:80:07:2f:00:1a; LOM:1-a - 00:17:A4:77:C4:90
+atrcxb1232;chassis16; Port 1: 50:01:43:80:05:6c:85:8c; Port 2: 50:01:43:80:05:6c:85:8e; LOM:1-a - 00:17:A4:77:C4:5C
+atrcxb1233;chassis16; Port 1: 50:01:43:80:05:6c:5e:a8; Port 2: 50:01:43:80:05:6c:5e:aa; LOM:1-a - 00:17:A4:77:C4:64
+atrcxb1234;chassis16; Port 1: 50:01:43:80:05:6c:85:dc; Port 2: 50:01:43:80:05:6c:85:de; LOM:1-a - 00:17:A4:77:C4:50
+chassis16;{****no of HBA missings*****}0;{****no of BROC missings*****}0
+atrcxb2126;chassis18; Port 1: 50:01:43:80:07:29:b4:d8; Port 2: 50:01:43:80:07:29:b4:da; LOM:1-a - 00:17:A4:77:00:C6
+atrcxb2127;chassis18; Port 1: 50:01:43:8007:29:b6:ec; Port 2: 50:01:43:8007:29:b6:ee; LOM:1-a - 00:17:A4:77:00:A6
+atrcxb1237;chassis18; Port 1: 50:01:43:8007:29:b8:78; Port 2: 50:01:43:8007:29:b8:7a;
+atrcxb2125;chassis18; Port 1: 50:01:43:8018:70:42:4c; Port 2: 50:01:43:8018:70:42:4e; LOM:1-a - 00:17:A4:77:00:AE
+atrcxb1239;chassis18; Port 1: 50:01:43:8005:6c:85:d8; Port 2: 50:01:43:8005:6c:85:da; LOM:1-a - 00:17:A4:77:00:1A
+atrcxb1240;chassis18; Port 1: 50:01:43:80:05:6c:89:e8; Port 2: 50:01:43:80:05:6c:89:ea; LOM:1-a - 00:17:A4:77:00:6E
+atrcxb1241;chassis18; Port 1: 50:01:43:8005:6c:5c:e8; Port 2: 50:01:43:8005:6c:5c:ea; LOM:1-a - 00:17:A4:77:00:4A
+atrcxb1242;chassis18; Port 1: 50:01:43:8005:6c:5c:ec; Port 2: 50:01:43:8005:6c:5c:ee; LOM:1-a - 00:17:A4:77:00:00
+atrcxb2314;chassis18; Port 1: 50:01:43:80:18:73:ae:ac; Port 2: 50:01:43:80:18:73:ae:ae; LOM:1-a - 00:17:A4:77:00:CE
+atrcxb1641;chassis18; Port 1: 50:01:43:80:14:0d:38:58; Port 2: 50:01:43:80:14:0d:38:5a; LOM:1-a - 00:17:A4:77:00:96
+atrcxb1642;chassis18; Port 1: 50:01:43:8014:0d:3e:40; Port 2: 50:01:43:8014:0d:3e:42; LOM:1-a - 00:17:A4:77:00:9E
+atrcxb1643;chassis18; Port 1: 50:01:43:8014:0d:3b:a8; Port 2: 50:01:43:8014:0d:3b:aa; LOM:1-a - 00:17:A4:77:00:5A
+chassis18;{****no of HBA missings*****}0;{****no of BROC missings*****}0
+atrcxb1243;chassis17{***BROCADE not found ***}
+atrcxb1244;chassis17{***BROCADE not found ***}
+atrcxb1245;chassis17{***BROCADE not found ***}
+atrcxb1248;chassis17{***HBA not found ***}
+atrcxb1248{***BROCADE not found ***}
+atrcxb1249;chassis17{***HBA not found ***}
+atrcxb1249{***BROCADE not found ***}
+atrcxb1251;chassis17{***HBA not found ***}
+atrcxb1251{***BROCADE not found ***}
+atrcxb1252;chassis17{***HBA not found ***}
+atrcxb1252{***BROCADE not found ***}
+chassis17;{****no of HBA missings*****}4;{****no of BROC missings*****}1
+atrcxb1413;chassis22{***BROCADE not found ***}
+atrcxb1848;chassis22{***BROCADE not found ***}
+atrcxb1849;chassis22{***BROCADE not found ***}
+atrcxb1850;chassis22{***BROCADE not found ***}
+atrcxb1851;chassis22{***BROCADE not found ***}
+atrcxb1852;chassis22{***BROCADE not found ***}
+atrcxb1853;chassis22{***BROCADE not found ***}
+chassis22;{****no of HBA missings*****}0;{****no of BROC missings*****}1
+ethrcxb168;chassis23{***BROCADE not found ***}
+ethrcxb169;chassis23{***BROCADE not found ***}
+ethrcxb115;chassis23{***HBA not found ***}
+ethrcxb115{***BROCADE not found ***}
+ethrcxb073;chassis23{***BROCADE not found ***}
+ethrcxb199;chassis23{***BROCADE not found ***}
+ethrcxb193;chassis23{***BROCADE not found ***}
+ethrcxb195;chassis23{***BROCADE not found ***}
+ethrcxb2436;chassis23{***BROCADE not found ***}
+ethrcxb197;chassis23{***BROCADE not found ***}
+ethrcxb198;chassis23{***BROCADE not found ***}
+ethrcxb192;chassis23{***BROCADE not found ***}
+ethrcxb200;chassis23{***BROCADE not found ***}
+ethrcxb196;chassis23{***BROCADE not found ***}
+ethrcxb1802;chassis23{***BROCADE not found ***}
+chassis23;{****no of HBA missings*****}1;{****no of BROC missings*****}1
+atrcxb1303;chassis10; Port 1: 50:01:43:80:05:69:b7:60; Port 2: 50:01:43:80:05:69:b7:62; LOM:1-a - 00:17:A4:77:44:00
+atrcxb1304;chassis10; Port 1: 50:01:43:80:05:69:cb:20; Port 2: 50:01:43:80:05:69:cb:22; LOM:1-a - 00:17:A4:77:44:0C
+atrcxb1305;chassis10; Port 1: 50:01:43:80:05:69:b5:30; Port 2: 50:01:43:80:05:69:b5:32; LOM:1-a - 00:17:A4:77:44:18
+atrcxb1306;chassis10; Port 1: 50:01:43:80:05:69:b8:44; Port 2: 50:01:43:80:05:69:b8:46; LOM:1-a - 00:17:A4:77:44:24
+atrcxb1307;chassis10; Port 1: 50:01:43:80:05:69:c9:c4; Port 2: 50:01:43:80:05:69:c9:c6; LOM:1-a - 00:17:A4:77:44:30
+atrcxb1308;chassis10; Port 1: 50:01:43:80:05:69:c5:50; Port 2: 50:01:43:80:05:69:c5:52; LOM:1-a - 00:17:A4:77:44:84
+atrcxb1309;chassis10; Port 1: 50:01:43:80:05:69:cf:18; Port 2: 50:01:43:80:05:69:cf:1a; LOM:1-a - 00:17:A4:77:44:90
+atrcxb1310;chassis10; Port 1: 50:01:43:80:05:69:b8:fc; Port 2: 50:01:43:80:05:69:b8:fe; LOM:1-a - 00:17:A4:77:44:9C
+atrcxb1360;chassis10; Port 1: 50:01:43:80:12:0b:4b:7c; Port 2: 50:01:43:80:12:0b:4b:7e; LOM:1-a - 00:17:A4:77:44:A8
+atrcxb1361;chassis10; Port 1: 50:01:43:80:12:0b:4b:54; Port 2: 50:01:43:80:12:0b:4b:56; LOM:1-a - 00:17:A4:77:44:3C
+atrcxb1362;chassis10; Port 1: 50:01:43:80:12:0b:4c:04; Port 2: 50:01:43:80:12:0b:4c:06; LOM:1-a - 00:17:A4:77:44:48
+atrcxb1363;chassis10; Port 1: 50:01:43:80:12:0b:4b:30; Port 2: 50:01:43:80:12:0b:4b:32; LOM:1-a - 00:17:A4:77:44:54
+atrcxb1364;chassis10; Port 1: 50:01:43:80:12:0b:4b:a4; Port 2: 50:01:43:80:12:0b:4b:a6; LOM:1-a - 00:17:A4:77:44:60
+atrcxb1365;chassis10; Port 1: 50:01:43:80:12:0b:4b:a0; Port 2: 50:01:43:80:12:0b:4b:a2; LOM:1-a - 00:17:A4:77:44:6C
+atrcxb1335;chassis10; Port 1: 50:01:43:80:07:2f:00:d0; Port 2: 50:01:43:80:07:2f:00:d2; LOM:1-a - 00:17:A4:77:44:B4
+atrcxb1336;chassis10; Port 1: 50:01:43:80:07:2f:00:bc; Port 2: 50:01:43:80:07:2f:00:be; LOM:1-a - 00:17:A4:77:44:78
+chassis10;{****no of HBA missings*****}0;{****no of BROC missings*****}0
+atrcxb1284;chassis19; Port 1: 50:01:43:80:09:ab:da:e8; Port 2: 50:01:43:80:09:ab:da:ea; LOM:1-a - 3C:4A:92:79:6D:52
+atrcxb1285;chassis19; Port 1: 50:01:43:80:12:0a:c6:10; Port 2: 50:01:43:80:12:0a:c6:12; LOM:1-a - 3C:4A:92:76:39:08
+atrcxb1286;chassis19{***HBA not found ***}
+atrcxb1287;chassis19; Port 1: 50:01:43:80:07:2a:27:e8; Port 2: 50:01:43:80:07:2a:27:ea; LOM:1-a - D4:85:64:4D:1D:C8
+atrcxb1288;chassis19{***HBA not found ***}
+atrcxb1289;chassis19; Port 1: 50:01:43:80:07:2a:26:38; Port 2: 50:01:43:80:07:2a:26:3a; LOM:1-a - D4:85:64:4D:FB:D0
+atrcxb1290;chassis19; Port 1: 50:01:43:80:18:70:b2:88; Port 2: 50:01:43:80:18:70:b2:8a; LOM:1-a - D4:85:64:4D:6B:88
+atrcxb1291;chassis19; Port 1: 50:01:43:80:12:0c:5e:78; Port 2: 50:01:43:80:12:0c:5e:7a; LOM:1-a - 98:4B:E1:61:6C:38
+atrcxb1292;chassis19{***HBA not found ***}
+atrcxb1293;chassis19{***HBA not found ***}
+atrcxb1294;chassis19{***HBA not found ***}
+atrcxb1295;chassis19; Port 1: 50:01:43:80:07:2a:27:88; Port 2: 50:01:43:80:07:2a:27:8a; LOM:1-a - D4:85:64:57:1D:E0
+atrcxb1503;chassis19; Port 1: 50:01:43:80:12:0c:60:cc; Port 2: 50:01:43:80:12:0c:60:ce; LOM:1-a - 3C:4A:92:F7:E4:E8
+chassis19;{****no of HBA missings*****}5;{****no of BROC missings*****}0
+ethrcxb1563;chassis3{***BROCADE not found ***}
+ethrcxb136;chassis3{***HBA not found ***}
+ethrcxb136{***BROCADE not found ***}
+ethrcxb137;chassis3{***HBA not found ***}
+ethrcxb137{***BROCADE not found ***}
+ethrcxb138;chassis3{***HBA not found ***}
+ethrcxb138{***BROCADE not found ***}
+ethrcxb139;chassis3{***HBA not found ***}
+ethrcxb139{***BROCADE not found ***}
+ethrcxb140;chassis3{***HBA not found ***}
+ethrcxb140{***BROCADE not found ***}
+ethrcxb141;chassis3{***HBA not found ***}
+ethrcxb141{***BROCADE not found ***}
+ethrcxb142;chassis3{***HBA not found ***}
+ethrcxb142{***BROCADE not found ***}
+ethrcxb143;chassis3{***HBA not found ***}
+ethrcxb143{***BROCADE not found ***}
+ethrcxb144;chassis3{***HBA not found ***}
+ethrcxb144{***BROCADE not found ***}
+ethrcxb145;chassis3{***HBA not found ***}
+ethrcxb145{***BROCADE not found ***}
+ethrcxb146;chassis3{***HBA not found ***}
+ethrcxb146{***BROCADE not found ***}
+ethrcxb147;chassis3{***HBA not found ***}
+ethrcxb147{***BROCADE not found ***}
+chassis3;{****no of HBA missings*****}12;{****no of BROC missings*****}1
+chassis67;{****no of HBA missings*****}0;{****no of BROC missings*****}0
+chassis71;{****no of HBA missings*****}0;{****no of BROC missings*****}0
+atrcxb1439;chassis37{***BROCADE not found ***}
+atrcxb1440;chassis37{***BROCADE not found ***}
+atrcxb1837;chassis37{***BROCADE not found ***}
+atrcxb1838;chassis37{***BROCADE not found ***}
+atrcxb2441;chassis37{***BROCADE not found ***}
+atrcxb1839;chassis37{***BROCADE not found ***}
+atrcxb1840;chassis37{***BROCADE not found ***}
+atrcxb2442;chassis37{***BROCADE not found ***}
+chassis37;{****no of HBA missings*****}0;{****no of BROC missings*****}1
+chassis40;{****no of HBA missings*****}0;{****no of BROC missings*****}0
+chassis41;{****no of HBA missings*****}0;{****no of BROC missings*****}0
+atrcxb1589;chassis42; Port 1: 50:01:43:80:09:ab:da:b0; Port 2: 50:01:43:80:09:ab:da:b2;
+atrcxb1565;chassis42; Port 1: 50:01:43:80:04:bf:2e:f8; Port 2: 50:01:43:80:04:bf:2e:fa;
+atrcxb1563;chassis42; Port 1: 50:01:43:80:12:0c:76:2c; Port 2: 50:01:43:80:12:0c:76:2e; LOM:1-a - 00:17:A4:77:A4:1C
+atrcxb1619;chassis42; Port 1: 50:01:43:80:12:0c:71:48; Port 2: 50:01:43:80:12:0c:71:4a; LOM:1-a - 00:17:A4:77:A4:24
+atrcxb1620;chassis42; Port 1: 50:01:43:80:12:0c:71:54; Port 2: 50:01:43:80:12:0c:71:56; LOM:1-a - 00:17:A4:77:A4:34
+atrcxb1198;chassis42; Port 1: 50:01:43:80:05:6c:5c:9c; Port 2: 50:01:43:80:05:6c:5c:9e;
+atrcxb1199;chassis42; Port 1: 50:01:43:80:05:6c:5c:a4; Port 2: 50:01:43:80:05:6c:5c:a6;
+atrcxb1617;chassis42; Port 1: 50:01:43:80:12:0c:71:f8; Port 2: 50:01:43:80:12:0c:71:fa; LOM:1-a - 00:17:A4:77:A4:48
+atrcxb1618;chassis42; Port 1: 50:01:43:80:12:0c:65:bc; Port 2: 50:01:43:80:12:0c:65:be; LOM:1-a - 00:17:A4:77:A4:4C
+ethrcxb1692;chassis42{***HBA not found ***}
+ethrcxb1693;chassis42{***HBA not found ***}
+chassis42;{****no of HBA missings*****}2;{****no of BROC missings*****}0
+atrcxb1567;chassis43{***BROCADE not found ***}
+atrcxb1605;chassis43{***HBA not found ***}
+atrcxb1605{***BROCADE not found ***}
+atrcxb2247;chassis43{***BROCADE not found ***}
+atrcxb1576;chassis43{***BROCADE not found ***}
+chassis43;{****no of HBA missings*****}1;{****no of BROC missings*****}1
+atrcxb1584;chassis45{***BROCADE not found ***}
+atrcxb1585;chassis45{***BROCADE not found ***}
+atrcxb1586;chassis45{***BROCADE not found ***}
+atrcxb1587;chassis45{***BROCADE not found ***}
+atrcxb1588;chassis45{***BROCADE not found ***}
+atrcxb1438;chassis45{***BROCADE not found ***}
+atrcxb1437;chassis45{***BROCADE not found ***}
+chassis45;{****no of HBA missings*****}0;{****no of BROC missings*****}1
+{***Server not found ***}
+{***Server not found ***}
+{***Server not found ***}
+{***Server not found ***}
+{***Server not found ***}
+chassis49;{****no of HBA missings*****}0;{****no of BROC missings*****}0
+ethrcxb1716;chassis54{***HBA not found ***}
+ethrcxb1716{***BROCADE not found ***}
+ethrcxb1717;chassis54{***HBA not found ***}
+ethrcxb1717{***BROCADE not found ***}
+ethrcxb1702;chassis54{***HBA not found ***}
+ethrcxb1702{***BROCADE not found ***}
+ethrcxb1703;chassis54{***HBA not found ***}
+ethrcxb1703{***BROCADE not found ***}
+ethrcxb1704;chassis54{***HBA not found ***}
+ethrcxb1704{***BROCADE not found ***}
+ethrcxb1705;chassis54{***HBA not found ***}
+ethrcxb1705{***BROCADE not found ***}
+ethrcxb1706;chassis54{***HBA not found ***}
+ethrcxb1706{***BROCADE not found ***}
+ethrcxb1707;chassis54{***HBA not found ***}
+ethrcxb1707{***BROCADE not found ***}
+ethrcxb1709;chassis54{***HBA not found ***}
+ethrcxb1709{***BROCADE not found ***}
+ethrcxb1710;chassis54{***HBA not found ***}
+ethrcxb1710{***BROCADE not found ***}
+ethrcxb1711;chassis54{***HBA not found ***}
+ethrcxb1711{***BROCADE not found ***}
+ethrcxb114;chassis54{***BROCADE not found ***}
+chassis54;{****no of HBA missings*****}11;{****no of BROC missings*****}1
+ethrcxb1875;chassis55{***BROCADE not found ***}
+ethrcxb1729;chassis55{***BROCADE not found ***}
+ethrcxb1789;chassis55{***BROCADE not found ***}
+ethrcxb1728;chassis55{***BROCADE not found ***}
+ethrcxb1694;chassis55{***HBA not found ***}
+ethrcxb1694{***BROCADE not found ***}
+ethrcxb117;chassis55{***BROCADE not found ***}
+ethrcxb1715;chassis55{***HBA not found ***}
+ethrcxb1715{***BROCADE not found ***}
+ethrcxb1785;chassis55{***BROCADE not found ***}
+ethrcxb1786;chassis55{***BROCADE not found ***}
+ethrcxb1787;chassis55{***BROCADE not found ***}
+ethrcxb1788;chassis55{***BROCADE not found ***}
+ethrcxb1695;chassis55{***HBA not found ***}
+ethrcxb1695{***BROCADE not found ***}
+ethrcxb1696;chassis55{***HBA not found ***}
+ethrcxb1696{***BROCADE not found ***}
+chassis55;{****no of HBA missings*****}4;{****no of BROC missings*****}1
+atrcxb1738;chassis58; Port 1: 50:01:43:80:14:0d:56:78; Port 2: 50:01:43:80:14:0d:56:7a; LOM:1-a - 00:17:A4:77:80:00
+atrcxb1739;chassis58; Port 1: 50:01:43:80:14:0d:5c:20; Port 2: 50:01:43:80:14:0d:5c:22; LOM:1-a - 00:17:A4:77:80:10
+atrcxb1740;chassis58; Port 1: 50:01:43:80:14:0d:57:54; Port 2: 50:01:43:80:14:0d:57:56; LOM:1-a - 00:17:A4:77:80:20
+atrcxb1394;chassis58; Port 1: 50:01:43:80:12:0b:3e:00; Port 2: 50:01:43:80:12:0b:3e:02; LOM:1-a - 00:17:A4:77:80:2C
+atrcxb1741;chassis58; Port 1: 50:01:43:80:14:0d:57:5c; Port 2: 50:01:43:80:14:0d:57:5e; LOM:1-a - 00:17:A4:77:80:3C
+atrcxb1742;chassis58; Port 1: 50:01:43:80:14:0d:56:9c; Port 2: 50:01:43:80:14:0d:56:9e; LOM:1-a - 00:17:A4:77:80:44
+atrcxb1743;chassis58; Port 1: 50:01:43:80:14:0d:5a:64; Port 2: 50:01:43:80:14:0d:5a:66; LOM:1-a - 00:17:A4:77:80:4C
+chassis58;{****no of HBA missings*****}0;{****no of BROC missings*****}0
+atrcxb1760;chassis60{***HBA not found ***}
+atrcxb1760{***BROCADE not found ***}
+atrcxb1761;chassis60{***HBA not found ***}
+atrcxb1761{***BROCADE not found ***}
+atrcxb1762;chassis60{***HBA not found ***}
+atrcxb1762{***BROCADE not found ***}
+atrcxb1763;chassis60{***HBA not found ***}
+atrcxb1763{***BROCADE not found ***}
+atrcxb1764;chassis60{***HBA not found ***}
+atrcxb1764{***BROCADE not found ***}
+atrcxb1765;chassis60{***HBA not found ***}
+atrcxb1765{***BROCADE not found ***}
+atrcxb1766;chassis60{***HBA not found ***}
+atrcxb1766{***BROCADE not found ***}
+atrcxb1767;chassis60{***HBA not found ***}
+atrcxb1767{***BROCADE not found ***}
+atrcxb1768;chassis60{***HBA not found ***}
+atrcxb1768{***BROCADE not found ***}
+atrcxb1770;chassis60{***HBA not found ***}
+atrcxb1770{***BROCADE not found ***}
+atrcxb1771;chassis60{***HBA not found ***}
+atrcxb1771{***BROCADE not found ***}
+atrcxb1772;chassis60{***HBA not found ***}
+atrcxb1772{***BROCADE not found ***}
+atrcxb1773;chassis60{***HBA not found ***}
+atrcxb1773{***BROCADE not found ***}
+atrcxb1775;chassis60{***HBA not found ***}
+atrcxb1775{***BROCADE not found ***}
+chassis60;{****no of HBA missings*****}14;{****no of BROC missings*****}1
+atrcxb1812;chassis62; Port 1: 50:01:43:80:12:0c:7c:c4 Port 1: 50:01:43:80:12:0c:7c:c4; Port 2: 50:01:43:80:12:0c:7c:c6 Port 2: 50:01:43:80:12:0c:7c:c6;
+atrcxb1813;chassis62; Port 1: 50:01:43:80:12:0c:72:e4 Port 1: 50:01:43:80:12:0c:72:e4; Port 2: 50:01:43:80:12:0c:72:e6 Port 2: 50:01:43:80:12:0c:72:e6;
+atrcxb1699;chassis62; Port 1: 50:01:43:80:12:0c:f7:44 Port 1: 50:01:43:80:12:0c:f7:44; Port 2: 50:01:43:80:12:0c:f7:46 Port 2: 50:01:43:80:12:0c:f7:46;
+atrcxb1700;chassis62; Port 1: 50:01:43:80:12:0c:f5:10 Port 1: 50:01:43:80:12:0c:f5:10; Port 2: 50:01:43:80:12:0c:f5:12 Port 2: 50:01:43:80:12:0c:f5:12;
+atrcxb1806;chassis62; Port 1: 50:01:43:80:14:0e:8c:08 Port 1: 50:01:43:80:14:0e:8c:08; Port 2: 50:01:43:80:14:0e:8c:0a Port 2: 50:01:43:80:14:0e:8c:0a;
+atrcxb1807;chassis62; Port 1: 50:01:43:80:14:0e:8c:28 Port 1: 50:01:43:80:14:0e:8c:28; Port 2: 50:01:43:80:14:0e:8c:2a Port 2: 50:01:43:80:14:0e:8c:2a;
+atrcxb1808;chassis62; Port 1: 50:01:43:80:14:0e:84:70 Port 1: 50:01:43:80:14:0e:84:70; Port 2: 50:01:43:80:14:0e:84:72 Port 2: 50:01:43:80:14:0e:84:72;
+atrcxb1809;chassis62; Port 1: 50:01:43:80:14:0e:8b:58 Port 1: 50:01:43:80:14:0e:8b:58; Port 2: 50:01:43:80:14:0e:8b:5a Port 2: 50:01:43:80:14:0e:8b:5a;
+atrcxb1810;chassis62; Port 1: 50:01:43:80:14:0e:7a:a8 Port 1: 50:01:43:80:14:0e:7a:a8; Port 2: 50:01:43:80:14:0e:7a:aa Port 2: 50:01:43:80:14:0e:7a:aa;
+atrcxb1811;chassis62; Port 1: 50:01:43:80:14:0e:8b:c0 Port 1: 50:01:43:80:14:0e:8b:c0; Port 2: 50:01:43:80:14:0e:8b:c2 Port 2: 50:01:43:80:14:0e:8b:c2;
+atrcxb1812;chassis62; Port 1: 50:01:43:80:12:0c:7c:c4 Port 1: 50:01:43:80:12:0c:7c:c4; Port 2: 50:01:43:80:12:0c:7c:c6 Port 2: 50:01:43:80:12:0c:7c:c6;
+atrcxb1813;chassis62; Port 1: 50:01:43:80:12:0c:72:e4 Port 1: 50:01:43:80:12:0c:72:e4; Port 2: 50:01:43:80:12:0c:72:e6 Port 2: 50:01:43:80:12:0c:72:e6;
+atrcxb1699;chassis62; Port 1: 50:01:43:80:12:0c:f7:44 Port 1: 50:01:43:80:12:0c:f7:44; Port 2: 50:01:43:80:12:0c:f7:46 Port 2: 50:01:43:80:12:0c:f7:46;
+atrcxb1700;chassis62; Port 1: 50:01:43:80:12:0c:f5:10 Port 1: 50:01:43:80:12:0c:f5:10; Port 2: 50:01:43:80:12:0c:f5:12 Port 2: 50:01:43:80:12:0c:f5:12;
+atrcxb1806;chassis62; Port 1: 50:01:43:80:14:0e:8c:08 Port 1: 50:01:43:80:14:0e:8c:08; Port 2: 50:01:43:80:14:0e:8c:0a Port 2: 50:01:43:80:14:0e:8c:0a;
+atrcxb1807;chassis62; Port 1: 50:01:43:80:14:0e:8c:28 Port 1: 50:01:43:80:14:0e:8c:28; Port 2: 50:01:43:80:14:0e:8c:2a Port 2: 50:01:43:80:14:0e:8c:2a;
+atrcxb1808;chassis62; Port 1: 50:01:43:80:14:0e:84:70 Port 1: 50:01:43:80:14:0e:84:70; Port 2: 50:01:43:80:14:0e:84:72 Port 2: 50:01:43:80:14:0e:84:72;
+atrcxb1809;chassis62; Port 1: 50:01:43:80:14:0e:8b:58 Port 1: 50:01:43:80:14:0e:8b:58; Port 2: 50:01:43:80:14:0e:8b:5a Port 2: 50:01:43:80:14:0e:8b:5a;
+atrcxb1810;chassis62; Port 1: 50:01:43:80:14:0e:7a:a8 Port 1: 50:01:43:80:14:0e:7a:a8; Port 2: 50:01:43:80:14:0e:7a:aa Port 2: 50:01:43:80:14:0e:7a:aa;
+atrcxb1811;chassis62; Port 1: 50:01:43:80:14:0e:8b:c0 Port 1: 50:01:43:80:14:0e:8b:c0; Port 2: 50:01:43:80:14:0e:8b:c2 Port 2: 50:01:43:80:14:0e:8b:c2;
+chassis62;{****no of HBA missings*****}0;{****no of BROC missings*****}0
+atrcxb1790;chassis61{***BROCADE not found ***}
+atrcxb1792;chassis61{***BROCADE not found ***}
+atrcxb1795;chassis61{***BROCADE not found ***}
+atrcxb1796;chassis61{***BROCADE not found ***}
+chassis61;{****no of HBA missings*****}0;{****no of BROC missings*****}1
+atrcxb1592;chassis46; Port 1: 50:01:43:80:12:0c:67:a0; Port 2: 50:01:43:80:12:0c:67:a2; LOM:1-a - 00:17:A4:77:28:00
+atrcxb1593;chassis46; Port 1: 50:01:43:80:12:0c:62:0c; Port 2: 50:01:43:80:12:0c:62:0e; LOM:1-a - 00:17:A4:77:28:10
+atrcxb1594;chassis46{***HBA not found ***}
+atrcxb1595;chassis46{***HBA not found ***}
+atrcxb1596;chassis46{***HBA not found ***}
+atrcxb1597;chassis46{***HBA not found ***}
+atrcxb1598;chassis46; Port 1: 50:01:43:80:07:31:31:bc; Port 2: 50:01:43:80:07:31:31:be; LOM:1-a - 00:17:A4:77:28:44
+atrcxb1599;chassis46{***HBA not found ***}
+atrcxb1600;chassis46{***HBA not found ***}
+atrcxb1601;chassis46{***HBA not found ***}
+atrcxb1602;chassis46{***HBA not found ***}
+atrcxb1603;chassis46{***HBA not found ***}
+atrcxb1937;chassis46; Port 1: 50:01:43:80:14:0d:3b:a0; Port 2: 50:01:43:80:14:0d:3b:a2; LOM:1-a - 00:17:A4:77:28:54
+atrcxb1938;chassis46; Port 1: 50:01:43:80:14:0d:41:5c; Port 2: 50:01:43:80:14:0d:41:5e; LOM:1-a - 00:17:A4:77:28:6C
+chassis46;{****no of HBA missings*****}9;{****no of BROC missings*****}0
+atrcxb1606;chassis47; Port 1: 50:01:43:80:12:0c:64:e8; Port 2: 50:01:43:80:12:0c:64:ea; LOM:1-a - 00:17:A4:77:54:00
+atrcxb1607;chassis47; Port 1: 50:01:43:80:12:0c:64:58; Port 2: 50:01:43:80:12:0c:64:5a; LOM:1-a - 00:17:A4:77:54:10
+atrcxb1608;chassis47; Port 1: 50:01:43:80:12:0c:6b:cc; Port 2: 50:01:43:80:12:0c:6b:ce; LOM:1-a - 00:17:A4:77:54:20
+atrcxb1609;chassis47{***HBA not found ***}
+atrcxb1610;chassis47{***HBA not found ***}
+atrcxb1611;chassis47; Port 1: 50:01:43:80:07:31:31:d4; Port 2: 50:01:43:80:07:31:31:d6; LOM:1-a - 00:17:A4:77:54:40
+atrcxb1612;chassis47; Port 1: 50:01:43:80:07:31:2d:90; Port 2: 50:01:43:80:07:31:2d:92; LOM:1-a - 00:17:A4:77:54:4C
+atrcxb1613;chassis47; Port 1: 50:01:43:80:07:31:31:5c; Port 2: 50:01:43:80:07:31:31:5e; LOM:1-a - 00:17:A4:77:54:54
+atrcxb1614;chassis47; Port 1: 50:01:43:80:07:31:2c:dc; Port 2: 50:01:43:80:07:31:2c:de; LOM:1-a - 00:17:A4:77:54:58
+atrcxb1615;chassis47{***HBA not found ***}
+chassis47;{****no of HBA missings*****}3;{****no of BROC missings*****}0
+ethrcxb1629;chassis48{***HBA not found ***}
+ethrcxb1629{***BROCADE not found ***}
+ethrcxb1630;chassis48{***HBA not found ***}
+ethrcxb1630{***BROCADE not found ***}
+ethrcxb1631;chassis48{***HBA not found ***}
+ethrcxb1631{***BROCADE not found ***}
+ethrcxb1632;chassis48{***HBA not found ***}
+ethrcxb1632{***BROCADE not found ***}
+ethrcxb1633;chassis48{***HBA not found ***}
+ethrcxb1633{***BROCADE not found ***}
+ethrcxb1634;chassis48{***BROCADE not found ***}
+ethrcxb1635;chassis48{***HBA not found ***}
+ethrcxb1635{***BROCADE not found ***}
+ethrcxb1636;chassis48{***HBA not found ***}
+ethrcxb1636{***BROCADE not found ***}
+ethrcxb1637;chassis48{***HBA not found ***}
+ethrcxb1637{***BROCADE not found ***}
+ethrcxb1803;chassis48{***BROCADE not found ***}
+ethrcxb1638;chassis48{***BROCADE not found ***}
+chassis48;{****no of HBA missings*****}8;{****no of BROC missings*****}1
+atrcxb1648;chassis51{***BROCADE not found ***}
+atrcxb1649;chassis51{***BROCADE not found ***}
+atrcxb1650;chassis51{***BROCADE not found ***}
+atrcxb1651;chassis51{***BROCADE not found ***}
+atrcxb1247;chassis51{***BROCADE not found ***}
+atrcxb1566;chassis51{***BROCADE not found ***}
+atrcxb1652;chassis51{***BROCADE not found ***}
+atrcxb1653;chassis51{***BROCADE not found ***}
+chassis51;{****no of HBA missings*****}0;{****no of BROC missings*****}1
+atrcxb1718;chassis56{***BROCADE not found ***}
+atrcxb1719;chassis56{***BROCADE not found ***}
+atrcxb1720;chassis56{***BROCADE not found ***}
+atrcxb1683;chassis56{***BROCADE not found ***}
+atrcxb2124;chassis56{***BROCADE not found ***}
+atrcxb1723;chassis56{***BROCADE not found ***}
+atrcxb1724;chassis56{***BROCADE not found ***}
+atrcxb1725;chassis56{***BROCADE not found ***}
+atrcxb1487;chassis56{***BROCADE not found ***}
+chassis56;{****no of HBA missings*****}0;{****no of BROC missings*****}1
+atrcxb1730;chassis57{***BROCADE not found ***}
+atrcxb1731;chassis57{***BROCADE not found ***}
+atrcxb1732;chassis57{***BROCADE not found ***}
+atrcxb1733;chassis57{***BROCADE not found ***}
+atrcxb1934;chassis57{***BROCADE not found ***}
+atrcxb2090;chassis57{***BROCADE not found ***}
+atrcxb2147;chassis57{***BROCADE not found ***}
+atrcxb2148;chassis57{***BROCADE not found ***}
+atrcxb1734;chassis57{***BROCADE not found ***}
+atrcxb1735;chassis57{***BROCADE not found ***}
+atrcxb1736;chassis57{***BROCADE not found ***}
+atrcxb1737;chassis57{***BROCADE not found ***}
+atrcxb1935;chassis57{***BROCADE not found ***}
+atrcxb2091;chassis57{***BROCADE not found ***}
+chassis57;{****no of HBA missings*****}0;{****no of BROC missings*****}1
+atrcxb1842;chassis15{***BROCADE not found ***}
+atrcxb1843;chassis15{***BROCADE not found ***}
+atrcxb1844;chassis15{***BROCADE not found ***}
+atrcxb1474;chassis15{***BROCADE not found ***}
+atrcxb1475;chassis15{***BROCADE not found ***}
+atrcxb1476;chassis15{***BROCADE not found ***}
+atrcxb1845;chassis15{***BROCADE not found ***}
+atrcxb1846;chassis15{***BROCADE not found ***}
+atrcxb1847;chassis15{***BROCADE not found ***}
+atrcxb1471;chassis15{***BROCADE not found ***}
+atrcxb1472;chassis15{***BROCADE not found ***}
+atrcxb1473;chassis15{***BROCADE not found ***}
+chassis15;{****no of HBA missings*****}0;{****no of BROC missings*****}1
+chassis11;{****no of HBA missings*****}0;{****no of BROC missings*****}0
+chassis13;{****no of HBA missings*****}0;{****no of BROC missings*****}0
+atrcxb1311;chassis20; Port 1: 50:01:43:80:12:0b:2b:ec; Port 2: 50:01:43:80:12:0b:2b:ee; LOM:1-a - 78:AC:C0:FC:C5:9C
+atrcxb1312;chassis20; Port 1: 50:01:43:80:12:0b:2b:28; Port 2: 50:01:43:80:12:0b:2b:2a; LOM:1-a - 78:AC:C0:FC:C2:2A
+atrcxb1313;chassis20; Port 1: 50:01:43:80:07:2f:00:fc; Port 2: 50:01:43:80:07:2f:00:fe; LOM:1-a - 68:B5:99:B3:A5:18
+atrcxb1314;chassis20; Port 1: 50:01:43:80:07:2f:00:98; Port 2: 50:01:43:80:07:2f:00:9a; LOM:1-a - 68:B5:99:B2:1D:D8
+atrcxb1315;chassis20; Port 1: 50:01:43:80:07:2f:00:c0; Port 2: 50:01:43:80:07:2f:00:c2; LOM:1-a - 68:B5:99:B2:3A:58
+atrcxb1316;chassis20; Port 1: 50:01:43:80:07:2f:00:b8; Port 2: 50:01:43:80:07:2f:00:ba; LOM:1-a - 68:B5:99:B3:26:C0
+atrcxb1320;chassis20; Port 1: 50:01:43:80:07:2f:51:20; Port 2: 50:01:43:80:07:2f:51:22; LOM:1-a - 68:B5:99:B3:E6:08
+atrcxb1395;chassis20; Port 1: 50:01:43:80:07:2f:50:e0; Port 2: 50:01:43:80:07:2f:50:e2; LOM:1-a - D4:85:64:49:EE:50
+atrcxb1319;chassis20{***HBA not found ***}
+atrcxb1960;chassis20; Port 1: 50:01:43:80:16:78:cc:64; Port 2: 50:01:43:80:16:78:cc:66; LOM:1-a - D4:85:64:5E:D8:08
+atrcxb1961;chassis20; Port 1: 50:01:43:80:16:79:f5:18; Port 2: 50:01:43:80:16:79:f5:1a; LOM:1-a - D4:85:64:4D:DE:B8
+atrcxb1322;chassis20; Port 1: 50:01:43:80:07:2f:51:2c; Port 2: 50:01:43:80:07:2f:51:2e; LOM:1-a - 68:B5:99:B3:26:78
+atrcxb1962;chassis20; Port 1: 50:01:43:80:16:78:cb:10; Port 2: 50:01:43:80:16:78:cb:12; LOM:1-a - 78:E7:D1:59:FF:80
+chassis20;{****no of HBA missings*****}1;{****no of BROC missings*****}0
+chassis7;{****no of HBA missings*****}0;{****no of BROC missings*****}0
+atrcxb1106esxi;chassis8{***BROCADE not found ***}
+atrcxb2068;chassis8{***BROCADE not found ***}
+atrcxb2032;chassis8{***HBA not found ***}
+atrcxb2032{***BROCADE not found ***}
+atrcxb1532;chassis8{***HBA not found ***}
+atrcxb1532{***BROCADE not found ***}
+atrcxb1533;chassis8{***HBA not found ***}
+atrcxb1533{***BROCADE not found ***}
+atrcxb1534;chassis8{***BROCADE not found ***}
+atrcxb1535;chassis8{***HBA not found ***}
+atrcxb1535{***BROCADE not found ***}
+chassis8;{****no of HBA missings*****}4;{****no of BROC missings*****}1
+atrcxb1345;chassis24{***BROCADE not found ***}
+atrcxb1346;chassis24{***BROCADE not found ***}
+atrcxb1246;chassis24{***HBA not found ***}
+atrcxb1246{***BROCADE not found ***}
+atrcxb1250;chassis24{***HBA not found ***}
+atrcxb1250{***BROCADE not found ***}
+atrcxb1282;chassis24{***HBA not found ***}
+atrcxb1282{***BROCADE not found ***}
+atrcxb1283;chassis24{***HBA not found ***}
+atrcxb1283{***BROCADE not found ***}
+atrcxb1297;chassis24{***BROCADE not found ***}
+atrcxb2071;chassis24{***HBA not found ***}
+atrcxb2071{***BROCADE not found ***}
+atrcxb2072;chassis24{***BROCADE not found ***}
+atrcxb1604;chassis24{***HBA not found ***}
+atrcxb1604{***BROCADE not found ***}
+atrcxb2073;chassis24{***BROCADE not found ***}
+chassis24;{****no of HBA missings*****}6;{****no of BROC missings*****}1
+atrcxb1026;chassis25; Port 1: 50:01:43:80:05:68:78:78; Port 2: 50:01:43:80:05:68:78:7a; LOM:1-a - 00:17:A4:77:08:00
+atrcxb1027;chassis25; Port 1: 50:01:43:80:05:68:76:44; Port 2: 50:01:43:80:05:68:76:46; LOM:1-a - 00:17:A4:77:08:08
+atrcxb1401;chassis25; Port 1: 50:01:43:80:12:0b:87:80; Port 2: 50:01:43:80:12:0b:87:82; LOM:1-a - 00:17:A4:77:08:40
+atrcxb2133;chassis25; Port 1: 50:01:43:80:18:70:af:04; Port 2: 50:01:43:80:18:70:af:06; LOM:1-a - 00:17:A4:77:08:30
+atrcxb1415;chassis25; Port 1: 50:01:43:80:12:0b:7f:d0; Port 2: 50:01:43:80:12:0b:7f:d2; LOM:1-a - 00:17:A4:77:08:50
+atrcxb1400;chassis25; Port 1: 50:01:43:80:12:0b:84:c0; Port 2: 50:01:43:80:12:0b:84:c2; LOM:1-a - 00:17:A4:77:08:54
+atrcxb1411;chassis25; Port 1: 50:01:43:80:07:2e:e8:f8; Port 2: 50:01:43:80:07:2e:e8:fa;
+atrcxb1028;chassis25; Port 1: 50:01:43:80:05:68:76:18; Port 2: 50:01:43:80:05:68:76:1a; LOM:1-a - 00:17:A4:77:08:0C
+atrcxb1029;chassis25; Port 1: 50:01:43:80:05:68:76:10; Port 2: 50:01:43:80:05:68:76:12; LOM:1-a - 00:17:A4:77:08:10
+atrcxb1398;chassis25; Port 1: 50:01:43:80:12:0b:86:d8; Port 2: 50:01:43:80:12:0b:86:da; LOM:1-a - 00:17:A4:77:08:44
+atrcxb1399;chassis25; Port 1: 50:01:43:80:12:0b:84:dc; Port 2: 50:01:43:80:12:0b:84:de; LOM:1-a - 00:17:A4:77:08:48
+atrcxb1416;chassis25; Port 1: 50:01:43:80:12:0b:73:a4; Port 2: 50:01:43:80:12:0b:73:a6; LOM:1-a - 00:17:A4:77:08:4C
+atrcxb2238;chassis25; Port 1: 50:01:43:80:18:72:07:70; Port 2: 50:01:43:80:18:72:07:72; LOM:1-a - 00:17:A4:77:08:38
+chassis25;{****no of HBA missings*****}0;{****no of BROC missings*****}0
+atrcxb1276;chassis26; Port 1: 50:01:43:80:07:2e:f7:ac; Port 2: 50:01:43:80:07:2e:f7:ae;
+atrcxb1277;chassis26; Port 1: 50:01:43:80:07:2e:ee:38; Port 2: 50:01:43:80:07:2e:ee:3a;
+atrcxb1278;chassis26; Port 1: 50:01:43:80:07:2a:28:0c; Port 2: 50:01:43:80:07:2a:28:0e;
+atrcxb1279;chassis26; Port 1: 50:01:43:80:07:2a:24:74; Port 2: 50:01:43:80:07:2a:24:76;
+atrcxb1280;chassis26; Port 1: 50:01:43:80:07:2e:f5:2c; Port 2: 50:01:43:80:07:2e:f5:2e;
+atrcxb1281;chassis26; Port 1: 50:01:43:80:07:2e:f4:78; Port 2: 50:01:43:80:07:2e:f4:7a;
+atrcxb1366;chassis26; Port 1: 50:01:43:80:12:0b:4b:4c; Port 2: 50:01:43:80:12:0b:4b:4e;
+atrcxb1367;chassis26; Port 1: 50:01:43:80:12:0b:4a:68; Port 2: 50:01:43:80:12:0b:4a:6a;
+atrcxb1368;chassis26; Port 1: 50:01:43:80:12:0b:4a:60; Port 2: 50:01:43:80:12:0b:4a:62;
+atrcxb1369;chassis26; Port 1: 50:01:43:80:12:0b:4a:34; Port 2: 50:01:43:80:12:0b:4a:36;
+atrcxb1370;chassis26; Port 1: 50:01:43:80:12:0b:4c:00; Port 2: 50:01:43:80:12:0b:4c:02;
+atrcxb1371;chassis26; Port 1: 50:01:43:80:12:0b:4a:3c; Port 2: 50:01:43:80:12:0b:4a:3e;
+atrcxb1372;chassis26; Port 1: 50:01:43:80:12:0b:4c:10; Port 2: 50:01:43:80:12:0b:4c:12;
+atrcxb1373;chassis26; Port 1: 50:01:43:80:12:0b:4b:f8; Port 2: 50:01:43:80:12:0b:4b:fa;
+atrcxb1138;chassis26; Port 1: 50:01:43:80:05:69:b5:d8;;
+chassis26;{****no of HBA missings*****}0;{****no of BROC missings*****}0
+atrcxb1697;chassis27{***BROCADE not found ***}
+atrcxb1698;chassis27{***BROCADE not found ***}
+atrcxb1376;chassis27{***BROCADE not found ***}
+atrcxb1377;chassis27{***BROCADE not found ***}
+atrcxb1396;chassis27{***BROCADE not found ***}
+atrcxb1397;chassis27{***BROCADE not found ***}
+atrcxb2253;chassis27{***BROCADE not found ***}
+atrcxb2254;chassis27{***BROCADE not found ***}
+atrcxb1137;chassis27{***BROCADE not found ***}
+chassis27;{****no of HBA missings*****}0;{****no of BROC missings*****}1
+chassis28;{****no of HBA missings*****}0;{****no of BROC missings*****}0
+atrcxb1378;chassis29{***BROCADE not found ***}
+atrcxb1379;chassis29{***BROCADE not found ***}
+atrcxb1380;chassis29{***BROCADE not found ***}
+atrcxb1381;chassis29{***BROCADE not found ***}
+atrcxb1382;chassis29{***BROCADE not found ***}
+atrcxb1383;chassis29{***BROCADE not found ***}
+atrcxb1384;chassis29{***BROCADE not found ***}
+atrcxb1385;chassis29{***BROCADE not found ***}
+atrcxb1386;chassis29{***BROCADE not found ***}
+atrcxb1387;chassis29{***BROCADE not found ***}
+atrcxb1388;chassis29{***BROCADE not found ***}
+atrcxb1389;chassis29{***BROCADE not found ***}
+atrcxb1390;chassis29{***BROCADE not found ***}
+atrcxb1391;chassis29{***BROCADE not found ***}
+atrcxb1392;chassis29{***BROCADE not found ***}
+atrcxb1393;chassis29{***BROCADE not found ***}
+chassis29;{****no of HBA missings*****}0;{****no of BROC missings*****}1
+atrcxb1996;chassis30{***BROCADE not found ***}
+atrcxb1420;chassis30{***BROCADE not found ***}
+atrcxb1932;chassis30{***BROCADE not found ***}
+atrcxb2134;chassis30{***BROCADE not found ***}
+atrcxb2135;chassis30{***BROCADE not found ***}
+atrcxb2136;chassis30{***BROCADE not found ***}
+atrcxb1866;chassis30{***BROCADE not found ***}
+atrcxb2137;chassis30{***BROCADE not found ***}
+atrcxb2138;chassis30{***BROCADE not found ***}
+chassis30;{****no of HBA missings*****}0;{****no of BROC missings*****}1
+atrcxb1402;chassis31{***BROCADE not found ***}
+atrcxb1403;chassis31{***BROCADE not found ***}
+atrcxb1404;chassis31{***BROCADE not found ***}
+atrcxb1405;chassis31{***HBA not found ***}
+atrcxb1405{***BROCADE not found ***}
+atrcxb1406;chassis31{***HBA not found ***}
+atrcxb1406{***BROCADE not found ***}
+atrcxb1253;chassis31{***BROCADE not found ***}
+atrcxb2074;chassis31{***BROCADE not found ***}
+atrcxb2075;chassis31{***BROCADE not found ***}
+chassis31;{****no of HBA missings*****}2;{****no of BROC missings*****}1
+atrcxb2313;chassis32{***BROCADE not found ***}
+atrcxb1414;chassis32{***BROCADE not found ***}
+atrcxb1804;chassis32{***BROCADE not found ***}
+atrcxb1419;chassis32{***BROCADE not found ***}
+atrcxb2315;chassis32{***BROCADE not found ***}
+atrcxb2318;chassis32{***BROCADE not found ***}
+atrcxb2319;chassis32{***BROCADE not found ***}
+chassis32;{****no of HBA missings*****}0;{****no of BROC missings*****}1
+atrcxb1421;chassis33{***BROCADE not found ***}
+atrcxb1422;chassis33{***BROCADE not found ***}
+atrcxb1423;chassis33{***BROCADE not found ***}
+atrcxb1424;chassis33{***BROCADE not found ***}
+atrcxb1425;chassis33{***BROCADE not found ***}
+atrcxb1426;chassis33{***BROCADE not found ***}
+atrcxb1429;chassis33{***BROCADE not found ***}
+atrcxb1430;chassis33{***BROCADE not found ***}
+atrcxb1431;chassis33{***BROCADE not found ***}
+atrcxb1432;chassis33{***BROCADE not found ***}
+atrcxb1590;chassis33{***BROCADE not found ***}
+atrcxb1591;chassis33{***BROCADE not found ***}
+chassis33;{****no of HBA missings*****}0;{****no of BROC missings*****}1
+{***Server not found ***}
+{***Server not found ***}
+{***Server not found ***}
+{***Server not found ***}
+{***Server not found ***}
+{***Server not found ***}
+ethrcxb1621;chassis34{***BROCADE not found ***}
+ethrcxb1622;chassis34{***BROCADE not found ***}
+ethrcxb118;chassis34{***BROCADE not found ***}
+ethrcxb1624;chassis34{***BROCADE not found ***}
+chassis34;{****no of HBA missings*****}0;{****no of BROC missings*****}1
+{***Server not found ***}
+ethrcxb2371;chassis35{***BROCADE not found ***}
+ethrcxb2372;chassis35{***BROCADE not found ***}
+ethrcxb1459;chassis35{***HBA not found ***}
+ethrcxb1459{***BROCADE not found ***}
+ethrcxb1564;chassis35{***HBA not found ***}
+ethrcxb1564{***BROCADE not found ***}
+ethrcxb1623;chassis35{***HBA not found ***}
+ethrcxb1623{***BROCADE not found ***}
+ethrcxb2374;chassis35{***BROCADE not found ***}
+ethrcxb2375;chassis35{***BROCADE not found ***}
+ethrcxb1460;chassis35{***HBA not found ***}
+ethrcxb1460{***BROCADE not found ***}
+ethrcxb1625;chassis35{***HBA not found ***}
+ethrcxb1625{***BROCADE not found ***}
+ethrcxb1626;chassis35{***HBA not found ***}
+ethrcxb1626{***BROCADE not found ***}
+chassis35;{****no of HBA missings*****}6;{****no of BROC missings*****}1
+atrcxb1461;chassis36{***BROCADE not found ***}
+atrcxb1462;chassis36{***BROCADE not found ***}
+atrcxb1463;chassis36{***BROCADE not found ***}
+atrcxb1464;chassis36{***HBA not found ***}
+atrcxb1464{***BROCADE not found ***}
+atrcxb1466;chassis36{***BROCADE not found ***}
+chassis36;{****no of HBA missings*****}1;{****no of BROC missings*****}1
+atrcxb2122;chassis80{***BROCADE not found ***}
+atrcxb2123;chassis80{***BROCADE not found ***}
+atrcxb2081;chassis80{***BROCADE not found ***}
+atrcxb2082;chassis80{***BROCADE not found ***}
+atrcxb2083;chassis80{***BROCADE not found ***}
+atrcxb2324;chassis80{***BROCADE not found ***}
+atrcxb2323;chassis80{***BROCADE not found ***}
+atrcxb2326;chassis80{***BROCADE not found ***}
+atrcxb2325;chassis80{***BROCADE not found ***}
+chassis80;{****no of HBA missings*****}0;{****no of BROC missings*****}1
+{***Server not found ***}
+atrcxb2450;chassis83; Port 1: 50:01:43:80:21:da:be:54; Port 2: 50:01:43:80:21:da:be:56;
+atrcxb2451;chassis83; Port 1: 50:01:43:80:21:da:be:68; Port 2: 50:01:43:80:21:da:be:6a;
+atrcxb2345;chassis83; Port 1: 50:01:43:80:18:73:ed:f0; Port 2: 50:01:43:80:18:73:ed:f2;
+atrcxb2452;chassis83; Port 1: 50:01:43:80:21:da:be:64; Port 2: 50:01:43:80:21:da:be:66;
+atrcxb2269;chassis83; Port 1: 50:01:43:80:16:7d:b4:74; Port 2: 50:01:43:80:16:7d:b4:76;
+atrcxb2270;chassis83; Port 1: 50:01:43:80:16:7d:b1:80; Port 2: 50:01:43:80:16:7d:b1:82;
+atrcxb2271;chassis83; Port 1: 50:01:43:80:16:7d:b1:70; Port 2: 50:01:43:80:16:7d:b1:72;
+atrcxb2272;chassis83; Port 1: 50:01:43:80:16:7d:b2:9c; Port 2: 50:01:43:80:16:7d:b2:9e;
+atrcxb2273;chassis83; Port 1: 50:01:43:80:16:7d:b2:18; Port 2: 50:01:43:80:16:7d:b2:1a;
+atrcxb2274;chassis83; Port 1: 50:01:43:80:16:7d:be:40; Port 2: 50:01:43:80:16:7d:be:42;
+atrcxb2275;chassis83; Port 1: 50:01:43:80:16:7d:b3:b0; Port 2: 50:01:43:80:16:7d:b3:b2;
+atrcxb2276;chassis83; Port 1: 50:01:43:80:16:7d:b3:90; Port 2: 50:01:43:80:16:7d:b3:92;
+chassis83;{****no of HBA missings*****}0;{****no of BROC missings*****}0
+atrcxb2115;chassis64; Port 1: 50:01:43:80:18:70:be:40; Port 2: 50:01:43:80:18:70:be:42;
+atrcxb2116;chassis64; Port 1: 50:01:43:80:18:70:c5:40; Port 2: 50:01:43:80:18:70:c5:42;
+chassis64;{****no of HBA missings*****}0;{****no of BROC missings*****}0
+atrcxb1139;chassis86; Port 1: 50:01:43:80:05:6a:56:30; Port 2: 50:01:43:80:05:6a:56:32; LOM:1-a - 1C:C1:DE:ED:63:E0
+atrcxb2222;chassis86; Port 1: 50:01:43:80:18:70:ec:a8; Port 2: 50:01:43:80:18:70:ec:aa; LOM:1-a - 44:1E:A1:52:E9:00
+atrcxb2223;chassis86; Port 1: 50:01:43:80:18:70:ed:34; Port 2: 50:01:43:80:18:70:ed:36; LOM:1-a - 44:1E:A1:52:49:B8
+atrcxb2224;chassis86; Port 1: 50:01:43:80:18:70:f0:5c; Port 2: 50:01:43:80:18:70:f0:5e; LOM:1-a - E8:39:35:AB:24:40
+atrcxb2225;chassis86; Port 1: 50:01:43:80:18:70:ed:9c; Port 2: 50:01:43:80:18:70:ed:9e; LOM:1-a - 44:1E:A1:52:99:68
+atrcxb2226;chassis86; Port 1: 50:01:43:80:18:70:ec:5c; Port 2: 50:01:43:80:18:70:ec:5e; LOM:1-a - 44:1E:A1:45:96:70
+atrcxb2227;chassis86; Port 1: 50:01:43:80:18:70:ec:04; Port 2: 50:01:43:80:18:70:ec:06; LOM:1-a - E8:39:35:AB:34:08
+atrcxb2228;chassis86; Port 1: 50:01:43:80:18:70:ed:04; Port 2: 50:01:43:80:18:70:ed:06; LOM:1-a - 44:1E:A1:52:59:10
+atrcxb2229;chassis86; Port 1: 50:01:43:80:18:70:f1:fc; Port 2: 50:01:43:80:18:70:f1:fe; LOM:1-a - 44:1E:A1:52:C9:88
+chassis86;{****no of HBA missings*****}0;{****no of BROC missings*****}0
+{***Server not found ***}
+atrcxb2255;chassis88; Port 1: 50:01:43:80:16:7d:c2:ac; Port 2: 50:01:43:80:16:7d:c2:ae;
+atrcxb2256;chassis88; Port 1: 50:01:43:80:16:7d:c3:88; Port 2: 50:01:43:80:16:7d:c3:8a;
+atrcxb2257;chassis88; Port 1: 50:01:43:80:16:7d:c4:8c; Port 2: 50:01:43:80:16:7d:c4:8e;
+atrcxb2258;chassis88; Port 1: 50:01:43:80:16:7d:c3:f4; Port 2: 50:01:43:80:16:7d:c3:f6;
+atrcxb2259;chassis88; Port 1: 50:01:43:80:16:7d:c3:54; Port 2: 50:01:43:80:16:7d:c3:56;
+atrcxb2260;chassis88; Port 1: 50:01:43:80:16:7d:c4:10; Port 2: 50:01:43:80:16:7d:c4:12;
+atrcxb2261;chassis88; Port 1: 50:01:43:80:16:7d:c2:e8; Port 2: 50:01:43:80:16:7d:c2:ea;
+atrcxb2262;chassis88; Port 1: 50:01:43:80:16:7d:c3:d8; Port 2: 50:01:43:80:16:7d:c3:da;
+atrcxb2263;chassis88; Port 1: 50:01:43:80:16:7d:c3:ec; Port 2: 50:01:43:80:16:7d:c3:ee;
+atrcxb2264;chassis88; Port 1: 50:01:43:80:16:7d:c3:fc; Port 2: 50:01:43:80:16:7d:c3:fe;
+atrcxb2265;chassis88; Port 1: 50:01:43:80:16:7d:c3:1c; Port 2: 50:01:43:80:16:7d:c3:1e;
+atrcxb2266;chassis88; Port 1: 50:01:43:80:16:7d:c2:d8; Port 2: 50:01:43:80:16:7d:c2:da;
+atrcxb2267;chassis88; Port 1: 50:01:43:80:16:7d:c4:0c; Port 2: 50:01:43:80:16:7d:c4:0e;
+atrcxb2268;chassis88; Port 1: 50:01:43:80:16:7d:c4:1c; Port 2: 50:01:43:80:16:7d:c4:1e;
+chassis88;{****no of HBA missings*****}0;{****no of BROC missings*****}0
+atrcxb2277;chassis89; Port 1: 50:01:43:80:16:7d:b4:48; Port 2: 50:01:43:80:16:7d:b4:4a;
+atrcxb2278;chassis89{***HBA not found ***}
+atrcxb2279;chassis89{***HBA not found ***}
+atrcxb2280;chassis89{***HBA not found ***}
+atrcxb2281;chassis89{***HBA not found ***}
+atrcxb1145;chassis89; Port 1: 50:01:43:80:05:6a:50:ac; Port 2: 50:01:43:80:05:6a:50:ae;
+atrcxb1146;chassis89; Port 1: 50:01:43:80:05:6a:55:48; Port 2: 50:01:43:80:05:6a:55:4a;
+chassis89;{****no of HBA missings*****}4;{****no of BROC missings*****}0
+{***Server not found ***}
+ethrcxb1628;chassis12; Port 1: 50:01:43:80:14:0e:68:b4; Port 2: 50:01:43:80:14:0e:68:b6;
+ethrcxb1712;chassis12; Port 1: 50:01:43:80:12:0c:f6:10; Port 2: 50:01:43:80:12:0c:f6:12;
+ethrcxb1713;chassis12; Port 1: 50:01:43:80:12:0c:f6:0c; Port 2: 50:01:43:80:12:0c:f6:0e;
+atrcxb1667;chassis12; Port 1: 50:01:43:80:12:0c:a7:b4; Port 2: 50:01:43:80:12:0c:a7:b6;
+chassis12;{****no of HBA missings*****}0;{****no of BROC missings*****}0
+atrcxb2289;chassis90; Port 1: 50:01:43:80:18:71:ad:5c; Port 2: 50:01:43:80:18:71:ad:5e;
+atrcxb2290;chassis90; Port 1: 50:01:43:80:18:71:ad:ec; Port 2: 50:01:43:80:18:71:ad:ee;
+atrcxb2291;chassis90; Port 1: 50:01:43:80:18:71:b6:50; Port 2: 50:01:43:80:18:71:b6:52;
+atrcxb2292;chassis90; Port 1: 50:01:43:80:18:71:b0:e4; Port 2: 50:01:43:80:18:71:b0:e6;
+atrcxb2293;chassis90; Port 1: 50:01:43:80:18:71:b1:04; Port 2: 50:01:43:80:18:71:b1:06;
+atrcxb2294;chassis90; Port 1: 50:01:43:80:18:71:b6:58; Port 2: 50:01:43:80:18:71:b6:5a;
+atrcxb2295;chassis90; Port 1: 50:01:43:80:18:71:b7:5c; Port 2: 50:01:43:80:18:71:b7:5e;
+atrcxb2296;chassis90; Port 1: 50:01:43:80:18:71:ae:2c; Port 2: 50:01:43:80:18:71:ae:2e;
+atrcxb2297;chassis90; Port 1: 50:01:43:80:18:71:b6:38; Port 2: 50:01:43:80:18:71:b6:3a;
+atrcxb2298;chassis90; Port 1: 50:01:43:80:18:71:b6:54; Port 2: 50:01:43:80:18:71:b6:56;
+atrcxb2299;chassis90; Port 1: 50:01:43:80:18:71:b5:e0; Port 2: 50:01:43:80:18:71:b5:e2;
+atrcxb2300;chassis90; Port 1: 50:01:43:80:18:71:af:70; Port 2: 50:01:43:80:18:71:af:72;
+atrcxb2301;chassis90; Port 1: 50:01:43:80:18:71:b7:78; Port 2: 50:01:43:80:18:71:b7:7a;
+atrcxb2302;chassis90; Port 1: 50:01:43:80:18:71:b0:f8; Port 2: 50:01:43:80:18:71:b0:fa;
+atrcxb2303;chassis90; Port 1: 50:01:43:80:18:71:b5:f4; Port 2: 50:01:43:80:18:71:b5:f6;
+atrcxb2304;chassis90; Port 1: 50:01:43:80:18:71:ad:e8; Port 2: 50:01:43:80:18:71:ad:ea;
+chassis90;{****no of HBA missings*****}0;{****no of BROC missings*****}0

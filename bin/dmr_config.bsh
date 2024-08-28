@@ -1,0 +1,307 @@
+#!/bin/bash
+#
+# Script to auto-configure DMR
+#
+#
+DMR_CONFIG=/ericsson/dmr/etc/dm_define
+DMTOOL=/ericsson/dmr/bin/dmtool
+EXPECT=/usr/local/bin/expect
+DMRTMPFILE=/var/tmp/mirror_dmr_logs
+VXDISK=/usr/sbin/vxdisk
+CAT=/usr/bin/cat
+
+if [ -f /ericsson/config/environ ]; then
+        _testinstall_=`$CAT /ericsson/config/environ`
+
+        if [ "${_testinstall_}" = "test" ]; then
+        _testsystem_=1
+        else
+        _testsystem_=0
+        fi
+else
+        _testsystem_=0
+fi
+
+if [ ${_testsystem_} = 1 ]; then
+        echo "INFO : dmtool cannot be executed on a test system"
+        exit 0
+fi
+
+
+check_2_good_mirrors() {
+$EXPECT << EOF
+        set stty_init "rows 100"
+        spawn /ericsson/dmr/bin/dmtool c m
+        set timeout 20
+	while 1 {
+		expect {
+			"Found these good mirrors:" {
+				break}
+			eof {
+				exit 1}
+			timeout {
+				puts "warning: timed out"
+				exit 1}
+		}
+	}
+	exit 0
+EOF
+
+if [ $? -eq 0 ]; then
+	echo "Found two good mirrors!"
+	return 0
+else
+	return 1
+fi
+
+
+
+}
+
+function isSyncing() {
+	$EXPECT << EOF
+        set timeout 20
+        spawn $DMTOOL m 2
+
+	expect {
+		"Syncing" {
+			exit 0
+		}
+		eof {
+			exit 1
+		}
+		timeout {
+			exit 1
+		}
+	}
+EOF
+
+
+}
+
+doFullSync_wrap() {
+	max_tries=60
+	count=0
+	good_mirrors=FALSE
+	while [ $count -lt $max_tries ]; do
+		echo "** attempting to get 2 good mirrors by doing full sync (attempt $( expr $count + 1 )/$max_tries)"
+		check_2_good_mirrors && {
+			echo "Found two good mirrors!"
+			 return 0
+		}
+		if isSyncing > /dev/null ; then
+			echo "sync already in progress"
+		else
+			doFullSync
+		fi
+		sleep 60
+		let count+=1
+	done
+	echo "Error - unable to create 2 good mirrors by doing full sync"
+	return 1
+}
+
+doFullSync() {
+	echo "Doing full sync..."
+	$EXPECT << EOF
+        spawn $DMTOOL sy
+        set timeout 20
+	expect -timeout 60 "Redefine the Mirrors" {
+                send "n\r"
+        }
+	expect -timeout 60 "Rename the disks" {
+                send "y\r"
+        }
+	expect -timeout 60 "Do you want to re-mirror one side" {
+                send "y\r"
+        }
+        expect -timeout 60 "Attach those plexes (otherwise full re-sync)" {
+                send "y\r"
+        }
+
+	expect "Enter selection (1-2)" { send "2\r" }
+	expect "Skip Re-Mirror of root disk (y/n)" { send "y\r" }
+	expect "Continue (y/n)?" { send "y\r" }
+	expect "Enter 't'ry again, 'c'ontinue anyway, 's'tep next or 'q'uit:" {
+			send "c\r"
+			exp_continue
+	}
+	expect "Continue anyway" {
+			send "y\r"
+			exp_continue
+	}
+        expect -timeout 300 {
+		eof {
+			catch wait result
+			exit [lindex $result 3]
+		}
+		timeout {
+			catch wait result
+			exit [lindex $result 3]
+		}
+	}
+EOF
+        return 0
+
+
+}
+
+#
+#
+#
+
+createDmDefine() {
+	if [ -s $DMR_CONFIG ]; then
+		echo "Backing up existing $DMR_CONFIG => $DMR_CONFIG.$$"
+		mv -f $DMR_CONFIG $DMR_CONFIG.$$
+	fi
+	[ -f $DMRTMPFILE ] && /bin/rm -f $DMRTMPFILE
+	# we might get lucky and dmr itself sugguests mirror config
+	$EXPECT << EOF
+	set auto FALSE
+	set timeout 20
+        set stty_init "rows 100"
+        log_file $DMRTMPFILE
+	proc getRootDisks { result } {
+		set toks [ split \$result "\n" ]
+		foreach tok \$toks {
+			if {[scan \$tok "%d %s %s %s" number disk serial meta]  >=  3} {
+				if { [ scan \$disk "c%dt%dd%ds%d" cont tgt sdisk slice ] == 4 } {
+					lappend disknums \$number
+				}
+			}
+		}
+		if {[ llength \$disknums ] < 2  } {
+			puts "Error - could not find enough root disk candidates"
+			set disknums { -1 -1 }
+		}
+		return \$disknums
+	}
+
+        spawn $DMTOOL
+        expect "How many mirrors should be defined"
+        send "2\r"
+	expect "Are data disks OK (y/n)?" { send "y\r" }
+	expect "Enter selection (q=quit):" {
+		set disknums [ getRootDisks "\$expect_out(buffer)" ]
+		if { [ lindex \$disknums 0 ] == -1 } { exit 1 }
+
+		send "[ lindex \$disknums 0 ]\r"
+	}
+	expect "Enter selection (q=quit):" { send "[ lindex \$disknums 1 ]\r" }
+        expect {
+                  "Is this a good mirror definition (y/n)?" {
+			set auto TRUE
+			send "y\r"
+		}
+	}
+         set timeout 300
+
+         expect "Enter selection:"
+         sleep 2
+         send "q\r"
+
+
+        expect {
+                  "Enter selection:" {
+                        set auto TRUE
+                       send "q\r"
+                    }
+          }
+EOF
+
+	case $? in
+		0)
+			if [ -s "$DMR_CONFIG" ]; then
+				echo "$DMR_CONFIG successfully created"
+				return 0
+			else
+				echo "Error - failed to create $DMR_CONFIG"
+				return 1
+			fi
+			;;
+		1)
+			echo "Failed to create $DMR_CONFIG"
+			return 1
+			;;
+		2)
+			# need to manually create dm_define
+			echo "Will try to figure out disks to put in dm_define"
+			$VXDISK list > $DMRTMPFILE
+			root_disk_1=$($VXDISK list  | awk '$5 == "SVM" {print $1}' | head -n1 )
+			[ -z "$root_disk_1" ] && {
+				echo "Error - unable to identify side 1 root disk"
+				return 1
+			}
+			root_disk_2=$($VXDISK list  | awk '$5 == "SVM" {print $1}' | tail -1 )
+			[ -z "$root_disk_2" ] && {
+				echo "Error - unable to identify side 2 root disk"
+				return 1
+			}
+			data_disks=$( $VXDISK list  | awk '$4 ~ /^ossdg$/ {print $1}' | tr '\n' ' ')
+			[ -z "$data_disks" ] && {
+				echo "Error - could not identify data disks for mirrors"
+				return 1
+			}
+
+			num_data_disks=$( echo $data_disks | wc -w | tr -d ' '  )
+			[ $num_data_disks -lt 2 ] && {
+				echo "Error - not enough data disks ($num_data_disks) for both mirrors"
+				return 1
+			}
+			num_data_disks_side=$( expr $num_data_disks / 2)
+			data_disks_1=$( echo $data_disks | cut -d " " -f1-${num_data_disks_side} )
+			data_disks_2_from=$( expr $num_data_disks_side + 1 )
+			remainder=$( expr $num_data_disks % 2 )
+			data_disks_2_to=$( expr $num_data_disks - $remainder )
+			data_disks_2=$( echo $data_disks | cut -d " " -f${data_disks_2_from}-${data_disks_2_to} )
+			[ -z "$data_disks_1" ] && {
+				echo "Error - unable to identify side 1 mirror data disks"
+				return 1
+			}
+			[ -z "$data_disks_2" ] && {
+				echo "Error - unable to identify side 2 mirror data disks"
+				return 1
+			}
+			echo "Creating $DMR_CONFIG"
+			echo disk > $DMR_CONFIG &&
+			echo $root_disk_1 $data_disks_1 >> $DMR_CONFIG &&
+			echo $root_disk_2 $data_disks_2 >> $DMR_CONFIG || {
+				echo "Failed to create $DMR_CONFIG"
+				return 1
+			}
+			;;
+	esac
+
+
+
+}
+
+if [ ! -x $DMTOOL ]; then
+	echo "Error - DMR appears not to be installed"
+	exit 1
+fi
+
+if [ -s $DMR_CONFIG ]; then
+	echo "Found $DMR_CONFIG"
+	check_2_good_mirrors
+	case $? in
+		0)
+			exit 0
+			;;
+		1)
+			echo "Two good mirrors NOT found - will do full sync"
+			doFullSync_wrap || exit 1
+			;;
+		*)
+			echo "Unable to configure DMR"
+			exit 1
+			;;
+
+	esac
+
+else
+	echo "No $DMR_CONFIG file found. Will try to create one"
+	createDmDefine || exit 1
+	doFullSync_wrap || exit 1
+fi

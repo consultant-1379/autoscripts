@@ -1,0 +1,74 @@
+#!/bin/bash
+NETSIM_IP=192.168.0.2
+UAS_IP=192.168.0.6
+
+# SSH
+INDEX=2
+while [ ${INDEX} -le 9 ] ; do
+    iptables --append PREROUTING --table nat --proto tcp  --in-interface eth0 --dport 220${INDEX} --jump DNAT --to 192.168.0.${INDEX}:22
+    INDEX=`expr ${INDEX} + 1`
+done
+
+# UAS Citrix
+iptables --append PREROUTING --table nat --proto tcp  --in-interface eth0 --dport 80   --jump DNAT --to ${UAS_IP}:80
+iptables --append PREROUTING --table nat --proto tcp  --in-interface eth0 --dport 1494 --jump DNAT --to ${UAS_IP}:1494
+
+# Netsim RSH
+iptables --append PREROUTING --table nat --proto tcp  --in-interface eth0 --dport 514 --jump DNAT --to ${NETSIM_IP}:514
+
+# Master service debuging for BCG
+PORT=5005
+while [ ${PORT} -le 5010 ] ; do
+ iptables --append PREROUTING --table nat --proto tcp  --in-interface eth0 --dport ${PORT} --jump DNAT --to 192.168.0.5:${PORT}
+ PORT=`expr ${PORT} + 1`
+done
+
+# Other debugging for ETH
+for PORT_OFFSET in 0 5 9 10 11 12 13 14 184 185 186 187 188 189 ; do
+    PORT=`expr 50000 + ${PORT_OFFSET}`
+    iptables --append PREROUTING --table nat --proto tcp  --in-interface eth0 --dport ${PORT} --jump DNAT --to 192.168.0.5:${PORT}
+done
+
+# FTP
+cp /etc/sysconfig/iptables-config /var/tmp/iptables-config
+cat /var/tmp/iptables-config | sed 's/IPTABLES_MODULES=.*/IPTABLES_MODULES="ip_conntrack_tftp ip_nat_tftp nf_conntrack_ftp ip_conntrack_ftp ip_nat_ftp"/' > /etc/sysconfig/iptables-config
+
+/etc/init.d/iptables save
+
+cat >> /var/named/zone.vts <<EOF
+netsim          A       192.168.0.2
+omsas           A       192.168.0.3
+omsrvm          A       192.168.0.4
+ossmaster       A       192.168.0.5
+uas1            A       192.168.0.6
+omsrvs          A       192.168.0.7
+nedss           A       192.168.0.8
+ebas            A       192.168.0.9
+EOF
+cat >> /var/named/revp.192.168.0 <<EOF
+2             PTR     netsim.vts.com.
+3             PTR     omsas.vts.com.
+4             PTR     omsrvm.vts.com.
+5             PTR     ossmaster.vts.com.
+6             PTR     uas1.vts.com.
+7             PTR     omsrvs.vts.com.
+8             PTR     nedss.vts.com.
+9             PTR     ebas.vts.com.
+EOF
+service named restart
+
+# Create start script to store external hostname/IP
+echo "IP=\`ifconfig eth0| grep \"inet addr\"| awk -F: '{print \$2}'| awk '{print \$1}'\`"  >> /etc/rc.local
+echo "HOSTNAME=\`nslookup \$IP 159.107.173.12 | grep name| awk '{print \$4}' | awk -F. '{print \$1}'\`"  >> /etc/rc.local
+echo "if [ ! -d /exthostname ]" >> /etc/rc.local
+echo "then" >> /etc/rc.local
+echo "mkdir /exthostname" >> /etc/rc.local
+echo "fi" >> /etc/rc.local 
+echo "echo \$IP > /exthostname/IP" >> /etc/rc.local
+echo "echo \$HOSTNAME > /exthostname/HOSTNAME" >> /etc/rc.local
+echo "grep -v exthostname /etc/exports > /tmp/exports" >> /etc/rc.local
+echo "echo '/exthostname *.vts.com(no_root_squash,ro,sync)' >> /tmp/exports" >> /etc/rc.local
+echo "mv /tmp/exports /etc/exports" >> /etc/rc.local
+echo "exportfs -r" >> /etc/rc.local
+
+ 

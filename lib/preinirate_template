@@ -1,0 +1,181 @@
+;#################################################################
+;
+;  This file is used by the inirator to set variables such that
+;  default values from the file are presented for every inirator 
+;  question. 
+;
+;  Default questions for fencing and data LUNS cannot be set as 
+;  it is not possible to determine the LUN ids before jumpstart.
+;  However, if the correct number and type of LUNs are connected 
+;  to the server, the the inirator function will figure out the 
+;  defaults itself. Otherwise the LUNS can be manually changed 
+;  during inirator execution
+;
+;  For use by inirator, this file should be stored in /ericsson/config 
+;  and be named preinerate_<hostname>
+;
+;#################################################################
+
+[PREINIRATE]
+; The autoini variable can be set to yes to complete full automatic installation through
+; the inirator phase. Note: Make sure that all default variables are correct before setting
+; this value to yes. It is advisable to set the value to no for the first time installation
+; to verify that all default values are picked up correctly by the inirator. The value can then
+; be set to yes for subsequent installs when default values are verified. 
+autoini=no
+; The clearscsi3 variable can be set to yes to automatically clear scsi3 registration/reservation
+; keys on LUNS. If scsi3 keys are detected on any LUNS connected to the server, core.sh will bail
+; out before starting inirator. Setting this variable to yes will prevent bailout of core.sh and 
+; will automatically clear the scsi3 keys from the LUNs.  
+clearscsi3=yes
+; cluster name
+clustername=
+; Test IP Address for first Storage VLAN NIC
+storBaseIPP1=
+; Test IP Address for second Storage VLAN NIC
+storBaseIPP2=
+; Storage VIP address
+storVIPP1=
+; Storage VLAN Netmask
+storNETMM=
+; OSS System Identifier
+OssIDD=
+; NAS master Password
+nasMasPWW=master
+; NAS support Password
+nasSupPWW=symantec
+; IP address for NAS1 server
+nasServ1IPP=
+; IP address for NAS2 server
+nasServ2IPP=
+; IP address for NAS Console
+nasServConn=
+; Test IP Address for first Public VLAN NIC
+pubBaseIPP1=
+; Test IP Address for second Public VLAN NIC
+pubBaseIPP2=
+; Public VLAN Default router IP Address
+pubDRR=
+; Public VLAN Netmask
+pubNETMM=
+; IP address for Private LAN NIC
+privBaseIPP1=200.200.200.15
+; Private LAN Netmask
+privNETMM=255.255.255.0
+; IP address for Backup LAN NIC
+bkupBaseIPP=
+; Backup LAN Netmask
+bkupNETMM=
+; Virtual IP address for OSSFS
+ossfsIPP=
+; Virtual IP address for PMS
+pmsIPP=
+; Virtual IP address for CMS
+cmsIPP=
+; Virtual IP address for Sybase
+sybaseIPP=
+; Virtual IP address for SNMP
+snmpIPP=
+; Virtual IP address for OSS bkup
+ossbkupIPP=
+; Virtual IP address for Sybase bkup
+syb1bkupIPP=
+; Total number of GSM Cells
+GSMDEF=
+; Total number of UTRAN Cells
+UTRANDEF=
+; Total number of LTE Cells
+LTEDEF=
+; Total number of Core Nodes
+COREDEF=
+; Number of AXD based nodes
+AXDnodes=
+; Use TGR application ( YES/NO )
+OSSTGR=NO
+; Number of TeS nodes
+Tesnodes=0
+; Allocate space for SGW ( YES/NO )
+ADDSGW=NO
+; Allocate space for PMS ( YES/NO )
+ADDPMS=NO
+; Allocate space for EBSW ( YES/NO )
+ADDEBSW=NO
+; Allocate space for RPMO ( YES/NO )
+ADDRPMO=NO
+; Allocate space for EBS ( YES/NO )
+ADDEBS=NO
+; Allocate space for RTT ( YES/NO )
+ADDRTT=NO
+; Setup RNO Database Export Interface ( YES/NO )
+ADDRNDBI=NO
+; Allocate space for EBS-S ( YES/NO )
+ADDEBSS=NO
+; Number of OSSRC Sites
+NumSites=
+; Number of CPP MGW nodes in the Core Network
+Nummgw=
+; Number of STN nodes OSSRC supports
+Numstn=
+; Number of SGSN nodes in the Core Network
+Numsgsn=
+; Number of SGSN MME nodes in the Core Network
+Numsgsnmme=
+; Number of GGSN nodes in the Core Network
+Numggsn=
+; Number of 2G/3G SAUs per OSS-RC
+Num2g3gsaus=
+; Number of 4G SAUs per OSS-RC
+Num4gsaus=
+; Combined number of cells on all OSS-RC servers that will be audited by IRATHOM application
+Numirathomcells=
+; Number of APG43 equipped nodes in the  Network
+Numapg43=
+; Number of Redback SmartEdge equipped nodes in the  Network
+Numredback=
+; Number of SASN nodes with SARA functionality equipped nodes in the  Network
+Numsasnsara=
+; Installation type
+INS_TYPE=ii
+; The hostname of the OSS server
+HOSTNAME=
+; Netgroup name
+NETGROUPNAME=
+; default password for the OSS-RC sybase users. 6 or more characters.
+SQL_DEF_USER_PW=
+; timezone for your geographical region or offset from GMT
+TIMEZONE=
+; defaultrouter IP address. The address of the gateway to the rest of the network.
+DEFAULTROUTERS=
+; DNS-server's ip-address. Leave empty if not used.
+NAMESERVERS=
+; DNS-domain, e.g company.domain.com
+DNSDOMAIN=
+; LDAP-domain, e.g company.domain.com
+LDAPDOMAIN=
+; SLS server name e.g https://<slsserver>:8443/ericsson/servlet/sls
+SLS_SERVER=
+; Sentinel license file path. Leave empty if have nothing to give
+SENTINEL_LICENSE_FILE_PATH=
+; Type of xml file installation, server
+SEC_TYPE=
+; The Veritas VM license key.
+VXVMLIC=
+; This is either GSM1900 or GSM900/1800, depending on the frequencies used by the GSM network.
+NETWORK_TYPE=
+; Name of the network root object in the information model.
+IM_ROOT=
+; The X29 suffix to be used.
+X29_SUFF=
+; The IP address of the WEBI server. If unknown, accept default and change later in /etc/hosts.
+NT_SERVER_IPADDRESS=
+; The IP address of the first Windows Application Server. If unknown, press enter and add it later.
+WAS_IP_1=
+; The IP address of the second Windows Application Server. If unknown, press enter and add it later.
+WAS_IP_2=
+; The IP address of the third Windows Application Server. If unknown, press enter and add it later.
+WAS_IP_3=
+; The IP address of the fourth Windows Application Server. If unknown, press enter and add it later.
+WAS_IP_4=
+; The IP address of the fifth Windows Application Server. If unknown, press enter and add it later.
+WAS_IP_5=
+

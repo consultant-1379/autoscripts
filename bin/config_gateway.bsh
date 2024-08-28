@@ -1,0 +1,492 @@
+#!/bin/bash
+NETSIM_IP=192.168.0.2
+UAS_IP=192.168.0.6
+
+
+# Turn on ntpdate service on boot
+
+chkconfig ntpdate on
+ntpdate -ub 159.107.173.12 > /dev/null 2>&1
+
+##################################
+# openvpn steps
+
+# Cleanup iptables
+iptables -F
+iptables -X
+iptables -t nat -F
+iptables -t nat -X
+iptables -t mangle -F
+iptables -t mangle -X
+iptables -P INPUT ACCEPT
+iptables -P FORWARD ACCEPT
+iptables -P OUTPUT ACCEPT
+
+
+# Openvpn related iptables
+iptables -A INPUT -i tun+ -j ACCEPT
+iptables -A OUTPUT -o tun+ -j ACCEPT
+iptables -A FORWARD -o tun+ -j ACCEPT
+iptables -A FORWARD -m state --state RELATED,ESTABLISHED -j ACCEPT
+iptables -A FORWARD -s 172.16.31.0/24 -j ACCEPT
+
+
+#if [[ ! -f /etc/init.d/openvpn ]]
+#then
+#	echo "Setting up openvpn, please wait..."
+#	mv  /etc/yum/pluginconf.d/fastestmirror.conf  /etc/yum/pluginconf.d/fastestmirror.conf.org
+#	cat /etc/yum/pluginconf.d/fastestmirror.conf.org | sed 's/enabled=1/enabled=0/g' > /etc/yum/pluginconf.d/fastestmirror.conf
+#	if [[ ! `grep "atproxy1.athtem.eei.ericsson.se" /etc/yum.conf` ]]
+#	then
+#		echo "proxy=http://atproxy1.athtem.eei.ericsson.se:3128/" >> /etc/yum.conf
+#	fi
+#	export http_proxy=http://atproxy1.athtem.eei.ericsson.se:3128
+#
+#	wget -qnc http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.2-2.el6.rf.x86_64.rpm
+#	rpm -Uvh rpmforge-release-0.5.2-2.el6.rf.x86_64.rpm > /dev/null 2>&1
+#	rm -rf rpmforge-release-0.5.2-2.el6.rf.x86_64.rpm
+#	yum install openvpn -q -y > /dev/null 2>&1
+#	/etc/init.d/pptpd stop > /dev/null 2>&1
+#	chkconfig pptpd off > /dev/null 2>&1
+#	chkconfig openvpn on
+#
+#	mkdir -p /etc/openvpn/
+#	rm -rf /etc/openvpn/openvpn.tar > /dev/null 2>&1
+#	cp /export/scripts/files/openvpn/openvpn.tar /etc/openvpn/
+#	cd /etc/openvpn
+#	tar xvf openvpn.tar > /dev/null 2>&1
+#	rm -rf /etc/openvpn/openvpn.tar > /dev/null 2>&1
+#	/etc/init.d/openvpn start
+# 
+#fi
+
+# end of openvpn related steps
+##################################
+
+######### Tunnel bypass nat rules
+
+#  Mangle table part
+iptables -t mangle -A PREROUTING -p esp -j MARK --set-mark 1
+
+#  Nat table part
+iptables -t nat -A PREROUTING -m mark --mark 0x1 -j ACCEPT
+
+#########
+
+# SSH
+INDEX=2
+while [ ${INDEX} -le 9 ] ; do
+    iptables --append PREROUTING --table nat --proto tcp  --in-interface eth0 --dport 220${INDEX} --jump DNAT --to 192.168.0.${INDEX}:22
+    INDEX=`expr ${INDEX} + 1`
+done
+
+# UAS Citrix
+iptables --append PREROUTING --table nat --proto tcp  --in-interface eth0 --dport 80   --jump DNAT --to ${UAS_IP}:80
+iptables --append PREROUTING --table nat --proto tcp  --in-interface eth0 --dport 1494 --jump DNAT --to ${UAS_IP}:1494
+
+# Netsim RSH
+iptables --append PREROUTING --table nat --proto tcp  --in-interface eth0 --dport 514 --jump DNAT --to ${NETSIM_IP}:514
+
+# Master service debuging for BCG
+PORT=5005
+while [ ${PORT} -le 5010 ] ; do
+ iptables --append PREROUTING --table nat --proto tcp  --in-interface eth0 --dport ${PORT} --jump DNAT --to 192.168.0.5:${PORT}
+ PORT=`expr ${PORT} + 1`
+done
+
+# Other debugging for ETH
+for PORT_OFFSET in 0 5 9 10 11 12 13 14 184 185 186 187 188 189 ; do
+    PORT=`expr 50000 + ${PORT_OFFSET}`
+    iptables --append PREROUTING --table nat --proto tcp  --in-interface eth0 --dport ${PORT} --jump DNAT --to 192.168.0.5:${PORT}
+done
+
+# Rays iptable commands
+iptables -t nat -A PREROUTING -i eth0 -p tcp -m tcp --dport 50000 -j DNAT --to-destination 192.168.0.5:50000
+iptables -t nat -A PREROUTING -i eth0 -p tcp -m tcp --dport 50005 -j DNAT --to-destination 192.168.0.5:50005
+iptables -t nat -A PREROUTING -i eth0 -p tcp -m tcp --dport 50009 -j DNAT --to-destination 192.168.0.5:50009
+iptables -t nat -A PREROUTING -i eth0 -p tcp -m tcp --dport 50010:50014 -j DNAT --to-destination 192.168.0.5:50010-50014
+iptables -t nat -A PREROUTING -i eth0 -p tcp -m tcp --dport 50184:50189 -j DNAT --to-destination 192.168.0.5:50184-50189
+iptables -t nat -A PREROUTING -i eth0 -p tcp -m tcp --dport 2302 -j DNAT --to-destination 192.168.0.2:23
+iptables -t nat -A PREROUTING -i eth0 -p tcp -m tcp --dport 2303 -j DNAT --to-destination 192.168.0.3:23
+iptables -t nat -A PREROUTING -i eth0 -p tcp -m tcp --dport 2304 -j DNAT --to-destination 192.168.0.4:23
+iptables -t nat -A PREROUTING -i eth0 -p tcp -m tcp --dport 2305 -j DNAT --to-destination 192.168.0.5:23
+iptables -t nat -A PREROUTING -i eth0 -p tcp -m tcp --dport 2306 -j DNAT --to-destination 192.168.0.6:23
+iptables -t nat -A PREROUTING -i eth0 -p tcp -m tcp --dport 5505:5510 -j DNAT --to-destination 192.168.0.5:5505-5510
+iptables -t nat -A PREROUTING -i eth0 -p tcp -m tcp --dport 2242 -j DNAT --to-destination 192.168.0.42:22
+iptables -t nat -A PREROUTING -i eth0 -p tcp -m tcp --dport 2243 -j DNAT --to-destination 192.168.0.43:22
+iptables -t nat -A PREROUTING -i eth0 -p tcp -m tcp --dport 2244 -j DNAT --to-destination 192.168.0.44:22
+iptables -t nat -A PREROUTING -i eth0 -p tcp -m tcp --dport 2245 -j DNAT --to-destination 192.168.0.45:22
+iptables -t nat -A PREROUTING -i eth0 -p tcp -m tcp --dport 2246 -j DNAT --to-destination 192.168.0.46:22
+iptables -t nat -A PREROUTING -i eth0 -p tcp -m tcp --dport 2247 -j DNAT --to-destination 192.168.0.47:22
+iptables -t nat -A PREROUTING -i eth0 -p tcp -m tcp --dport 2250 -j DNAT --to-destination 192.168.0.50:22
+iptables -t nat -A PREROUTING -i eth0 -p tcp -m tcp --dport 2251 -j DNAT --to-destination 192.168.0.51:22
+iptables -t nat -A PREROUTING -i eth0 -p tcp -m tcp --dport 2282 -j DNAT --to-destination 192.168.0.82:22
+iptables -t nat -A PREROUTING -i eth0 -p tcp -m tcp --dport 22211 -j DNAT --to-destination 192.168.0.211:22
+iptables -t nat -A PREROUTING -i eth0 -p tcp -m tcp --dport 22212 -j DNAT --to-destination 192.168.0.212:22
+
+# TAF Executor related from CIS-2741 Jira
+iptables -t nat -A PREROUTING -i eth0 -p tcp -m tcp --dport 15672 -j DNAT --to-destination 192.168.0.200:15672
+iptables -t nat -A PREROUTING -i eth0 -p tcp -m tcp --dport 8080 -j DNAT --to-destination 192.168.0.197:8080
+
+# Other iptable stuff
+iptables -A FORWARD -i eth1 -j ACCEPT
+#-A FORWARD -m state --state RELATED,ESTABLISHED -j ACCEPT
+#-A FORWARD -o tun+ -j ACCEPT
+#-A FORWARD -s 172.16.31.0/24 -j ACCEPT
+#-A INPUT -i tun+ -j ACCEPT
+#-A OUTPUT -o tun+ -j ACCEPT
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+
+# FTP
+cp /etc/sysconfig/iptables-config /var/tmp/iptables-config
+cat /var/tmp/iptables-config | sed 's/IPTABLES_MODULES=.*/IPTABLES_MODULES="ip_conntrack_tftp ip_nat_tftp nf_conntrack_ftp ip_conntrack_ftp ip_nat_ftp"/' > /etc/sysconfig/iptables-config
+
+/etc/init.d/iptables save
+
+ZONE_VTS_CONTENTS='$ORIGIN vts.com.
+$TTL 1D
+@     IN SOA   root gateway (
+                        200405191 ; serial
+                        8H        ; refresh
+                        4H        ; retry
+                        4W        ; expire
+                        1D )      ; minimum
+                NS      gateway
+                MX      10 gateway
+localhost       A       127.0.0.1
+gateway         A       192.168.0.1
+netsim          A       192.168.0.2
+omsas           A       192.168.0.3
+omsrvm          A       192.168.0.4
+ossmaster       A       192.168.0.5
+oss2master      A       192.168.0.17
+uas1            A       192.168.0.6
+omsrvs          A       192.168.0.7
+nedss           A       192.168.0.8
+ebas            A       192.168.0.9
+ossmaster-pub-base-ip1  A       192.168.0.10
+ossmaster-pub-base-ip2  A       192.168.0.11
+ossmaster-vip-ossfs     A       192.168.0.12
+ossmaster-vip-pms       A       192.168.0.13
+ossmaster-vip-cms       A       192.168.0.14
+ossmaster-vip-sybase    A       192.168.0.15
+ossmaster-vip-snmp      A       192.168.0.16
+oss2master-pub-base-ip1 A       192.168.0.18
+oss2master-pub-base-ip2 A       192.168.0.19
+oss2master-vip-ossfs    A       192.168.0.20
+oss2master-vip-pms      A       192.168.0.21
+oss2master-vip-cms      A       192.168.0.22
+oss2master-vip-sybase   A       192.168.0.23
+oss2master-vip-snmp     A       192.168.0.24
+peer1           A       192.168.0.47
+eniqe           A       192.168.0.50
+eniqs           A       192.168.0.51
+sonvis          A       192.168.0.82
+ms-1            A       192.168.0.42
+sc-1            A       192.168.0.43
+sc-2            A       192.168.0.44
+pl-3            A       192.168.0.45
+pl-4            A       192.168.0.46
+gcoip           A       192.168.0.60
+webip           A       192.168.0.61
+PMServ-si-0     A       192.168.0.62
+PMServ-si-1     A       192.168.0.63
+PMMed-si-0      A       192.168.0.64
+PMMed-si-1      A       192.168.0.65
+PMMed-si-2      A       192.168.0.66
+PMMed-si-3      A       192.168.0.67
+FMServ-si-0     A       192.168.0.68
+FMServ-si-1     A       192.168.0.69
+FMMed-si-0      A       192.168.0.70
+FMMed-si-1      A       192.168.0.71
+FMMed-si-2      A       192.168.0.72
+FMMed-si-3      A       192.168.0.73
+UIServ-si-0     A       192.168.0.74
+UIServ-si-1     A       192.168.0.75
+SSO-si-0        A       192.168.0.76
+SSO-si-1        A       192.168.0.77
+Asgard-si-0     A       192.168.0.78
+Asgard-si-1     A       192.168.0.79
+apache          A       192.168.0.80
+logstash        A       192.168.0.81
+sonvis			A		192.168.0.82
+son-om          A       192.168.0.83
+win7            A       192.168.0.84
+csg				A		192.169.0.85
+gatewaysvip		A		172.16.30.1
+ossmastersvip   A       172.16.30.4
+oss2mastersvip  A       172.16.30.29
+uas1svip        A       172.16.30.5
+ebassvip        A       172.16.30.6
+peer1svip       A       172.16.30.9
+sfs-phy1        A       172.16.30.10
+sfs-phy2        A       172.16.30.11
+sfs-phy3        A       172.16.30.12
+sfs-phy4        A       172.16.30.13
+nas1            A       172.16.30.14
+nas2            A       172.16.30.15
+nas3            A       172.16.30.16
+nas4            A       172.16.30.17
+nasconsole      A       172.16.30.18
+ms-1svip		A		172.16.30.19
+sc-1svip        A       172.16.30.20
+sc-2svip        A       172.16.30.21
+pl-3svip        A       172.16.30.22
+pl-4svip        A       172.16.30.23
+omservmsvip     A       172.16.30.24
+omservssvip     A       172.16.30.25
+nedsssvip       A       172.16.30.26
+tdlin           A       192.168.0.86
+mws             A       192.168.0.119
+tafexem1        A       192.168.0.197
+tafexes1        A       192.168.0.198
+tafexes2        A       192.168.0.199
+tafexemb1       A       192.168.0.200
+monitoring1     A       192.168.0.201
+cep             A       192.168.0.211
+datagen         A       192.168.0.212
+cdp1.cdps.vts.com          A       192.168.0.4
+cdp2.cdps.vts.com          A       192.168.0.7
+'
+echo "$ZONE_VTS_CONTENTS" > /var/named/zone.vts
+
+REVP_CONTENTS='$ORIGIN 0.168.192.in-addr.arpa.
+$TTL 1D
+@     IN SOA  gateway.vts.com. root.vts.com. (
+              200405190  ; serial
+              28800      ; refresh (8 hours)
+              14400      ; retry (4 hours)
+              2419200    ; expire (4 weeks)
+              86400      ; minimum (1 day)
+              )
+              NS      gateway.vts.com.
+1             PTR     gateway.vts.com.
+2             PTR     netsim.vts.com.
+3             PTR     omsas.vts.com.
+4             PTR     omsrvm.vts.com.
+5             PTR     ossmaster.vts.com.
+6             PTR     uas1.vts.com.
+7             PTR     omsrvs.vts.com.
+8             PTR     nedss.vts.com.
+9             PTR     ebas.vts.com.
+10            PTR     ossmaster-pub-base-ip1.vts.com.
+11            PTR     ossmaster-pub-base-ip2.vts.com.
+12            PTR     ossmaster-vip-ossfs.vts.com.
+13            PTR     ossmaster-vip-pms.vts.com.
+14            PTR     ossmaster-vip-cms.vts.com.
+15            PTR     ossmaster-vip-sybase.vts.com.
+16            PTR     ossmaster-vip-snmp.vts.com.
+17            PTR     oss2master.vts.com.
+18            PTR     oss2master-pub-base-ip1.vts.com.
+19            PTR     oss2master-pub-base-ip2.vts.com.
+20            PTR     oss2master-vip-ossfs.vts.com.
+21            PTR     oss2master-vip-pms.vts.com.
+22            PTR     oss2master-vip-cms.vts.com.
+23            PTR     oss2master-vip-sybase.vts.com.
+24            PTR     oss2master-vip-snmp.vts.com.
+47            PTR     peer1.vts.com.
+50            PTR     eniqe.vts.com.
+51            PTR     eniqs.vts.com.
+82            PTR     sonvis.vts.com.
+42      PTR     ms-1.vts.com.
+43      PTR     sc-1.vts.com.
+44      PTR     sc-2.vts.com.
+45      PTR     pl-3.vts.com.
+46      PTR     pl-4.vts.com.
+60      PTR     gcoip.vts.com.
+61      PTR     webip.vts.com.
+62      PTR     PMServ-si-0.vts.com.
+63      PTR     PMServ-si-1.vts.com.
+64      PTR     PMMed-si-0.vts.com.
+65      PTR     PMMed-si-1.vts.com.
+66      PTR     PMMed-si-2.vts.com.
+67      PTR     PMMed-si-3.vts.com.
+68      PTR     FMServ-si-0.vts.com.
+69      PTR     FMServ-si-1.vts.com.
+70      PTR     FMMed-si-0.vts.com.
+71      PTR     FMMed-si-1.vts.com.
+72      PTR     FMMed-si-2.vts.com.
+73      PTR     FMMed-si-3.vts.com.
+74      PTR     UIServ-si-0.vts.com.
+75      PTR     UIServ-si-1.vts.com.
+76      PTR     SSO-si-0.vts.com.
+77      PTR     SSO-si-1.vts.com.
+78      PTR     Asgard-si-0.vts.com.
+79      PTR     Asgard-si-1.vts.com.
+80      PTR     apache.vts.com.
+81      PTR     logstash.vts.com.
+82		PTR		sonvis.vts.com.
+83      PTR     son-om.vts.com.
+84      PTR     win7.vts.com.
+85	PTR	csg.vts.com.
+86      PTR     tdlin.vts.com.
+119     PTR     mws.vts.com.
+197     PTR     tafexem1.vts.com.
+198     PTR     tafexes1.vts.com.
+199     PTR     tafexes2.vts.com.
+200     PTR     tafexemb1.vts.com.
+201     PTR     monitoring1.vts.com.
+211     PTR     cep.vts.com.
+212     PTR     datagen.vts.com.
+'
+echo "$REVP_CONTENTS" > /var/named/revp.192.168.0
+
+REVP_172_CONTENTS='$ORIGIN 30.16.172.in-addr.arpa.
+$TTL 1D
+@     IN SOA  gatewaysvip.vts.com. rootsvip.vts.com. (
+              200405191  ; serial
+              28800      ; refresh (8 hours)
+              14400      ; retry (4 hours)
+              2419200    ; expire (4 weeks)
+              86400      ; minimum (1 day)
+              )
+              NS      gatewaysvip.vts.com.
+1             PTR     gatewaysvip.vts.com.
+4             PTR     ossmastersvip.vts.com.
+5             PTR     uas1svip.vts.com.
+6             PTR     ebassvip.vts.com.
+9             PTR     peer1svip.vts.com.
+10      PTR     sfs-phy1.vts.com.
+11      PTR     sfs-phy2.vts.com.
+12      PTR     sfs-phy3.vts.com.
+13      PTR     sfs-phy4.vts.com.
+14      PTR     nas1.vts.com.
+15      PTR     nas2.vts.com.
+16      PTR     nas3.vts.com.
+17      PTR     nas4.vts.com.
+18      PTR     nasconsole.vts.com.
+19		PTR		ms-1svip.vts.com.
+20      PTR     sc-1svip.vts.com.
+21      PTR     sc-2svip.vts.com.
+22      PTR     pl-3svip.vts.com.
+23      PTR     pl-4svip.vts.com.
+24      PTR     omservmsvip.vts.com.
+25      PTR     omservssvip.vts.com.
+26      PTR     nedsssvip.vts.com.
+29      PTR     oss2mastersvip.vts.com.
+'
+echo "$REVP_172_CONTENTS" > /var/named/revp.172.16.30
+
+NAMED_CONF_CONTENTS='//
+// named.conf
+//
+// Provided by Red Hat bind package to configure the ISC BIND named(8) DNS
+// server as a caching only nameserver (as a localhost DNS resolver only).
+//
+// See /usr/share/doc/bind*/sample/ for example named configuration files.
+//
+
+options {
+        listen-on port 53 { 127.0.0.1; 192.168.0.1; };
+        listen-on-v6 port 53 { ::1; };
+        directory       "/var/named";
+        dump-file       "/var/named/data/cache_dump.db";
+        statistics-file "/var/named/data/named_stats.txt";
+        memstatistics-file "/var/named/data/named_mem_stats.txt";
+        allow-query     { localhost; 192.168.0.0/16; 0.0.0.0/0; };
+        recursion yes; forwarders { 159.107.173.12; }; forward only;
+
+
+        /* Path to ISC DLV key */
+};
+
+logging {
+        channel default_debug {
+                file "data/named.run";
+                severity dynamic;
+        };
+};
+
+zone "." IN {
+        type hint;
+        file "named.ca";
+};
+
+include "/etc/named.rfc1912.zones";
+
+zone "vts.com" IN {
+  type master;
+  file "zone.vts";
+};
+
+zone "0.168.192.in-addr.arpa" {
+  type master;
+  file "revp.192.168.0";
+};
+zone "30.16.172.in-addr.arpa" {
+  type master;
+  file "revp.172.16.30";
+};
+'
+echo "$NAMED_CONF_CONTENTS" > /etc/named.conf
+
+service named restart
+
+modprobe ip_nat_ftp
+modprobe ip_conntrack_ftp
+
+# Create start script to store external hostname/IP
+
+
+if [[ ! `grep exthostname /etc/rc.local` ]]
+then
+echo "IP=\`ifconfig eth0| grep \"inet addr\"| awk -F: '{print \$2}'| awk '{print \$1}'\`"  >> /etc/rc.local
+echo "HOSTNAME=\`nslookup \$IP 159.107.173.12 | grep name| awk '{print \$4}' | awk -F. '{print \$1}'\`"  >> /etc/rc.local
+echo "if [ ! -d /exthostname ]" >> /etc/rc.local
+echo "then" >> /etc/rc.local
+echo "mkdir /exthostname" >> /etc/rc.local
+echo "chmod 777 /exthostname" >> /etc/rc.local
+echo "fi" >> /etc/rc.local
+echo "echo \$IP > /exthostname/IP" >> /etc/rc.local
+echo "echo \$HOSTNAME > /exthostname/HOSTNAME" >> /etc/rc.local
+echo "grep -v exthostname /etc/exports > /tmp/exports" >> /etc/rc.local
+echo "echo '/exthostname *.vts.com(no_root_squash,ro,sync)' >> /tmp/exports" >> /etc/rc.local
+echo "mv /tmp/exports /etc/exports" >> /etc/rc.local
+echo "exportfs -r" >> /etc/rc.local
+fi
+/etc/rc.local
+
+# Setup the gateway to clear the vappid file on boot
+echo "rm -rf /tmp/vappid > /dev/null 2>&1" > /etc/rc3.d/S99rmvappid
+chmod 777 /etc/rc3.d/S99rmvappid
+
+# Setup the vSPC.py crontab
+crontab -l > /tmp/cron.tmp 2>/dev/null
+if [[ ! `grep vSPC.py /tmp/cron.tmp` ]]
+then
+	echo "* * * * * /root/vSPC.py --server" >> /tmp/cron.tmp
+	crontab /tmp/cron.tmp
+	rm /tmp/cron.tmp
+fi
+/root/vSPC.py --server
+# Add the hostname solution in the cron
+WGET_COMMAND="wget -qO /etc/deployment/tag.txt http://atvweb2.athtem.eei.ericsson.se/tag.php?hostname=\`hostname\`"
+WGET_COMMAND_UNESCAPED="wget -qO /etc/deployment/tag.txt http://atvweb2.athtem.eei.ericsson.se/tag.php?hostname=`hostname`"
+
+crontab -l > /tmp/cron.tmp 2>/dev/null
+#if [[ ! `grep "http://atvweb2.athtem.eei.ericsson.se/tag.php?hostname=" /tmp/cron.tmp` ]]
+#then
+	cat /tmp/cron.tmp | grep -v "http://atvweb2.athtem.eei.ericsson.se/tag.php?hostname=" > /tmp/cron.tmp2
+	mv /tmp/cron.tmp2 /tmp/cron.tmp
+        echo "*/15 * * * * $WGET_COMMAND" >> /tmp/cron.tmp
+        crontab /tmp/cron.tmp
+        rm /tmp/cron.tmp
+#fi
+mkdir -p /etc/deployment/ > /dev/null 2>&1
+chmod 777 /etc/deployment/
+$WGET_COMMAND_UNESCAPED
+# SCP command
+SCP_COMMAND='scp /etc/deployment/tag.txt ossmaster:/etc/deployment/ >/dev/null 2>&1'
+
+crontab -l > /tmp/cron.tmp 2>/dev/null
+#if [[ ! `grep '$SCP_COMMAND' /tmp/cron.tmp` ]]
+#then
+        cat /tmp/cron.tmp | grep -v "scp /etc/deployment/" > /tmp/cron.tmp2
+        mv /tmp/cron.tmp2 /tmp/cron.tmp
+        echo "*/15 * * * * $SCP_COMMAND" >> /tmp/cron.tmp
+        crontab /tmp/cron.tmp
+        rm /tmp/cron.tmp
+#fi
+#mkdir /deployment/ > /dev/null 2>&1
+#chmod 744 /deployment/
+#$SCP_COMMAND >/dev/null 2>/dev/null

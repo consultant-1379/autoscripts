@@ -1,0 +1,70 @@
+alicreate "atesx2199_1","50:01:43:80:12:0c:f3:b8"
+zonecreate "Z_atesx2199_1_to_atcx457_SPA0","atesx2199_1;atcx457_SPA0"
+cfgadd "ZC_Fabric_A","Z_atesx2199_1_to_atcx457_SPA0"
+
+######Next Zone######
+
+
+alicreate "atesx1440_1","50:01:43:80:12:0c:61:8c"
+zonecreate "Z_atesx1440_1_to_atcx457_SPA0","atesx1440_1;atcx457_SPA0"
+cfgadd "ZC_Fabric_A","Z_atesx1440_1_to_atcx457_SPA0"
+
+######Next Zone######
+
+
+alicreate "atesx1441_1","50:01:43:80:12:0c:6e:88"
+zonecreate "Z_atesx1441_1_to_atcx457_SPA0","atesx1441_1;atcx457_SPA0"
+cfgadd "ZC_Fabric_A","Z_atesx1441_1_to_atcx457_SPA0"
+
+######Next Zone######
+
+
+alicreate "atesx2230_1","50:01:43:80:12:0b:15:1c"
+zonecreate "Z_atesx2230_1_to_atcx457_SPA0","atesx2230_1;atcx457_SPA0"
+cfgadd "ZC_Fabric_A","Z_atesx2230_1_to_atcx457_SPA0"
+
+######Next Zone######
+
+
+alicreate "atesx2231_1","50:01:43:80:12:0c:f4:18"
+zonecreate "Z_atesx2231_1_to_atcx457_SPA0","atesx2231_1;atcx457_SPA0"
+cfgadd "ZC_Fabric_A","Z_atesx2231_1_to_atcx457_SPA0"
+
+######Next Zone######
+
+
+alicreate "atesx2199_2","50:01:43:80:12:0c:f3:ba"
+zonecreate "Z_atesx2199_2_to_atcx457_SPA0","atesx2199_2;atcx457_SPA0"
+cfgadd "ZC_Fabric_B","Z_atesx2199_2_to_atcx457_SPA0"
+
+######Next Zone######
+
+
+alicreate "atesx1440_2","50:01:43:80:12:0c:61:8e"
+zonecreate "Z_atesx1440_2_to_atcx457_SPA0","atesx1440_2;atcx457_SPA0"
+cfgadd "ZC_Fabric_B","Z_atesx1440_2_to_atcx457_SPA0"
+
+######Next Zone######
+
+
+alicreate "atesx1441_2","50:01:43:80:12:0c:6e:8a"
+zonecreate "Z_atesx1441_2_to_atcx457_SPA0","atesx1441_2;atcx457_SPA0"
+cfgadd "ZC_Fabric_B","Z_atesx1441_2_to_atcx457_SPA0"
+
+######Next Zone######
+
+
+alicreate "atesx2230_2","50:01:43:80:12:0b:15:1e"
+zonecreate "Z_atesx2230_2_to_atcx457_SPA0","atesx2230_2;atcx457_SPA0"
+cfgadd "ZC_Fabric_B","Z_atesx2230_2_to_atcx457_SPA0"
+
+######Next Zone######
+
+
+alicreate "atesx2231_2","50:01:43:80:12:0c:f4:1a"
+zonecreate "Z_atesx2231_2_to_atcx457_SPA0","atesx2231_2;atcx457_SPA0"
+cfgadd "ZC_Fabric_B","Z_atesx2231_2_to_atcx457_SPA0"
+
+######Next Zone######
+
+
